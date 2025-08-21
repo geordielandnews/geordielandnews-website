@@ -4,25 +4,28 @@
   <meta charset="UTF-8" />
   <title>Newcastle United News</title>
 
-  <!-- AdSense verification -->
+  <!-- AdSense script -->
   <meta name="google-adsense-account" content="ca-pub-6068321329701529">
 
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Navbar + Dropdown */
+    /* Dropdown container */
     .navbar ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
+
     .navbar ul li {
       display: inline-block;
       position: relative;
     }
+
     .dropdown-content a:hover {
       background-color: #444;
     }
+
     .navbar ul li a {
       font-size: 14px;
       padding: 6px 12px;
@@ -32,6 +35,8 @@
       color: white;
       text-decoration: none;
     }
+
+    /* Dropdown container */
     .dropdown-content {
       display: none;
       position: absolute;
@@ -43,15 +48,46 @@
       padding: 0;
       border-radius: 4px;
     }
+
     .dropdown-content a {
       display: block;
       color: white;
       padding: 12px 16px;
       text-decoration: none;
     }
+
     .dropdown:hover .dropdown-content,
     .dropdown-content:hover {
       display: block;
+    }
+
+    /* Hamburger button */
+    .hamburger {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      padding: 10px 15px;
+      color: white;
+      background: black;
+      border: none;
+    }
+
+    /* Responsive menu */
+    @media (max-width: 768px) {
+      .navbar ul {
+        display: none;
+        flex-direction: column;
+        background: black;
+        width: 100%;
+      }
+
+      .navbar ul.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
     }
 
     /* News Card Layout */
@@ -123,7 +159,6 @@
       cursor: default;
     }
 
-    /* Footer */
     footer {
       background: #111;
       color: #fff;
@@ -131,6 +166,7 @@
       padding: 1rem;
       margin-top: auto;
     }
+
     .social-icons a img {
       width: 24px;
       height: 24px;
@@ -138,49 +174,9 @@
       transition: filter 0.3s;
       filter: brightness(0) invert(1);
     }
+
     .social-icons a img:hover {
       filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
-    }
-
-    /* ✅ Responsive adjustments */
-    @media (max-width: 1200px) {
-      .news-container {
-        width: 95%;
-      }
-    }
-    @media (max-width: 1024px) {
-      .ad-panel-left,
-      .ad-panel-right {
-        display: none; /* hide side ads on tablets/phones */
-      }
-    }
-    @media (max-width: 768px) {
-      .navbar ul li {
-        display: block;
-        margin-bottom: 6px;
-      }
-      .news-container {
-        width: 100%;
-        padding: 0 10px;
-      }
-      .left-news-slot {
-        flex-direction: column;
-        align-items: center;
-      }
-      .left-news-slot img {
-        width: 100%;
-        height: auto;
-      }
-      .left-news-content {
-        width: 100%;
-      }
-      header h1 {
-        font-size: 20px;
-      }
-      #pagination button {
-        padding: 5px 8px;
-        font-size: 14px;
-      }
     }
   </style>
 </head>
@@ -214,19 +210,20 @@
     <h1 class="title">Geordie Land News</h1>
   </header>
 
-  <!-- Navbar -->
+  <!-- NAVIGATOR -->
   <nav class="navbar">
-    <ul>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <ul id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="news.html">News</a></li>
       <li class="dropdown">
-        <a href="#" class="dropbtn">Fixtures</a>
+        <a href="#">Fixtures</a>
         <div class="dropdown-content">
           <a href="preseason.html">Pre Season</a>
           <a href="premierleague.html">Premier League</a>
           <a href="championsleague.html">Champions League</a>
           <a href="carabaocup.html">Carabao Cup</a>
-          <a href="facup.html">FA Cup</a>
+          <a href="facup.html">FA Cup</a>  
         </div>
       </li>
       <li><a href="squad.html">Squad</a></li>
@@ -234,16 +231,27 @@
     </ul>
   </nav>
 
-  <!-- Sub title -->
+  <!-- SUB TITLE -->
   <div class="sub-header">Newcastle United News</div>
 
   <!-- News Section -->
   <div class="news-container" id="newsContainer">
     <p>Loading Newcastle news...</p>
   </div>
+
+  <!-- Pagination -->
   <div id="pagination" style="text-align:center; margin:20px 0;"></div>
 
-  <!-- News Script -->
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
+      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script>
     const FEEDS = [
       'https://feeds.bbci.co.uk/sport/football/rss.xml',
@@ -353,17 +361,12 @@
     }
 
     fetchNews();
+
+    /* Hamburger toggle */
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
   </script>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
-      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
-    </div>
-  </footer>
-
-  <script src="script.js"></script> 
 </body>
 </html>
+
