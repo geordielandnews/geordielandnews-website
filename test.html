@@ -1,0 +1,366 @@
+<style>
+/* Dropdown container */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content a:hover {
+  background-color: #444;
+}
+
+.navbar ul li a {
+  font-size: 14px;
+  padding: 6px 12px;
+  line-height: 1.3;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  color: white;
+  text-decoration: none;
+}
+
+/* Dropdown container */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 24px;
+  background-color: #111;    /* solid background */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0;       /* no padding on container */
+  border-radius: 4px;
+}
+
+/* Each link fills width and has padding */
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+/* Show dropdown when hovering dropdown or dropdown-content */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Newcastle United News</title>
+
+  <!-- AdSense script (only once) -->
+<meta name="google-adsense-account" content="ca-pub-6068321329701529">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Left panel ad -->
+  <div class="ad-panel-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:140px;height:100vh"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <!-- Right panel ad -->
+  <div class="ad-panel-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:140px;height:100"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <!-- Your page content starts here -->
+  <header class="header">
+    <img src="pictures/newcastle-logo.jpg" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+</body>
+</html>
+
+<!-- NAVIGATOR -->
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="news.html">News</a></li>
+
+    <!-- Dropdown for Fixtures -->
+    <li class="dropdown">
+      <a href="" class="dropbtn">Fixtures</a>
+      <div class="dropdown-content">
+        <a href="preseason.html">Pre Season</a>
+        <a href="premierleague.html">Premier League</a>
+        <a href="championsleague.html">Champions League</a>
+        <a href="carabaocup.html">Carabao Cup</a>
+        <a href="facup.html">FA Cup</a>  
+      </div>
+    </li>
+
+    <li><a href="squad.html">Squad</a></li>
+    <li><a href="transfers.html">Transfers</a></li>
+    <li><a href="test.html">Test</a></li>            
+  </ul>
+</nav>
+
+<!-- SUB TITLE -->
+
+<div class="sub-header">Newcastle United News</div>
+
+  <!-- News Section -->
+
+  <style>
+    /* News Card Layout */
+    .news-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 1200px;
+      margin: 20px auto;
+    }
+    .left-news-slot {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .left-news-slot img {
+      width: 300px;
+      height: 200px;
+      border-radius: 4px;
+      display: block;
+      object-fit: cover;
+    }
+    .left-news-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .left-news-slot h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+      color: #222;
+    }
+    .left-news-slot .date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .left-news-slot p {
+      font-size: 0.95rem;
+      line-height: 1.3;
+      color: #333;
+      margin: 0 0 1em 0;
+    }
+    .left-news-slot h3 a {
+      text-decoration: none;
+      color: #222;
+    }
+    .left-news-slot h3 a:hover {
+      text-decoration: underline;
+      color: #0066cc;
+    }
+
+    /* Pagination */
+    #pagination button {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      margin: 0 3px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #pagination button:disabled {
+      background: #444;
+      cursor: default;
+    }
+</style>
+
+  <div class="news-container" id="newsContainer">
+    <p>Loading Newcastle news...</p>
+  </div>
+
+  <!-- Pagination -->
+  <div id="pagination" style="text-align:center; margin:20px 0;"></div>
+
+  <!-- Script -->
+  <script>
+    const FEEDS = [
+      'https://feeds.bbci.co.uk/sport/football/rss.xml',
+      'https://www.skysports.com/rss/12040',
+      'https://www.telegraph.co.uk/football/rss.xml',
+      'https://www.chroniclelive.co.uk/all-about/newcastle-united-fc/?service=rss',
+      'https://www.shieldsgazette.com/sport/football/newcastle-united/rss',
+    ];
+
+    let allNews = [];
+    let currentPage = 1;
+    const perPage = 6; // show 6 news cards per page
+
+    async function fetchNews() {
+      const allItems = [];
+      for (const feed of FEEDS) {
+        try {
+          const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed)}`);
+          const data = await response.json();
+          if (data.status === 'ok') {
+            allItems.push(...data.items);
+          }
+        } catch (e) {
+          console.error('Error fetching', feed, e);
+        }
+      }
+
+      // Filter Newcastle news
+      const filtered = allItems.filter(item =>
+        item.title.toLowerCase().includes('newcastle') ||
+        (item.description && item.description.toLowerCase().includes('newcastle'))
+      );
+
+      // Sort newest first
+      filtered.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+      // Limit to 50 to keep pagination manageable
+      allNews = filtered.slice(0, 500);
+
+      renderPage(1);
+    }
+
+    function renderPage(page) {
+      currentPage = page;
+      const container = document.getElementById('newsContainer');
+      container.innerHTML = '';
+
+      if (allNews.length === 0) {
+        container.innerHTML = '<p>No Newcastle news available right now.</p>';
+        return;
+      }
+
+      // Slice news items for this page
+      const start = (page - 1) * perPage;
+      const end = start + perPage;
+      const pageItems = allNews.slice(start, end);
+
+      pageItems.forEach(item => {
+        const pubDate = new Date(item.pubDate).toLocaleDateString(undefined, {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        const div = document.createElement('div');
+        div.className = 'left-news-slot';
+        div.innerHTML = `
+          <img src="${item.enclosure?.link || 'https://via.placeholder.com/300x200?text=News'}" alt="News Image" />
+          <div class="left-news-content">
+            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+            <div class="date">${pubDate}</div>
+            <p>${item.description || 'No summary available.'}</p>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+
+      renderPagination();
+    }
+
+    function renderPagination() {
+      const totalPages = Math.ceil(allNews.length / perPage);
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      // Previous button
+      if (currentPage > 1) {
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = 'Previous';
+        prevBtn.onclick = () => renderPage(currentPage - 1);
+        pagination.appendChild(prevBtn);
+      }
+
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.disabled = i === currentPage;
+        btn.onclick = () => renderPage(i);
+        pagination.appendChild(btn);
+      }
+
+      // Next button
+      if (currentPage < totalPages) {
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = 'Next';
+        nextBtn.onclick = () => renderPage(currentPage + 1);
+        pagination.appendChild(nextBtn);
+      }
+    }
+
+    fetchNews();
+  </script>
+
+<!-- FOOTER -->
+
+<style>
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto;
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+  margin-left: 1rem;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1); /* makes the image white initially */
+}
+
+.social-icons a img:hover {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
+}
+
+</style>
+
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
+      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+    </div>
+  </footer>
+
+  <script src="script.js"></script> 
+</body>
+</html>
