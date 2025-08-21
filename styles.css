@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+}
+
+/* Ad containers fixed to left */
+.ad-panel-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 140px;  /* Adjust width as needed */
+  height: 100vh; /* Full viewport height */
+  background-color: #222;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: auto;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+/* Ad containers fixed to right */
+.ad-panel-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 140px;  /* Adjust width as needed */
+  height: 100vh; /* Full viewport height */
+  background-color: #222;
+  color: white;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow: auto;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+/* Push main content away from ads */
+.header,
+.navbar,
+.content {
+  transition: margin 0.3s ease;
+  margin-left: 120px;  /* same width as ads */
+  margin-right: 120px;
+}
+
+/* Optional: keep your existing header/nav styles here */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #111;
+  color: rgb(255, 255, 255);
+  padding: 1rem 2rem;
+}
+
+.logo {
+  position: absolute;
+  left: 2rem;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 5rem;
+  margin: 0;
+  text-align: center;
+}
+
+/* NAVIGATOR */
+
+.navbar {
+  background-color: #111;
+  border-top: 1px solid white;
+  padding: 0.5rem 2rem;
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar a:hover {
+  color: #1e90ff;
+}
+
+/* SUB TITLE */
+
+.sub-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  margin: 20px 0;  /* Change top/bottom margin to move it up/down */
+  user-select: none;
+}
+
+/* PRE SEASON */
+
+
+/* FOOTER */
+
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 100rem;
+}

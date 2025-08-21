@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <title>Geordie Land News</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Dropdown container */
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li {
+      display: inline-block;
+      position: relative;
+    }
+
+    .navbar ul li a {
+      font-size: 14px;
+      padding: 6px 12px;
+      line-height: 1.3;
+      font-family: Arial, sans-serif;
+      font-weight: normal;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Dropdown content */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 24px;
+      background-color: #111;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 4px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #444;
+    }
+
+    /* Show dropdown on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* News slot */
+    .left-news-slot {
+      display: flex;          /* makes image + text side by side */
+      align-items: flex-start;
+      gap: 12px;              /* space between image and text */
+      width: 700px;           /* control overall width */
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 20px auto;      /* center it horizontally */
+      cursor: default;      
+    }
+
+    .left-news-slot img {
+      width: 200px;           /* fixed image size */
+      height: auto;
+      border-radius: 4px;
+      flex-shrink: 0;         /* stops image shrinking */
+      cursor: default;
+    }
+
+    .left-news-content {
+      flex: 1;                /* text takes remaining space */
+    }
+
+    .left-news-slot h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15rem;
+      color: #222;
+    }
+
+    .left-news-slot h3 a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    .left-news-slot .date {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+      cursor: default;    
+    }
+
+    .left-news-slot p {
+      font-size: 0.95rem;
+      line-height: 1.3;
+      color: #333;
+      margin: 0 0 1em 0;
+      cursor: default;  
+    }
+
+    .left-news-slot h3 a:hover {
+      text-decoration: underline;
+      color: #0066cc;
+    }  
+
+    .left-news-slot p a {
+      color: #333;          /* same as your paragraph text */
+      text-decoration: none; /* remove underline */
+    }
+
+    .left-news-slot p a:hover {
+      color: #0066cc;        /* Newcastle blue */
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="ad-panel-left">
+    <p>Left Side Ad</p>
+  </div>
+
+  <div class="ad-panel-right">
+    <p>Right Side Ad</p>
+  </div>
+
+  <header class="header">
+    <img src="pictures/newcastle-logo.jpg" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropbtn">Fixtures</a>
+        <div class="dropdown-content">
+          <a href="preseason.html">Pre Season</a>
+          <a href="premierleague.html">Premier League</a>
+          <a href="championsleague.html">Champions League</a>
+          <a href="carabaocup.html">Carabao Cup</a>
+          <a href="facup.html">FA Cup</a>  
+        </div>
+      </li>
+      <li><a href="squad.html">Squad</a></li>
+      <li><a href="transfers.html">Transfers</a></li>
+    </ul>
+  </nav>
+
+  <!-- SUB TITLE -->
+  <div class="sub-header">Newcastle United Transfers 25/26</div>
+
+<!-- RAMSEY SIGNED -->
+<div class="left-news-slot">
+  <img src="pictures/Jacob-Ramsey-Signed.png" alt="Jacob Ramsey Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://www.newcastleunited.com/en/news/jacob-ramsey-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
+        ⚪️⚫️ Official, confirmed. Jacob Ramsey joins Newcastle on deal worth over £40m from Aston Villa.
+      </a>
+    </h3></a></h3>
+    <div class="date">5:01PM August 17, 2025</div>
+    <p>Official, confirmed. Jacob Ramsey joins Newcastle on deal worth over £40m from Aston Villa.</p>
+    <p>“I’m happy and proud to join this club!”. 🤝🏽</p>
+  </div>
+</div>
+
+<!-- RAMSEY HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Jacob-Ramsey-HEREWEGO.png" alt="Jacob Ramsey Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1955974358200893548" target="_blank" rel="noopener noreferrer">
+        🚨⚪️⚫️ EXCLUSIVE: Jacob Ramsey to Newcastle, here we go! Agreement for £40m fee from Aston Villa.
+      </a>
+    </h3></a></h3>
+    <div class="date">1:46PM August 14, 2025</div>
+    <p>EXCLUSIVE: Jacob Ramsey to Newcastle, here we go! Agreement for £40m fee from Aston Villa.</p>
+    <p>Ramsey agreed on personal terms and travels for medical at #NUFC right now.</p>
+    <p>Ramsey strongly wanted Newcastle and deal now done.</p> 
+  </div>
+</div>
+
+<!-- ELANGA SIGNED -->
+<div class="left-news-slot">
+  <img src="pictures/Malick-Thiaw-Signed.png" alt="Malick Thiaw Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://www.newcastleunited.com/en/news/malick-thiaw-signs" target="_blank" rel="noopener noreferrer">
+        ⚪️⚫️ Official, confirmed. Newcastle sign Malick Thiaw on €40m deal from AC Milan.
+      </a>
+    </h3></a></h3>
+    <div class="date">10:04PM August 12, 2025</div>
+    <p>Official, confirmed. Newcastle sign Malick Thiaw on €40m deal from AC Milan.</p>
+    <p>€36m fixed fee, €4m add-ons and four year contract.</p>
+  </div>
+</div>
+
+<!-- THIAW HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Malick-Thiaw-HEREWEGO.png" alt="Malick Thiaw Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1954216426601947408" target="_blank" rel="noopener noreferrer">
+        🚨⚪️⚫️ Malick Thiaw to Newcastle, here we go! New centre back for Eddie Howe.
+      </a>
+    </h3></a></h3>
+    <div class="date">5:21PM August 9, 2025</div>
+    <p>Malick Thiaw to Newcastle, here we go! New centre back for Eddie Howe.
+</p>
+    <p>Agreement in place for €40m package, add-ons included. AC Milan verbally accepted the proposal.</p>
+    <p>Deal at the final stages as reported earlier and now done. Thiaw only wanted #NUFC. Medical soon.</p> 
+  </div>
+</div>
+
+<!-- RAMSDALE LOANED IN -->
+<div class="left-news-slot">
+  <img src="pictures/Aaron-Ramsdale-Signed.png" alt="Aaron Ramsdale Loaned" />
+  <div class="left-news-content">
+    <h3><a href="https://www.newcastleunited.com/en/news/aaron-ramsdale-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
+        🚨⚪️⚫️ Official, confirmed. Aaron Ramsdale joins Newcastle United on loan deal from Southampton.
+      </a>
+    </h3></a></h3>
+    <div class="date">2:19PM August 2, 2025</div>
+    <p>Official, confirmed. Aaron Ramsdale joins Newcastle United on loan deal from Southampton.
+</p>
+    <p>The agreement includes an option to buy.</p>
+  </div>
+</div>
+
+<!-- CORDERO LOANED OUT -->
+<div class="left-news-slot">
+  <img src="pictures/Antonio-Cordero-Loaned.png" alt="Antonio Cordero Loaned" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1951259553225486533" target="_blank" rel="noopener noreferrer">
+        🚨<img src="pictures/belgium-flag.png" alt="Belgium Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;"> After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
+      </a>
+    </h3></a></h3>
+    <div class="date">1:31PM August 1, 2025</div>
+    <p>After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
+</p>
+    <p>No buy option clause, straight loan as Cordero will be important piece of Newcastle future project.</p>
+  </div>
+</div>
+
+<!-- RAMSDALE HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Aaron-Ramsdale-HEREWEGO.png" alt="Aaron Ramsdale Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1950295941598367783" target="_blank" rel="noopener noreferrer">
+        🚨⚪️⚫️ Aaron Ramsdale to Newcastle, here we go! Deal in place with Southampton for the goalkeeper.
+      </a>
+    </h3></a></h3>
+    <div class="date">9:42PM July 29, 2025</div>
+    <p>Aaron Ramsdale to Newcastle, here we go! Deal in place with Southampton for the goalkeeper.</p>
+    <p>Buy option clause also included in the deal.</p>
+    <p>Heavy loan fee and salary covered by #NUFC, as 
+    <a href="https://x.com/David_Ornstein" target="_blank" rel="noopener noreferrer">@David_Ornstein</a> reports.
+    </p>
+    <p>Ramsdale will travel for medical later this week.</p>
+  </div>
+</div>
+
+<!-- LONGSTAFF HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Sean-Longstaff-Signed.png" alt="Sean Longstaff Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://www.leedsunited.com/en/news/sean-longstaff-signs-for-leeds-united" target="_blank" rel="noopener noreferrer">
+        🚨✍🏻 Official: Leeds United confirm Sean Longstaff's transfer from Newcastle.
+      </a>
+    </h3></a></h3>
+    <div class="date">9:14PM July 18, 2025</div>
+    <p>Official: Leeds United confirm Sean Longstaff's transfer from Newcastle.</p>
+    <p>He's signed a four-year contract after £12m plus £3m add-ons.</p>
+    <p>Deal done by Pini Zahavi’s Gol International.
+</p>
+    <p>Here we go. ✅</p>
+  </div>
+</div>
+
+<!-- LONGSTAFF HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Sean-Longstaff-HEREWEGO.png" alt="Sean Longstaff Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1945417398229647814" target="_blank" rel="noopener noreferrer">
+        🚨⚪️ Newcastle have authorized Sean Longstaff to undergo medical at Leeds United, agreement sealed.
+      </a>
+    </h3></a></h3>
+    <div class="date">10:37AM July 16, 2025</div>
+    <p>Newcastle have authorized Sean Longstaff to undergo medical at Leeds United, agreement sealed.</p>
+    <p>#LUFC set to pay fee in excess of £12m for Longstaff who said yes to the project in June.
+</p>
+    <p>Here we go. ✅</p>
+  </div>
+</div>
+
+<!-- ELANGA SIGNED -->
+<div class="left-news-slot">
+  <img src="pictures/Anthony-Elanga-Signed.png" alt="Anthony Elanga Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://www.newcastleunited.com/en/news/anthony-elanga-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
+        🚨<img src="pictures/sweden-flag.png" alt="Sweden Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;"> After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
+      </a>
+    </h3></a></h3>
+    <div class="date">8:04PM July 11, 2025</div>
+    <p>Official, confirmed. Anthony Elanga signs in as Newcastle player on £55m deal from Nottingham Forest.</p>
+    <p>Excellent addition for #NUFC. ⚡️</p>
+  </div>
+</div>
+
+<!-- ELANGA HEREWEGO -->
+<div class="left-news-slot">
+  <img src="pictures/Anthony-Elanga-HEREWEGO.png" alt="Anthony Elanga Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1942311322131038592" target="_blank" rel="noopener noreferrer">
+        🚨💣 EXCLUSIVE: Anthony Elanga to Newcastle, here we go! Deal in place club to club with Nottingham Forest for £55m.
+      </a>
+    </h3></a></h3>
+    <div class="date">9:42PM July 7, 2025</div>
+    <p>EXCLUSIVE: Anthony Elanga to Newcastle, here we go! Deal in place club to club with Nottingham Forest for £55m.</p>
+    <p>Agreement also in place with player’s camp on long term deal. 🤍🖤</p>
+    <p>Excellent addition for #NUFC.</p>
+  </div>
+</div>
+
+<!-- CORDERO SIGNED -->
+<div class="left-news-slot">
+  <img src="pictures/Antonio-Cordero-HEREWEGO.png" alt="Antonio Cordero Signing" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1912023330602840204" target="_blank" rel="noopener noreferrer">
+        🚨⚪️⚫️ EXCL: Newcastle have completed deal to sign Spanish 18 year old talent Antonio Cordero from Malaga, here we go!
+      </a>
+    </h3></a></h3>
+    <div class="date">7:01AM April 15, 2025</div>
+    <p>EXCL: Newcastle have completed deal to sign Spanish 18 year old talent Antonio Cordero from Malaga, here we go!</p>
+    <p>Announcement set to take place for Cordero to join #NUFC project.</p>
+    <p>Barça and Real Madrid were both keen on signing Cordero; he picked Newcastle.</p>
+  </div>
+</div>
+
+<script>
+  const container = document.getElementById("news-container");
+  const articles = Array.from(container.children);
+
+  // Sort descending (newest first)
+  articles.sort((a, b) => {
+    return new Date(b.dataset.date) - new Date(a.dataset.date);
+  });
+
+  // Re-append in sorted order
+  articles.forEach(article => container.appendChild(article));
+</script>
+
+<!-- FOOTER -->
+
+<style>
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 10px;  
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+  margin-left: 1rem;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1); /* makes the image white initially */
+}
+
+.social-icons a img:hover {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
+}
+
+</style>
+
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
+      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+    </div>
+  </footer>
+
+  <script src="script.js"></script> 
+</body>
+</html>
+
+<!-- Add this in your <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">

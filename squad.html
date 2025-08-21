@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <title>Squad</title>
+  <style>
+/* Dropdown container */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content a:hover {
+  background-color: #444;
+}
+
+.navbar ul li a {
+  font-size: 14px;
+  padding: 6px 12px;
+  line-height: 1.3;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  color: white;
+  text-decoration: none;
+}
+
+/* Dropdown container */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 24px;
+  background-color: #111;    /* solid background */
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0;       /* no padding on container */
+  border-radius: 4px;
+}
+
+/* Each link fills width and has padding */
+.dropdown-content a {
+  display: block;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+}
+
+/* Show dropdown when hovering dropdown or dropdown-content */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+  display: block;
+}
+
+  </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <title>Newcastle United News</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ad-panel-left">
+    <!-- Left side ad content here -->
+    <p>Left Side Ad</p>
+  </div>
+
+  <div class="ad-panel-right">
+    <!-- Right side ad content here -->
+    <p>Right Side Ad</p>
+  </div>
+
+  <header class="header">
+    <img src="pictures/newcastle-logo.jpg" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+<!-- NAVIGATOR -->
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="news.html">News</a></li>
+
+    <!-- Dropdown for Fixtures -->
+    <li class="dropdown">
+      <a href="" class="dropbtn">Fixtures</a>
+      <div class="dropdown-content">
+        <a href="preseason.html">Pre Season</a>
+        <a href="premierleague.html">Premier League</a>
+        <a href="championsleague.html">Champions League</a>
+        <a href="carabaocup.html">Carabao Cup</a>
+        <a href="facup.html">FA Cup</a>  
+      </div>
+    </li>
+
+    <li><a href="squad.html">Squad</a></li>
+    <li><a href="transfers.html">Transfers</a></li>
+  </ul>
+</nav>
+
+<!-- SUB TITLE -->
+
+<div class="sub-header">Newcaslte United 25/26 Squad</div>
+
+<style>
+  #searchBar {
+    width: 400px;
+    padding: 10px;
+    margin: 1rem auto; /* top-bottom margin 1rem, auto left-right centers horizontally */
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    display: block; /* make input behave like a block so margin auto works */
+  }
+  #filters {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  #filters button {
+    margin: 0 5px 10px 0;
+    padding: 6px 12px;
+    border: 1px solid #555;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  #filters button.active,
+  #filters button:hover {
+    background: #1e90ff;
+    color: white;
+  }
+  #sortButtons {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  #sortButtons button {
+    margin: 0 8px 10px 0;
+    padding: 6px 14px;
+    border: 1px solid #555;
+    background: white;
+    color: #555;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  #sortButtons button.active,
+  #sortButtons button:hover {
+    background: #1e90ff;
+    color: white;
+  }
+  .player-row {
+    width: 400px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+    margin: 0 auto 14px auto; /* top 0, bottom 14px, left/right auto */
+    padding: 14px 20px;
+    gap: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .player-row:hover { 
+    background-color: #edf2e6;
+  }
+  .player-photo {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #555;
+    object-fit: cover;
+  }
+  .player-info {
+    flex-grow: 1;
+  }
+  .player-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #555;
+    text-decoration: none;
+  }
+  .player-details {
+    margin-top: 6px;
+    font-weight: 600;
+    color: #555;
+  }
+  .flag {
+    width: 24px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 8px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  .shirt-number {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #555;
+    min-width: 60px;
+    text-align: center;
+    user-select: none;
+  }
+  .loan-badge {
+    display: inline-block;
+    background: rgb(0, 255, 13);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-left: 6px;
+    font-weight: bold;
+  }
+  .loan-badge.out {
+  background: red; /* Out on loan will be red */
+  }
+  .loan-logo {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .player-worth {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    margin-left: 6px;
+  }
+.trophy-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;              /* space between items */
+  justify-content: center;
+  margin-top: 12px;
+}
+.trophy-item {
+  text-align: center;
+}
+.trophy-image-wrapper {
+  width: 50px;            /* smaller than 80px */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trophy-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: none !important;
+  border-radius: 0 !important;
+}
+  .trophy-count {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background: #1e90ff;   /* Newcastle red or your choice */
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .trophy-item p {
+    font-size: 0.7rem;          /* small text under icon */
+    line-height: 1;
+    margin: 0;
+  }
+  .trophy-item {
+    position: relative;
+    display: inline-block;
+  }
+/* Tooltip text */
+  .trophy-item::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -28px;  /* space below image */
+    left: 50%;
+    transform: translateX(-50%);
+   background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+  }
+/* Show on hover */
+  .trophy-item:hover::after {
+    opacity: 1;
+  }
+  .no-trophies {
+    color: #ff0000;      /* change to whatever color you want */
+    font-weight: bold;  /* optional, makes it stand out */
+    text-align: center;
+  }
+
+  #noResults {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    color: #ff0000;
+  }
+  /* Modal styles */
+  #playerModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right:0;
+    bottom:0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  #playerModal.active {
+    display: flex;
+  }
+  #modalContent {
+    background: white;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    padding: 20px 30px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  #modalContent img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #555;
+    margin-bottom: 15px;
+  }
+  #modalContent h2 {
+    color: #1e90ff;
+    margin-bottom: 10px;
+  }
+  #modalPlayerProfile {
+    display: none;
+  }
+  #modalContent p {
+    font-weight: 600;
+    margin: 5px 0;
+  }
+  #modalCloseBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #d6002f;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  #modalCloseBtn:hover {
+    color: #d6002f;
+  }
+</style>
+</head>
+<body>
+
+  <input
+    type="search"
+    id="searchBar"
+    placeholder="Search by name, position or nationality..."
+    aria-label="Search players"
+  />
+
+  <div id="filters" aria-label="Filter by position">
+    <button data-position="All" class="active">All</button>
+    <button data-position="Goalkeeper">Goalkeeper</button>
+    <button data-position="Defender">Defender</button>
+    <button data-position="Midfielder">Midfielder</button>
+    <button data-position="Forward">Forward </button>
+  </div>
+
+  <div id="sortButtons" aria-label="Sort players">
+    <button data-sort="name" class="active">Sort by Name ↑</button>
+    <button data-sort="number">Sort by Shirt Number</button>
+  </div>
+
+  <section id="playersList" aria-live="polite"></section>
+
+  <p id="noResults" hidden>No players found.</p>
+
+  <!-- Modal -->
+  <div id="playerModal" role="dialog" aria-modal="true" aria-labelledby="modalPlayerName" tabindex="-1">
+    <div id="modalContent">
+      <button id="modalCloseBtn" aria-label="Close modal">&times;</button>
+      <img src="" alt="" id="modalPlayerImage" />
+      <h2 id="modalPlayerName"></h2>
+      <p><strong>Shirt Number:</strong> <span id="modalPlayerNumber"></span></p>    
+      <p><strong>Position:</strong> <span id="modalPlayerPosition"></span></p>      
+      <p><strong>Date of Birth/Age:</strong> <span id="modalPlayerAge"></span></p>
+      <p><strong>Nationality:</strong> <span id="modalPlayerNationality"></span></p>    
+      <p><strong>Worth:</strong> <span id="modalPlayerWorth"></span></p>
+      <p id="modalPlayerBio"></p>
+      <div id="modalPlayerTrophies">
+        <h3>Trophies</h3>
+        <div id="modalPlayerTrophyList" class="trophy-list"></div>
+      </div>
+      <p><a href="#" target="_blank" id="modalPlayerProfile" rel="noopener noreferrer">View Profile</a></p>
+    </div>
+  </div> 
+
+<script>
+  const players = [
+    {
+      name: "Nick Pope",
+      position: "Goalkeeper",
+      age: "19.04.1992 (33)",
+      nationality: "England",
+      shirtNumber: 1,
+      worth: "£6.88m",
+      onLoan: false,
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Pope.png",
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+      ]
+    },
+    {
+      name: "Kieran Trippier",
+      position: "Right-Back",
+      age: "19.09.1990 (34)",      
+      nationality: "England",
+      shirtNumber: 2,
+      worth: "£3.44m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Trippier.png",      
+      trophies: [
+        { name: "La Liga", image: "pictures/La-Liga.png", count: "1" },
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },        
+      ]              
+    },
+    {
+      name: "Lewis Hall",
+      position: "Left-Back",
+      age: "08.09.2004 (20)",      
+      nationality: "England",
+      shirtNumber: 3,
+      worth: "£27.52m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Hall.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+      ]        
+    },
+    {
+      name: "Sven Botman",
+      position: "Centre-Back",
+      age: "12.01.2020 (25)",      
+      nationality: "Netherlands",
+      shirtNumber: 4,
+      worth: "£36.12m",
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Botman.png",      
+      trophies: [
+        { name: "Ligue 1", image: "pictures/Ligue-1.png", count: "1" },
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "U19 Eredivisie", image: "pictures/noimagetrophy.png", count: "1" },
+        { name: "U17 Eredivisie", image: "pictures/noimagetrophy.png", count: "1" },
+        { name: "French Super Cup", image: "pictures/French-Super-Cup.png", count: "1" },
+      ]
+    },
+    {
+      name: "Fabian Schär",
+      position: "Centre-Back",
+      age: "20.12.1991 (33)",      
+      nationality: "Switzerland",
+      shirtNumber: 5,
+      worth: "£6.02m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Schar.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "Swiss Super League", image: "pictures/Swiss-Super-League.png", count: "3" },        
+      ]
+    },
+    {
+      name: "Jamaal Lascelles",
+      position: "Centre-Back",
+      age: "11.11.1993 (31)",      
+      nationality: "England",
+      shirtNumber: 6,
+      worth: "£3.48m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Lascelles.png",      
+      trophies: [
+        { name: "EFL Championship", image: "pictures/EFL-Championship.png", count: "1" },      
+      ]        
+    },
+    {
+      name: "Joelinton",
+      position: "Central Midfielder",
+      age: "14.08.1996 (29)",
+      nationality: "Brazil",
+      shirtNumber: 7,
+      worth: "£30.1m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Joelinton.png",
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" }, 
+      ]               
+    },
+    {
+      name: "Sandro Tonali",
+      position: "Defensive Midfielder",
+      age: "08.05.2000 (25)",      
+      nationality: "Italy",
+      shirtNumber: 8,
+      worth: "£51.6m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Tonali.png",   
+      trophies: [
+        { name: "Serie A", image: "pictures/Serie-A.png", count: "1" }, 
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },        
+        { name: "Copa Sudamericana", image: "pictures/Copa-Sudamericana.png", count: "1" }, 
+        { name: "Serie B", image: "pictures/Serie-B.png", count: "1" },                             
+      ]            
+    },
+    {
+      name: "Anthony Gordon",
+      position: "Left Winger",
+      age: "24.02.2001 (24)",      
+      nationality: "England",
+      shirtNumber: 10,
+      worth: "£55.9m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Gordon.png",   
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "UEFA Under-21 Championship", image: "pictures/European-U21.png", count: "1" },
+        { name: "U21 Premier League", image: "pictures/U21-Premier-League.png", count: "1" },                      
+      ]          
+    },
+    {
+      name: "Harvey Barnes",
+      position: "Left Winger",
+      age: "09.12.1997 (27)",      
+      nationality: "England",
+      shirtNumber: 11,
+      worth: "£30.1m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Barnes.png",   
+      trophies: [
+        { name: "FA Cup", image: "pictures/FA-Cup.png", count: "1" }, 
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "FA Community Shield", image: "pictures/Community-Shield.png", count: "1" },                
+      ]            
+    },
+    {
+      name: "Malick Thiaw",
+      position: "Centre-Back",
+      age: "08.08.2001 (24)",      
+      nationality: "Germany",
+      shirtNumber: 12,
+      worth: "£15.54m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Thiaw.png",
+      trophies: [
+        { name: "Italian Super Cup", image: "pictures/Italian-Super-Cup.png", count: "1" },
+        { name: "UEFA Under-21 Championship", image: "pictures/European-U21.png", count: "1" },
+        { name: "2. Bundesliga", image: "pictures/2-Bundesliga.png", count: "1" },
+      ]                 
+    },    
+    {
+      name: "Matt Targett",
+      position: "Left-Back",
+      age: "18.09.1995 (29)",      
+      nationality: "England",
+      shirtNumber: 13,
+      worth: "£4.3m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Targett.png",
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "U21 Premier League", image: "pictures/U21-Premier-League.png", count: "1" },        
+      ]            
+    },
+    {
+      name: "Alexander Isak",
+      position: "Centre-Forward",
+      age: "21.09.1999 (25)",      
+      nationality: "Sweden",
+      shirtNumber: 14,
+      worth: "£103.2m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Isak.png",      
+      trophies: [
+        { name: "DFB Pokal", image: "pictures/DFB-Pokal.png", count: "1" },    
+        { name: "Copa del Rey", image: "pictures/Copa-del-Rey.png", count: "1" },            
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "U19 Bundesliga", image: "pictures/Bundesliga.png", count: "1" },
+      ]                 
+    },
+    {
+      name: "Emil Krafth",
+      position: "Right-Back",
+      age: "02.08.1994 (31)",      
+      nationality: "Sweden",
+      shirtNumber: 17,
+      worth: "£1.72m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Krafth.png", 
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },        
+      ]             
+    },
+    {
+      name: "William Osula",
+      position: "Centre-Forward",
+      age: "04.08.2003 (22)",      
+      nationality: "Denmark",
+      shirtNumber: 18,
+      worth: "£6.02m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Osula.png",    
+      trophies: [   
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+      ]                   
+    },                                                             
+    {
+      name: "Odysseas Vlachodimos",
+      position: "Goalkeeper",
+      age: "19.04.1992 (33)",      
+      nationality: "Greece",
+      shirtNumber: 19,
+      worth: "£4.3m",
+      onLoan: false,
+      outOnLoan: true,
+      loanClubLogo: "pictures/sevilla-logo.png",
+      image: "pictures/Odysseas.png",
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "Liga Portugal", image: "pictures/Portuguese-Champion.png", count: "2" },
+        { name: "UEFA Under-21 Championship", image: "pictures/European-U21.png", count: "1" },
+        { name: "Portuguese Super Cup", image: "pictures/Portuguese-Super-Cup.png", count: "2" },
+      ]
+    },
+    {
+      name: "Anthony Elanga",
+      position: "Right Winger",
+      age: "27.04.2002 (23)",      
+      nationality: "Sweden",
+      shirtNumber: 20,
+      worth: "£36.12m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Elanga.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+      ]         
+    },
+    {
+      name: "Tino Livramento",
+      position: "Right-Back",
+      age: "12.11.2002 (22)",      
+      nationality: "England",
+      shirtNumber: 21,
+      worth: "£34.4m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Livramento.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "UEFA Under-21 Championship", image: "pictures/European-U21.png", count: "1" },
+      ]         
+    },
+    {
+      name: "Jacob Murphy",
+      position: "Right Winger",
+      age: "24.02.1995 (30)",      
+      nationality: "England",
+      shirtNumber: 23,
+      worth: "£13.76m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Murphy.png",     
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+      ]                
+    },
+    {
+      name: "Joe Willock",
+      position: "Central Midfielder",
+      age: "20.08.1999 (25)",      
+      nationality: "England",
+      shirtNumber: 28,
+      worth: "£18.92m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Willock.png",      
+      trophies: [
+        { name: "FA Cup", image: "pictures/FA-Cup.png", count: "1" }, 
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },
+        { name: "FA Community Shield", image: "pictures/Community-Shield.png", count: "2" },                
+      ]            
+    },                
+    {
+      name: "Mark Gillespie",
+      position: "Goalkeeper",
+      age: "27.03.1992 (33)",      
+      nationality: "England",
+      shirtNumber: 29,
+      worth: "£172k",
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Gillespie.png",
+      trophies: []
+    },
+    {
+      name: "Harrison Ashby",
+      position: "Right-Back",
+      age: "14.11.2001 (23)",      
+      nationality: "Scotland",
+      shirtNumber: 30,
+      worth: "£1.2m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Ashby.png",    
+      trophies: [
+        { name: "UEFA Conference League", image: "pictures/Conference-League.png", count: "1" },        
+      ]           
+    },
+    {
+      name: "Aaron Ramsdale",
+      position: "Goalkeeper",
+      age: "14.05.1998 (27)",      
+      nationality: "England",
+      shirtNumber: 32,
+      worth: "£13.76m",
+      onLoan: true, // not on loan
+      outOnLoan: false, // out on loan
+      loanClubLogo: "pictures/southampton-logo.png",
+      image: "pictures/Ramsdale.png",
+      trophies: [
+        { name: "FA Community Shield", image: "pictures/Community-Shield.png", count: "1" },
+        { name: "League One", image: "pictures/League-One.png", count: "1" },
+        { name: "UEFA Under-19 Championship", image: "pictures/European-U19.png", count: "1" },
+      ]
+    },          
+    {
+      name: "Dan Burn",
+      position: "Centre-Back",
+      age: "09.05.1992 (33)",      
+      nationality: "England",
+      shirtNumber: 33,
+      worth: "£5.16m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Burn.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },      
+        { name: "League One", image: "pictures/League-One.png", count: "1" },
+      ]          
+    },                                      
+    {
+      name: "Alex Murphy",
+      position: "Left-Back",
+      age: "25.06.2004 (21)",      
+      nationality: "Ireland",
+      shirtNumber: 37,
+      worth: "£264k",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Alex_Murphy.png",  
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" },  
+      ]          
+    },                                       
+    {
+      name: "Bruno Guimarães",
+      position: "Defensive Midfielder",
+      age: "16.11.1997 (27)",      
+      nationality: "Brazil",
+      shirtNumber: 39,
+      worth: "£68.8m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Guimaraes.png",      
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" }, 
+        { name: "Brasileiro Serie A", image: "pictures/Brazil-Serie-A.png", count: "1" },        
+        { name: "Copa Sudamericana", image: "pictures/Copa-Sudamericana.png", count: "1" }, 
+        { name: "Copa Suruga Bank", image: "pictures/Copa-Suruga-Bank.png", count: "1" },                
+        { name: "Olympic Medalist", image: "pictures/Olympic-Medal.png", count: "1" },                
+      ]                   
+    },                                            
+    {
+      name: "Lewis Miley",
+      position: "Central Midfielder",
+      age: "01.05.2006 (19)",      
+      nationality: "England",
+      shirtNumber: 67,
+      worth: "£18.92m",      
+      onLoan: false, // example loaned player
+      outOnLoan: false,
+      loanClubLogo: "",
+      image: "pictures/Miley.png", 
+      trophies: [
+        { name: "Carabao Cup", image: "pictures/Carabao-Cup.png", count: "1" }, 
+      ]             
+    },                                                                                  
+    {
+      name: "Joe White",
+      position: "Central Midfielder",
+      age: "01.10.2002 (22)",      
+      nationality: "England",
+      shirtNumber: 40,
+      worth: "£236k",      
+      onLoan: false, // example loaned player
+      outOnLoan: true,
+      loanClubLogo: "pictures/leyton-orient-logo.png",
+      image: "pictures/White.png",      
+    },                
+    {
+      name: "Antonio Cordero",
+      position: "Central Midfielder",
+      age: "14.11.2006 (18)",      
+      nationality: "Spain",
+      worth: "£1.74m",            
+      onLoan: false, // example loaned player
+      outOnLoan: true,
+      loanClubLogo: "pictures/westerlo-logo.png",
+      image: "pictures/Cordero.png"      
+    }                            
+  ];
+
+  const flags = {
+    England: "https://flagcdn.com/w40/gb-eng.png",
+    Brazil: "https://flagcdn.com/w40/br.png",
+    Sweden: "https://flagcdn.com/w40/se.png",
+    Greece: "https://flagcdn.com/w40/gr.png",
+    Denmark: "https://flagcdn.com/w40/dk.png",
+    Scotland: "https://flagcdn.com/w40/gb-sct.png",
+    Ireland: "https://flagcdn.com/w40/ie.png",
+    Switzerland: "https://flagcdn.com/w40/ch.png",
+    Italy: "https://flagcdn.com/w40/it.png",
+    Netherlands: "https://flagcdn.com/w40/nl.png",
+    Spain: "https://flagcdn.com/w40/es.png",
+    Germany: "https://flagcdn.com/w40/de.png",
+  };
+
+  let currentFilter = "All";
+  let currentSort = "name"; // name or number
+  let sortAsc = true;
+
+  const playersList = document.getElementById("playersList");
+  const noResults = document.getElementById("noResults");
+  const searchBar = document.getElementById("searchBar");
+  const filterButtons = document.querySelectorAll("#filters button");
+  const sortButtons = document.querySelectorAll("#sortButtons button");
+
+  const playerModal = document.getElementById("playerModal");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+  const openPlayerBtn = document.getElementById("openPlayerBtn");  
+  const modalPlayerImage = document.getElementById("modalPlayerImage");
+  const modalPlayerName = document.getElementById("modalPlayerName");
+  const modalPlayerAge = document.getElementById("modalPlayerAge");
+  const modalPlayerPosition = document.getElementById("modalPlayerPosition");
+  const modalPlayerNationality = document.getElementById("modalPlayerNationality");
+  const modalPlayerNumber = document.getElementById("modalPlayerNumber");
+  const modalPlayerProfile = document.getElementById("modalPlayerProfile");
+
+  const positionGroups = {
+    Goalkeeper: ["Goalkeeper", "GK"],
+    Defender: ["Defender", "Centre-Back", "Left-Back", "Right-Back", "Wing-Back"],
+    Midfielder: ["Midfielder", "Defensive Midfielder", "Central Midfielder", "Attacking Midfielder", "Right Midfielder", "Left Midfielder"],
+    Forward: ["Forward", "Striker", "Left Winger", "Right Winger", "Centre-Forward", "Second Striker"]
+  };
+
+
+
+  function renderPlayers() {
+    let filtered = players.filter(p => {
+      if (currentFilter !== "All") {
+        const allowedPositions = positionGroups[currentFilter] || [];
+        if (!allowedPositions.includes(p.position)) {
+          return false;
+        }
+      }
+  
+      const search = searchBar.value.trim().toLowerCase();
+      if (!search) return true;
+      return (
+        p.name.toLowerCase().includes(search) ||
+        p.position.toLowerCase().includes(search) ||
+        p.nationality.toLowerCase().includes(search)
+      );
+    });
+
+    if (filtered.length === 0) {
+      playersList.innerHTML = "";
+      noResults.hidden = false;
+      return;
+    } else {
+      noResults.hidden = true;
+    }
+
+    filtered.sort((a, b) => {
+      if (currentSort === "name") {
+        const comp = a.name.localeCompare(b.name);
+        return sortAsc ? comp : -comp;
+      } else {
+        return sortAsc ? a.shirtNumber - b.shirtNumber : b.shirtNumber - a.shirtNumber;
+      }
+    });
+
+    playersList.innerHTML = filtered
+      .map(p => `
+        <article tabindex="0" class="player-row" role="button" aria-pressed="false" aria-label="View details for ${p.name}">
+          <div class="shirt-number">${p.shirtNumber ?? ""}</div>
+          <img class="player-photo" src="${p.image}" alt="Photo of ${p.name}" loading="lazy" />
+          <div class="player-info">
+            <div class="player-name">
+              ${p.name} <span class="player-worth">${p.worth || ''}</span>
+            </div>
+            <div class="player-details">
+              ${p.position}
+              <img src="${flags[p.nationality] || ''}" alt="${p.nationality} flag" class="flag" />
+              ${p.onLoan ? `
+                <span class="loan-badge">On Loan</span>
+                <img src="${p.loanClubLogo}" class="loan-logo" alt="Loan Club">
+              ` : ""}
+              ${p.outOnLoan ? `
+                <span class="loan-badge out">Out on Loan</span>
+                <img src="${p.loanClubLogo}" class="loan-logo" alt="Loan Club">
+              ` : ""}
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+    // Add event listeners for modal popup on player rows
+    document.querySelectorAll(".player-row").forEach((row, index) => {
+      row.onclick = () => openModal(filtered[index]);
+      row.onkeydown = e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(filtered[index]);
+        }
+      };
+    });
+  }
+
+
+  function openModal(player) {
+    modalPlayerImage.src = player.image;
+    modalPlayerImage.alt = `Photo of ${player.name}`;
+    modalPlayerName.textContent = player.name;
+
+    let loanStatus = "";
+    if (player.onLoan) loanStatus = " (On Loan)";
+    if (player.outOnLoan) loanStatus = " (Out on Loan)";
+
+   modalPlayerWorth.textContent = player.worth ?? "";
+    modalPlayerPosition.textContent = player.position + loanStatus; // fixed
+    modalPlayerAge.textContent = player.age ?? "";
+    modalPlayerNationality.textContent = player.nationality;
+    modalPlayerNumber.textContent = player.shirtNumber ?? "";
+    modalPlayerProfile.href = player.profileUrl;
+
+    const trophyList = document.getElementById("modalPlayerTrophyList");
+    if (player.trophies?.length > 0) {
+      trophyList.innerHTML = player.trophies.map(t => `
+        <div class="trophy-item" data-tooltip="${t.name || ''}">
+          <div class="trophy-image-wrapper">
+            <img src="${t.image}" alt="${t.name || ''}" class="trophy-image" loading="lazy"/>
+            ${t.count && t.count > 0 ? `<span class="trophy-count">${t.count}</span>` : ""}
+          </div>
+        </div>
+      `).join("");
+    } else {
+      trophyList.innerHTML = '<p class="no-trophies">No trophies won.</p>';
+    }
+
+    playerModal.classList.add("active");
+    playerModal.focus();
+  }
+
+
+
+
+
+
+  function closeModal() {
+    playerModal.classList.remove("active");
+  }
+
+  searchBar.addEventListener("input", renderPlayers);
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.position; // keep full name
+      renderPlayers();
+    });
+  });
+
+  sortButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (currentSort === btn.dataset.sort) {
+        // Toggle ascending/descending
+        sortAsc = !sortAsc;
+      } else {
+        currentSort = btn.dataset.sort;
+        sortAsc = true;
+      }
+      sortButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      btn.textContent = btn.dataset.sort === "name"
+        ? `Sort by Name ${sortAsc ? "↑" : "↓"}`
+        : `Sort by Shirt Number ${sortAsc ? "↑" : "↓"}`;
+      renderPlayers();
+    });
+  });
+
+  modalCloseBtn.addEventListener("click", closeModal);
+
+  // Close modal if clicking outside content or pressing ESC
+  playerModal.addEventListener("click", e => {
+    if (e.target === playerModal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && playerModal.classList.contains("active")) {
+      closeModal();
+    }
+  });
+
+  renderPlayers();
+</script>
+</body>
+</html>
+
+<!-- FOOTER -->
+
+<style>
+footer {
+  background: #111;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 20px;
+}
+
+.social-icons a img {
+  width: 24px;
+  height: 24px;
+  margin-left: 1rem;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1); /* makes the image white initially */
+}
+
+.social-icons a img:hover {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
+}
+
+</style>
+
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
+      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+    </div>
+  </footer>
+
+  <script src="script.js"></script> 
+</body>
+</html>
+
+<!-- Add this in your <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
