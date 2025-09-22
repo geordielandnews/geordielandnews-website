@@ -127,7 +127,7 @@
 
 <!-- SUB TITLE -->
 
-<div class="sub-header">Preseason Matches 25/26</div>
+<div class="sub-header">Champions League Matches 25/26</div>
 
 <!-- FIXTURE -->
 
@@ -136,7 +136,7 @@
 <head>
   <meta charset="UTF-8" />
   <style>
-    .preseason-matches {
+    .championsleague-matches {
       max-width: 1400px;
       margin: 25px auto 0 auto; /* Added margin-top to move down */
       padding: 10px 20px;
@@ -271,237 +271,244 @@
   </style>
 </head>
 <body>
-  <div class="preseason-matches">
+  <div class="championsleague-matches">
     <div class="matches-grid" id="matches-container"></div>
   </div>
 
   <script>
     const matches = [
       {
-        type: "Club Friendlies",
-        venue: "Newcastle United Academy",
-        date: "2025-07-12",
-        fullTimeResult: "4 - 0",
-        homeTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: []
-        },
-        awayTeam: {
-          name: "Carlisle",
-          logo: "pictures/Carlisle-logo.png",
-          goals: []
-        },
-        stats: {
-          shots: "  -  ",
-          shotsOnTarget: "  -  ",
-          possession: "  -  ",
-          passes: "  -  ",
-          passAccuracy: "  -  ",
-          fouls: "  -  ",
-          yellowCards: "  -  ",
-          redCards: "  -  ",
-          offsides: "  -  ",
-          corners: "  -  "
-        }
-      },
-      {
-        type: "Club Friendlies",
-        venue: "Celtic Park",
-        date: "2025-07-19",
-        fullTimeResult: "4 - 0",
-        homeTeam: {
-          name: "Celtic",
-          logo: "pictures/Celtic-logo.png",
-          goals: [
-            "Arne Engels 28' (P)",
-            "Johnny Kenny 45'",
-            "Yang Hyun-Jun 52'",
-            "Liam Scales 75'"
-          ]
-        },
-        awayTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: []
-        },
-        stats: {
-          shots: "14 - 17",
-          shotsOnTarget: "5 - 7",
-          possession: "46% - 54%",
-          passes: "491 - 568",
-          passAccuracy: "89% - 88%",
-          fouls: "14 - 10",
-          yellowCards: "1 - 1",
-          redCards: "0 - 0",
-          offsides: "4 - 1",
-          corners: "3 - 7"
-        }
-      },
-      {
-        type: "Club Friendlies",
-        venue: "Singapore National Stadium",
-        date: "2025-07-27",
-        fullTimeResult: "3 - 2",
-        homeTeam: {
-          name: "Arsenal",
-          logo: "pictures/Arsenal-logo.png",
-          goals: [
-            "Mikel Merino 33'",
-            "Alex Murphy 35' (OG)",
-            "Martin Ødegaard 84' (P)"
-          ]
-        },
-        awayTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: [
-            "Anthony Elanga 6'",
-            "Jacob Murphy 58'"
-          ]
-        },
-        stats: {
-          shots: "15 - 13",
-          shotsOnTarget: "7 - 6",
-          possession: "48% - 52%",
-          passes: "357 - 371",
-          passAccuracy: "81% - 85%",
-          fouls: "9 - 9",
-          yellowCards: "1 - 1",
-          redCards: "0 - 0",
-          offsides: "4 - 1",
-          corners: "6 - 2"
-        }
-      },
-      {
-        type: "Hybrid Friendly",
-        venue: "Suwon World Cup Stadium",
-        date: "2025-07-30",
-        fullTimeResult: "1 - 0",
-        homeTeam: {
-          name: "K-League XI",
-          logo: "pictures/K-League-XI.png",
-          goals: [
-            "Kim Jin-Kyu 36'"
-          ]
-        },
-        awayTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: []
-        },
-        stats: {
-          shots: "15 - 13",
-          shotsOnTarget: "4 - 4",
-          possession: "46% - 54%",
-          passes: "479 - 541",
-          passAccuracy: "85% - 88%",
-          fouls: "11 - 11",
-          yellowCards: "0 - 0",
-          redCards: "0 - 0",
-          offsides: "3 - 1",
-          corners: "3 - 5"
-        }
-      },
-      {
-        type: "Club Friendlies",
-        venue: "Seoul World Cup Stadium",
-        date: "2025-08-03",
-        fullTimeResult: "1 - 1",
-        homeTeam: {
-          name: "Tottenham",
-          logo: "pictures/Tottenham-logo.png",
-          goals: [
-            "Brennan Johnson 4'"
-          ]
-        },
-        awayTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: [
-            "Harvey Barnes 38'"
-          ]
-        },
-        stats: {
-          shots: "7 - 12",
-          shotsOnTarget: "5 - 2",
-          possession: "38% - 62%",
-          passes: "310 - 496",
-          passAccuracy: "77% - 87%",
-          fouls: "10 - 6",
-          yellowCards: "2 - 1",
-          redCards: "0 - 0",
-          offsides: "3 - 3",
-          corners: "6 - 2"
-        }
-      },      
-      {
-        type: "Club Friendlies",
+        type: "UEFA Champions League",
         venue: "St James' Park",
-        date: "2025-08-08",
-        time: "19:30",
-        fullTimeResult: "2 - 2",
+        date: "2025-09-18",
+        time: "20:00",
+        fullTimeResult: "1 - 2",
         homeTeam: {
           name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
-          goals: [
-            "Matt Targett 21'",
-            "Jacob Murphy 77'"            
-          ]
-        },
-        awayTeam: {
-          name: "Espanyol",
-          logo: "pictures/Espanyol-logo.png",
-          goals: [
-            "Edu Expósito 17'",
-            "Kike García 89'"             
-          ]
-        },
-        stats: {
-          shots: "9 - 8",
-          shotsOnTarget: "5 - 4",
-          possession: "64% - 36%",
-          passes: "629 - 350",
-          passAccuracy: "88% - 80%",
-          fouls: "11 - 17",
-          yellowCards: "0 - 1",
-          redCards: "0 - 0",
-          offsides: "0 - 3",
-          corners: "2 - 2"
-        }
-      },      
-      {
-        type: "Club Friendlies",
-        venue: "St James' Park",
-        date: "2025-08-09",
-        time: "16:00",
-        fullTimeResult: "0 - 2",
-        homeTeam: {
-          name: "Newcastle",
-          logo: "pictures/Newcastle-logo2.png",
+          logo: "pictures/newcastle-logo2.png",
           goals: []
         },
         awayTeam: {
-          name: "Atlético Madrid",
-          logo: "pictures/Atlético-madrid.png",
-          goals: [
-            "Julián Alvarez 50'",
-            "Antoine Griezmann 63'"            
-          ]
+          name: "Barcelona",
+          logo: "pictures/barcelona-logo.png",
+          goals: []
         },
         stats: {
-          shots: "7 - 10",
-          shotsOnTarget: "2 - 5",
-          possession: "54% - 46%",
-          passes: "470 - 4-7",
-          passAccuracy: "88% - 84%",
-          fouls: "11 - 20",
-          yellowCards: "0 - 2",
+          shots: "10 - 19",
+          shotsOnTarget: "6 - 5",
+          possession: "35% - 65%",
+          passes: "282 - 539",
+          passAccuracy: "72% - 85%",
+          fouls: "11 - 12",
+          yellowCards: "2 - 4",
           redCards: "0 - 0",
-          offsides: "1 - 4",
-          corners: "3 - 7"
+          offsides: "3 - 0",
+          corners: "6 - 4"
         }
-      },                
+      }, 
+      {
+        type: "UEFA Champions League",
+        venue: "Lotto Park",
+        date: "2025-10-01",
+        time: "17:45",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Union Saint-Gilloise",
+          logo: "pictures/Union-Saint-Gilloise-logo.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "UEFA Champions League",
+        venue: "St James' Park",
+        date: "2025-10-21",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Benfica",
+          logo: "pictures/benfica-logo.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "UEFA Champions League",
+        venue: "St James' Park",
+        date: "2025-11-05",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Athletic Club",
+          logo: "pictures/athletic-club-logo.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "UEFA Champions League",
+        venue: "Stade Vélodrome",
+        date: "2025-11-25",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Marseille",
+          logo: "pictures/marseille-logo.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "UEFA Champions League",
+        venue: "BayArena",
+        date: "2025-12-10",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Leverkusen",
+          logo: "pictures/leverkusen-logo.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },             
+      {
+        type: "UEFA Champions League",
+        venue: "St James' Park",
+        date: "2026-01-21",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "PSV",
+          logo: "pictures/psv-logo.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },             
+      {
+        type: "UEFA Champions League",
+        venue: "Parc des Princes",
+        date: "2026-01-28",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "PSG",
+          logo: "pictures/psg-logo.png",
+          goals: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/psv-logo2.png",
+          goals: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },                   
     ];
 
     const container = document.getElementById("matches-container");
@@ -641,47 +648,6 @@ function getMatchStatus(dateStr, timeStr = "15:00") {
 </body>
 </html>
 
-<!-- AD #2 -->
-<style>
-.preseason-ad-box {
-  position: absolute;
-  background: #fff;
-  right: 168px;
-  border-radius: 12px;
-  border-color: #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  width: 320px;
-  height: 350px;    
-  top: 666px;
-  text-align: center;
-}
-
-.preseason-ad-box img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-</style>
-
-<!-- Load Google AdSense script (only once per page) -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
-     crossorigin="anonymous"></script>
-
-<!-- Preseason Ad -->
-<div class="preseason-ad-box" role="complementary" aria-label="Advertisement">
-  <!-- Google AdSense Ad -->  
-  <ins class="adsbygoogle"
-       style="display:inline-block;width:320px;height:350px"
-       data-ad-client="ca-pub-6068321329701529"
-       data-ad-slot="9069465293"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  <p>Ad</p>  
-</div>
 <!-- FOOTER -->
 
 <style>
@@ -690,7 +656,6 @@ footer {
   color: #fff;
   text-align: center;
   padding: 1rem;
-  margin-top: 10px;
 }
 
 .social-icons a img {

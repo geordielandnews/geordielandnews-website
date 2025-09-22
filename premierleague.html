@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="google-adsense-account" content="ca-pub-6068321329701529">
-  <title>Premier League</title>
+  <title>Geordie Land News - Fixtures</title>
   <style>
 /* Dropdown container */
 .navbar ul {
@@ -66,7 +66,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="google-adsense-account" content="ca-pub-6068321329701529">
-  <title>Premier League</title>
+  <title>Geordie Land News - Fixtures</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -309,28 +309,36 @@
         venue: "St James' Park",
         date: "2025-08-25",
         time: "20:00",
-        fullTimeResult: " - ",
+        fullTimeResult: "2 - 3",
         homeTeam: {
           name: "Newcastle",
           logo: "pictures/Newcastle-logo2.png",
-          goals: []
+          goals: [
+            "Anthony Gordon 45+3' 🟥",  
+            "Bruno Guimarães 57'",
+            "William Osula 88'",                                  
+          ]
         },
         awayTeam: {
           name: "Liverpool",
           logo: "pictures/liverpool-logo.png",
-          goals: []
+          goals: [
+            "Ryan Gravenberch 35'",  
+            "Hugo Ekitike 46'",
+            "Rio Ngumoha 90+10'"  
+          ]
         },
         stats: {
-          shots: " - ",
-          shotsOnTarget: " - ",
-          possession: " - ",
-          passes: " - ",
-          passAccuracy: " - ",
-          fouls: " - ",
-          yellowCards: " - ",
-          redCards: " - ",
-          offsides: " - ",
-          corners: " - "
+          shots: "10 - 5",
+          shotsOnTarget: "3 - 4",
+          possession: "37% - 63%",
+          passes: "241 - 435",
+          passAccuracy: "68% - 83%",
+          fouls: "17 - 15",
+          yellowCards: "2 - 3",
+          redCards: "1 - 0",
+          offsides: "0 - 0",
+          corners: "7 - 1"
         }
       },
       {
@@ -338,7 +346,7 @@
         venue: "Elland Road",
         date: "2025-08-30",
         time: "17:30",
-        fullTimeResult: " - ",
+        fullTimeResult: "0 - 0",
         homeTeam: {
           name: "Leeds United",
           logo: "pictures/leeds-united-logo.png",
@@ -350,16 +358,16 @@
           goals: []
         },
         stats: {
-          shots: " - ",
-          shotsOnTarget: " - ",
-          possession: " - ",
-          passes: " - ",
-          passAccuracy: " - ",
-          fouls: " - ",
-          yellowCards: " - ",
-          redCards: " - ",
-          offsides: " - ",
-          corners: " - "
+          shots: "10 - 8",
+          shotsOnTarget: "1 - 2",
+          possession: "43% - 57%",
+          passes: "411 - 538",
+          passAccuracy: "79% - 84%",
+          fouls: "10 - 15",
+          yellowCards: "1 - 1",
+          redCards: "0 - 0",
+          offsides: "1 - 0",
+          corners: "5 - 5"
         }
       },
       {
@@ -367,11 +375,13 @@
         venue: "St James' Park",
         date: "2025-09-13",
         time: "15:00",
-        fullTimeResult: " - ",
+        fullTimeResult: "1 - 0",
         homeTeam: {
           name: "Newcastle",
           logo: "pictures/Newcastle-logo2.png",
-          goals: []
+          goals: [
+            "Nick Woltemade 29'",            
+          ]
         },
         awayTeam: {
           name: "Wolves",
@@ -379,16 +389,16 @@
           goals: []
         },
         stats: {
-          shots: " - ",
-          shotsOnTarget: " - ",
-          possession: " - ",
-          passes: " - ",
-          passAccuracy: " - ",
-          fouls: " - ",
-          yellowCards: " - ",
-          redCards: " - ",
-          offsides: " - ",
-          corners: " - "
+          shots: "16 - 8",
+          shotsOnTarget: "4 - 3",
+          possession: "57% - 43%",
+          passes: "442 - 338",
+          passAccuracy: "80% - 75%",
+          fouls: "10 - 17",
+          yellowCards: "1 - 4",
+          redCards: "0 - 0",
+          offsides: "1 - 0",
+          corners: "9 - 4"
         }
       },
       {
@@ -396,7 +406,7 @@
         venue: "Vitality Stadium",
         date: "2025-09-20",
         time: "15:00",
-        fullTimeResult: " - ",
+        fullTimeResult: "0 - 0",
         homeTeam: {
           name: "Bournemouth",
           logo: "pictures/bournemouth-logo.png",
@@ -408,16 +418,16 @@
           goals: []
         },
         stats: {
-          shots: " - ",
-          shotsOnTarget: " - ",
-          possession: " - ",
-          passes: " - ",
-          passAccuracy: " - ",
-          fouls: " - ",
-          yellowCards: " - ",
-          redCards: " - ",
-          offsides: " - ",
-          corners: " - "
+          shots: "11 - 4",
+          shotsOnTarget: "2 - 1",
+          possession: "57% - 43%",
+          passes: "498 - 390",
+          passAccuracy: "82% - 76%",
+          fouls: "7 - 10",
+          yellowCards: "2 - 1",
+          redCards: "0 - 0",
+          offsides: "3 - 2",
+          corners: "5 - 2"
         }
       },      
       {
@@ -1381,38 +1391,72 @@
 
     const container = document.getElementById("matches-container");
 
-    function getMatchStatus(dateStr, timeStr = "15:00") {
-      const now = new Date();
+function getMatchStatus(dateStr, timeStr = "15:00") {
+  const now = new Date();
 
-      const [hours, minutes] = timeStr.split(':').map(Number);
-      const matchDate = new Date(dateStr);
-      matchDate.setHours(hours, minutes, 0, 0);
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  const [year, month, day] = dateStr.split('-').map(Number);
 
-      const diffMs = matchDate - now;
-      const diffMins = diffMs / 60000;
+  const matchDate = new Date(year, month - 1, day, hours, minutes, 0, 0);
 
-      const timeFormatted = matchDate.toLocaleTimeString('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit'
-      });
+  const diffMs = matchDate - now;
+  const diffMins = diffMs / 60000;
 
-      const dateFormatted = matchDate.toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'short'
-      });
+  const timeFormatted = matchDate.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
 
-      const isToday = now.toDateString() === matchDate.toDateString();
-      const tomorrow = new Date(now);
-      tomorrow.setDate(now.getDate() + 1);
-      const isTomorrow = matchDate.toDateString() === tomorrow.toDateString();
+  const dateFormatted = matchDate.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'short'
+  });
 
-      if (isToday) return `Today<br>${timeFormatted}`;
-      if (isTomorrow) return `Tomorrow<br>${timeFormatted}`;
-      if (diffMins <= 60 && diffMins >= -120) return "Live";
-      if (diffMins < -120) return "Full-time";
+  // If the match is live or just finished within last 2 hours (120 minutes)
+  if (diffMins <= 60 && diffMins >= -120) {
+    const minsSinceKickoff = Math.floor((now - matchDate) / 60000);
 
-      return `${dateFormatted}<br>${timeFormatted}`;
+    if (minsSinceKickoff < 0) {
+      // Match is upcoming within next 60 mins - show Live anyway?
+      return `<span class="live">Live</span>`;
     }
+
+    // First half
+    if (minsSinceKickoff < 45) {
+      return `<span class="live">Today<br>${minsSinceKickoff}’</span>`;
+    }
+
+    // Half time (45-60)
+    if (minsSinceKickoff >= 45 && minsSinceKickoff < 60) {
+      return `<span class="live">Today<br>HT</span>`;
+    }
+
+    // Second half (60-105)
+    if (minsSinceKickoff >= 60 && minsSinceKickoff < 105) {
+      return `<span class="live">Today<br>${minsSinceKickoff - 14}’</span>`;
+    }
+
+    // If more than 105 mins but less than 120 mins, still "Live" or maybe FT
+    return `<span class="fulltime">Full-time</span>`;
+  }
+
+  // If match finished more than 2 hours ago
+  if (diffMins < -120) {
+    return `<span class="fulltime">Full-time</span>`;
+  }
+
+  // Check if match is today or tomorrow
+  const isToday = now.toDateString() === matchDate.toDateString();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+  const isTomorrow = matchDate.toDateString() === tomorrow.toDateString();
+
+  if (isToday) return `Today<br>${timeFormatted}`;
+  if (isTomorrow) return `Tomorrow<br>${timeFormatted}`;
+
+  // For any other future dates beyond tomorrow
+  return `${dateFormatted}<br>${timeFormatted}`;
+}
 
     matches.forEach(match => {
       const card = document.createElement("div");
@@ -1549,7 +1593,7 @@ footer {
     <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
     <div class="social-icons">
       <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
-      <a href="https://x.com/geordielandnews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
     </div>
   </footer>
 

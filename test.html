@@ -132,13 +132,20 @@
 <!-- LEFT LATEST NEWS -->  
 
 <style>
+/* News slot */
+/* News slot */
 .left-news-slot {
-  width: 361px;
+  display: flex;          /* makes image + text side by side */
+  align-items: flex-start;
+  gap: 12px;              /* space between image and text */
+  width: 1160px;           /* control overall width */
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   background-color: #fff;
   font-family: Arial, sans-serif;
+  margin: 20px auto;      /* center it horizontally */
+  cursor: default;    
 
   /* Start position */
   position: absolute;
@@ -148,236 +155,65 @@
   user-select: none; /* Prevent text selection while dragging */
 }
 .left-news-slot img {
-  width: 100%;
+  width: 200px;           /* fixed image size */
   height: auto;
   border-radius: 4px;
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
+  flex-shrink: 0;         /* stops image shrinking */
+  cursor: default;
+}
+.left-news-content {
+  flex: 1;                /* text takes remaining space */
 }
 .left-news-slot h3 {
   margin: 0 0 6px 0;
   font-size: 1.15rem;
   color: #222;
 }
+.left-news-slot h3 a {
+  text-decoration: none;
+  color: #222;
+}
 .left-news-slot .date {
   font-size: 0.85rem;
   color: #666;
   margin-bottom: 10px;
-  cursor: default;
+  cursor: default;    
 }
 .left-news-slot p {
   font-size: 0.95rem;
   line-height: 1.3;
   color: #333;
-  margin: 0 0 1em 0; /* add bottom margin for spacing */
+  margin: 0 0 1em 0;
   cursor: default;  
-}
-.left-news-slot h3 a {
-  text-decoration: none;
-  color: #222;
 }
 .left-news-slot h3 a:hover {
   text-decoration: underline;
   color: #0066cc;
+}  
+.left-news-slot p a {
+  color: #333;          /* same as your paragraph text */
+  text-decoration: none; /* remove underline */
+}
+.left-news-slot p a:hover {
+  color: #0066cc;        /* Newcastle blue */
+  text-decoration: underline;
 }
 </style>
+
+<!-- ISAK HERE WE GO -->
 <div class="left-news-slot">
-  <a href="https://www.newcastleunited.com/en/news/newcastle-united-announce-2025-26-squad-numbers" target="_blank" rel="noopener noreferrer">
-    <img src="pictures/new-shirt-numbers.png" alt="News Image" />
-    </a>
-    <h3>
-      <a href="https://www.newcastleunited.com/en/news/newcastle-united-announce-2025-26-squad-numbers" target="_blank" rel="noopener noreferrer">
-        Newcastle United announce 2025/26 squad numbers.
+  <img src="pictures/Alexander-Isak-HEREWEGO.png" alt="Alexander Isak HERE WE GO" />
+  <div class="left-news-content">
+    <h3><a href="https://x.com/FabrizioRomano/status/1962292434781577425" target="_blank" rel="noopener noreferrer">
+        🚨💣 BREAKING: Alexander Isak to Liverpool, here we go! Deal agreed now for £130m transfer fee. Record move for Premier League.
       </a>
-    </h3>
-    <div class="date">12:32PM August 12, 2025</div>
-    <p>Newcastle United can confirm first-team squad numbers for the upcoming 2025/26 season.</p>
-    <p>Summer signings Anthony Elanga (20) and Aaron Ramsdale (32) have already appeared in their confirmed squad numbers during pre-season, while Lewis Hall has switched to number three for the new campaign.</p>
-    <p>Elsewhere, goalkeeper Nick Pope will take the recently vacated number one shirt.</p>
-    <p>Pope, who had worn number 22 since his arrival from Burnley three years ago, takes the shirt following Martin Dúbravka's permanent switch to Turf Moor last week.</p>
-    <p>Newcastle United confirmed 2025/26 squad numbers are:</p>
-    <p>1. Nick Pope,
-    2. Kieran Trippier,
-    3. Lewis Hall,
-    4. Sven Botman,
-    5. Fabian Schär,
-    6. Jamaal Lascelles,
-    7. Joelinton,
-    8. Sandro Tonali,
-    10. Anthony Gordon,
-    11. Harvey Barnes,
-    12. Malick Thiaw,
-    13. Matt Targett,
-    14. Alexander Isak,
-    17. Emil Krafth,
-    18. Will Osula,
-    20. Anthony Elanga,
-    21. Tino Livramento,
-    23. Jacob Murphy,
-    26. John Ruddy,
-    28. Joe Willock,
-    29. Mark Gillespie,
-    30. Harrison Ashby,
-    31. Max Thompson,
-    32. Aaron Ramsdale,
-    33. Dan Burn,
-    37. Alex Murphy,
-    39. Bruno Guimarães,
-    67. Lewis Miley</p>
-    <p>Squad numbers for Academy players with previous first-team involvement include:</p>
-    <p>34. Garang Kuol,
-    38. Cathal Heffernan,
-    41. Ben Parkinson,
-    44. Alfie Harrison,
-    45. Travis Hernes,
-    54. Anthony Munda,
-    60. Trevan Sanusi,
-    61. Leo Shahar,
-    62. Sean Neave,
-    64. Seung-soo Park</p>  
+    </h3></a></h3>
+    <div class="date">12:12AM September 1, 2025</div>
+    <p>BREAKING: Alexander Isak to Liverpool, here we go! Deal agreed now for £130m transfer fee. Record move for Premier League.</p>
+    <p>Isak, on his way today for medical tests as new Liverpool player after long term deal agreed months ago.</p>
+    <p>It was always ONLY Liverpool for Isak.</p>
   </div>
-
-<!-- CENTER LATEST NEWS -->
-
-<style>
-.center-news-slot {
-  width: 361px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  font-family: Arial, sans-serif;
-
-  /* Start position */
-  position: absolute;
-  top: 180px;
-  left: 562px;
-  cursor: default;
-  user-select: none; /* Prevent text selection while dragging */
-}
-.center-news-slot img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-.center-news-slot h3 {
-  margin: 0 0 6px 0;
-  font-size: 1.15rem;
-  color: #222;
-}
-.center-news-slot .date {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 10px;
-  cursor: default;
-}
-.center-news-slot p {
-  font-size: 0.95rem;
-  line-height: 1.3;
-  color: #333;
-  margin: 0 0 1em 0; /* add bottom margin for spacing */
-  cursor: default;  
-}
-.center-news-slot h3 a {
-  text-decoration: none;
-  color: #222;
-}
-.center-news-slot h3 a:hover {
-  text-decoration: underline;
-  color: #0066cc;
-}
-</style>
-<div class="center-news-slot">
-  <a href="https://www.newcastleunited.com/en/news/magpies-to-wear-first-carabao-cup-gold-sleeve-badge-to-mark-iconic-win" target="_blank" rel="noopener noreferrer">
-    <img src="pictures/gold-sleeve-news.png" alt="News Image" />
-    </a>
-    <h3>
-      <a href="https://www.newcastleunited.com/en/news/magpies-to-wear-first-carabao-cup-gold-sleeve-badge-to-mark-iconic-win" target="_blank" rel="noopener noreferrer">
-        Magpies to wear first Carabao Cup gold sleeve badge to mark iconic win.
-      </a>
-    </h3>
-    <div class="date">10:00AM August 12, 2025</div>
-    <p>As the EFL marks 65 years of the competition, both the current holders and all previous winners will have the opportunity to wear commemorative Carabao Cup sleeve badges in celebration of their success in the competition. The new sleeve badges in Carabao’s familiar green will now include a nod to the number of times each club has won the competition.</p>
-    <p>Newcastle United will also wear the very first Carabao Cup gold badge featuring the number one to mark their victory in the 2024/25 Carabao Cup, which was the club's first in the competition and first domestic trophy in 70 years.</p>
-    <p>As the competition progresses, 11 Premier League clubs will join the 13 EFL clubs receiving the commemorative sleeve badges this week ahead of round one.</p>
-    <p>This season, the Carabao Cup has included two preliminary matches ahead of round one due to nine Premier League teams being involved in European competition in the 2025/26 season.</p>
-    <p>All 2025/26 Carabao Cup fixtures will be shown live on Sky Sports, with the Magpies set to enter at the third round stage.</p>
-  </div>
-
-<!-- RIGHT LATEST NEWS -->  
-
-<style>
-.right-news-slot {
-  width: 361px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #fff;
-  font-family: Arial, sans-serif;
-
-  /* Start position */
-  position: absolute;
-  top: 180px;
-  left: 963px;
-  cursor: default;
-  user-select: none; /* Prevent text selection while dragging */
-}
-.right-news-slot img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  display: block;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-.right-news-slot h3 {
-  margin: 0 0 6px 0;
-  font-size: 1.15rem;
-  color: #222;
-}
-.right-news-slot .date {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 10px;
-  cursor: default;
-}
-.right-news-slot p {
-  font-size: 0.95rem;
-  line-height: 1.3;
-  color: #333;
-  margin: 0 0 1em 0; /* add bottom margin for spacing */
-  cursor: default;  
-}
-.right-news-slot h3 a {
-  text-decoration: none;
-  color: #222;
-}
-.right-news-slot h3 a:hover {
-  text-decoration: underline;
-  color: #0066cc;
-}
-</style>
-<div class="right-news-slot">
-  <a href="https://www.newcastleunited.com/en/news/newcastle-united-announces-global-partnership-with-guinness" target="_blank" rel="noopener noreferrer">
-    <img src="pictures/guinness-partnership.png" alt="News Image" />
-    </a>
-    <h3>
-      <a href="https://www.newcastleunited.com/en/news/newcastle-united-announces-global-partnership-with-guinness" target="_blank" rel="noopener noreferrer">
-        Newcastle United announces global partnership with Guinness.
-      </a>
-    </h3>
-    <div class="date">11:17AM August 14, 2025</div>
-    <p>Newcastle United and Guinness have agreed a multi-year global partnership that will see the iconic Irish stout become an official club partner.</p>
-    <p>The partnership will see Newcastle United fans have access to the beautiful taste of Guinness and Guinness 0.0 at St. James' Park, throughout the concourses and in hospitality areas.</p>
-    <p>Ahead of the launch, Premier League Partner, Guinness, supported Newcastle United's exclusive fan event in South Korea as part of the club's pre-season tour to Asia. Over 250 supporters joined players and legends for an afternoon of entertainment, giveaways and pints of Guinness to celebrate the unrivalled community spirit of the Toon Army, at home and overseas.</p>
-    <p>Commenting on the partnership, Newcastle United's Chief Commercial Officer, Peter Silverstone, said: "Newcastle United and Guinness are two iconic global brands that were destined to unite. They will help us deliver unforgettable experiences for supporters in Newcastle and across the globe.</p>
-    <p>“Guinness is joining us during an exciting period of rapid transformation. Since 2021/22, our global TV audience has risen 66% - the second-fastest growth among Europe's top clubs - and last season we were the Premier League's fastest-growing club on social media, offering a powerful platform to reach Guinness' markets worldwide."</p>
-    <p>"The atmosphere at St. James' Park is legendary, and we are delighted that Guinness and Guinness 0.0 will become part of this unforgettable fan experience for home and away fans from the start of the season."</p>
-  </div>
+</div>
 
 <!-- PREMIER LEAGUE TABLE -->
 
@@ -462,26 +298,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td>1</td><td>Bournemouth</td><td>5</td><td>3</td><td>1</td><td>1</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>2</td><td>Arsenal</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td><td>2</td><td>0</td><td>0</td></tr>
-      <tr><td>3</td><td>Aston Villa</td><td>5</td><td>0</td><td>3</td><td>2</td><td>1</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>4</td><td>Brentford</td><td>5</td><td>1</td><td>1</td><td>3</td><td>6</td><td>10</td><td>0</td><td>0</td></tr>      
-      <tr><td>5</td><td>Brighton</td><td>5</td><td>1</td><td>2</td><td>2</td><td>6</td><td>8</td><td>0</td><td>0</td></tr>
-      <tr><td>6</td><td>Burnley</td><td>5</td><td>1</td><td>1</td><td>3</td><td>5</td><td>8</td><td>0</td><td>0</td></tr>
-      <tr><td>7</td><td>Chelsea</td><td>5</td><td>2</td><td>2</td><td>1</td><td>10</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>8</td><td>Crystal Palace</td><td>5</td><td>2</td><td>3</td><td>0</td><td>6</td><td>2</td><td>0</td><td>0</td></tr>      
-      <tr><td>9</td><td>Everton</td><td>5</td><td>2</td><td>1</td><td>2</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>10</td><td>Fulham</td><td>5</td><td>2</td><td>2</td><td>1</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>11</td><td>Leeds United</td><td>5</td><td>2</td><td>1</td><td>2</td><td>4</td><td>7</td><td>0</td><td>0</td></tr>
-      <tr><td>12</td><td>Liverpool</td><td>5</td><td>5</td><td>0</td><td>0</td><td>11</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>13</td><td>Man City</td><td>5</td><td>2</td><td>1</td><td>2</td><td>9</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>14</td><td>Man United</td><td>5</td><td>2</td><td>1</td><td>2</td><td>6</td><td>8</td><td>0</td><td>0</td></tr>
-      <tr><td>15</td><td>Newcastle</td><td>5</td><td>1</td><td>3</td><td>1</td><td>3</td><td>3</td><td>0</td><td>0</td></tr>            
-      <tr><td>16</td><td>Nottm Forest</td><td>5</td><td>1</td><td>2</td><td>2</td><td>5</td><td>9</td><td>0</td><td>0</td></tr>
-      <tr><td>17</td><td>Sunderland</td><td>5</td><td>2</td><td>2</td><td>1</td><td>6</td><td>4</td><td>0</td></td><td>0</td></tr>
-      <tr><td>18</td><td>Tottenham</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td><td>3</td><td>0</td><td>0</td></tr>
-      <tr><td>19</td><td>West Ham</td><td>5</td><td>1</td><td>0</td><td>4</td><td>5</td><td>13</td><td>0</td><td>0</td></tr>
-      <tr><td>20</td><td>Wolves</td><td>5</td><td>0</td><td>0</td><td>5</td><td>3</td><td>12</td><td>0</td><td>0</td></tr>      
+      <tr><td>1</td><td>Bournemouth</td><td>3</td><td>2</td><td>0</td><td>1</td><td>4</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>2</td><td>Arsenal</td><td>2</td><td>2</td><td>0</td><td>0</td><td>6</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>3</td><td>Aston Villa</td><td>2</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>4</td><td>Brentford</td><td>3</td><td>1</td><td>0</td><td>2</td><td>3</td><td>5</td><td>0</td><td>0</td></tr>      
+      <tr><td>5</td><td>Brighton</td><td>2</td><td>0</td><td>1</td><td>1</td><td>1</td><td>3</td><td>0</td><td>0</td></tr>
+      <tr><td>6</td><td>Burnley</td><td>3</td><td>1</td><td>0</td><td>2</td><td>4</td><td>6</td><td>0</td><td>0</td></tr>
+      <tr><td>7</td><td>Chelsea</td><td>3</td><td>2</td><td>1</td><td>0</td><td>7</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>8</td><td>Crystal Palace</td><td>2</td><td>0</td><td>2</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>      
+      <tr><td>9</td><td>Everton</td><td>3</td><td>2</td><td>0</td><td>1</td><td>5</td><td>3</td><td>0</td><td>0</td></tr>
+      <tr><td>10</td><td>Fulham</td><td>3</td><td>0</td><td>2</td><td>1</td><td>2</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>11</td><td>Leeds United</td><td>3</td><td>1</td><td>1</td><td>1</td><td>1</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>12</td><td>Liverpool</td><td>2</td><td>2</td><td>0</td><td>0</td><td>7</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>13</td><td>Man City</td><td>2</td><td>1</td><td>0</td><td>1</td><td>4</td><td>2</td><td>0</td><td>0</td></tr>
+      <tr><td>14</td><td>Man United</td><td>3</td><td>1</td><td>1</td><td>1</td><td>4</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>15</td><td>Newcastle</td><td>3</td><td>0</td><td>2</td><td>1</td><td>2</td><td>3</td><td>0</td><td>0</td></tr>            
+      <tr><td>16</td><td>Nottm Forest</td><td>2</td><td>1</td><td>1</td><td>0</td><td>4</td><td>2</td><td>0</td><td>0</td></tr>
+      <tr><td>17</td><td>Sunderland</td><td>3</td><td>2</td><td>0</td><td>1</td><td>5</td><td>3</td><td>0</td></td><td>0</td></tr>
+      <tr><td>18</td><td>Tottenham</td><td>3</td><td>2</td><td>0</td><td>1</td><td>5</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>19</td><td>West Ham</td><td>2</td><td>0</td><td>0</td><td>2</td><td>1</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>20</td><td>Wolves</td><td>3</td><td>0</td><td>0</td><td>3</td><td>2</td><td>8</td><td>0</td><td>0</td></tr>      
     </tbody>
   </table>
 </div>
