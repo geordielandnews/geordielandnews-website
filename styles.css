@@ -1,39 +1,23 @@
-body {
-  margin-top: 0;  
-  margin-bottom: 0;
-  min-width: 1200px; /* lock your site’s desktop width */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* Ensure body takes full viewport height */
 }
 
-/* Ad containers fixed to left */
+.ad-panel-left, .ad-panel-right {
+    position: fixed;   /* Fixes panels on sides */
+    top: 0;
+    height: 100%;      /* Full height */
+    width: 140px;      /* Matches your ad width */
+    z-index: 1000;     /* Keeps them above page content */
+}
+
 .ad-panel-left {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 140px;  /* Adjust width as needed */
-  height: 1000px; /* Full viewport height */
-  background-color: #222;
-  color: white;
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-size: 0.9rem;
-  z-index: 1000;
+    left: 0;
 }
 
-/* Ad containers fixed to right */
 .ad-panel-right {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 140px;  /* Adjust width as needed */
-  height: 1000px; /* Full viewport height */
-  background-color: #222;
-  color: white;
-  padding: 1rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  font-size: 0.9rem;
-  z-index: 1000;
+    right: 0;
 }
 
 /* Push main content away from ads */
