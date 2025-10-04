@@ -96,6 +96,94 @@
     </script>
   </div>
 
+
+<!-- AD BLOCKER -->
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>
+
+
   <header class="header">
     <img src="pictures/newcastle-logo.jpg" alt="Newcastle Logo" class="logo" />
     <h1 class="title">Geordie Land News</h1>
