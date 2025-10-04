@@ -10,6 +10,13 @@ html, body {
     height: 100%;      /* Full height */
     width: 140px;      /* Matches your ad width */
     z-index: 1000;     /* Keeps them above page content */
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-size: 0.9rem;
+    z-index: 1000;
 }
 
 .ad-panel-left {
