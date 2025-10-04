@@ -10,7 +10,7 @@ body {
   top: 0;
   left: 0;
   width: 140px;  /* Adjust width as needed */
-  height: 100vh; /* Full viewport height */
+  height: 1000px; /* Full viewport height */
   background-color: #222;
   color: white;
   padding: 1rem;
@@ -26,7 +26,7 @@ body {
   top: 0;
   right: 0;
   width: 140px;  /* Adjust width as needed */
-  height: 100vh; /* Full viewport height */
+  height: 1000px; /* Full viewport height */
   background-color: #222;
   color: white;
   padding: 1rem;
@@ -110,83 +110,6 @@ body {
   margin: 20px 0;  /* Change top/bottom margin to move it up/down */
   user-select: none;
 }
-
-
-
-
-
-
-
-
-<style>
-#adblock-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.95);
-  display: flex;              /* FLEX container to center */
-  justify-content: center;    /* horizontal center */
-  align-items: center;        /* vertical center */
-  text-align: center;
-  z-index: 9999;              /* on top of everything */
-  color: #fff;
-  overflow: hidden;
-}
-
-#adblock-overlay .box {
-  background: #222;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  box-sizing: border-box;
-}
-
-#adblock-overlay button {
-  margin-top: 15px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  background: #f44336;
-  color: #fff;
-}
-</style>
-
-<!-- Adblock overlay HTML -->
-<div id="adblock-overlay" style="display: none;">
-  <div class="box">
-    <h2>Ad Blocker Detected 🚫</h2>
-    <p>We rely on advertising to keep this site free.<br>
-       Please disable your ad blocker and refresh the page to continue.</p>
-    <button id="refresh-btn">I’ve Disabled Adblock</button>
-  </div>
-</div>
-
-<!-- Adblock detection script -->
-<script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const bait = document.getElementById('ad-bait');
-
-    if (typeof window.fakeAdScript === "undefined") {
-      const overlay = document.getElementById('adblock-overlay');
-      overlay.style.display = 'flex';   // SHOW overlay
-      document.body.style.overflow = 'hidden'; // block scrolling
-    }
-  }, 500);
-
-  document.getElementById('refresh-btn').addEventListener('click', () => {
-    location.reload();
-  });
-});
-</script>
-
-
-
 
 
 
