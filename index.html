@@ -217,6 +217,105 @@ window.addEventListener('load', () => {
   </ul>
 </nav>
 
+<!-- SIGN IN / SIGN UP -->
+
+<!-- Trigger button -->
+<button id="openAuth" class="auth-trigger">Sign In / Sign Up</button>
+
+<!-- Modal overlay -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <div class="auth-tabs">
+      <button class="tab active" data-form="login">Sign In</button>
+      <button class="tab" data-form="signup">Sign Up</button>
+      <span class="close-btn" id="closeAuth">&times;</span>
+    </div>
+
+    <!-- Login Form -->
+    <form class="auth-form login-form" action="/login" method="post">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="primary-btn">Login</button>
+    </form>
+
+    <!-- Signup Form -->
+    <form class="auth-form signup-form" action="/signup" method="post">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="primary-btn">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<script>
+const overlay = document.getElementById("authOverlay");
+const openBtn = document.getElementById("openAuth");
+const closeBtn = document.getElementById("closeAuth");
+const tabButtons = document.querySelectorAll(".auth-tabs .tab");
+const forms = document.querySelectorAll(".auth-form");
+
+// Open modal
+openBtn.addEventListener("click", () => {
+  overlay.style.display = "flex";
+  openBtn.style.display = "none"; // Hide button
+});
+
+// Close modal
+closeBtn.addEventListener("click", () => {
+  overlay.style.display = "none";
+  openBtn.style.display = "block"; // Show button again
+});
+
+// Close on overlay click
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    overlay.style.display = "none";
+    openBtn.style.display = "block";
+  }
+});
+
+// Close on ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    overlay.style.display = "none";
+    openBtn.style.display = "block";
+  }
+});
+
+// Tab switching
+tabButtons.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabButtons.forEach((t) => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    const target = tab.getAttribute("data-form");
+    forms.forEach((f) => {
+      f.classList.toggle("active", f.classList.contains(target + "-form"));
+    });
+  });
+});
+
+// Show login by default
+document.querySelector(".login-form").classList.add("active");
+</script>
+
+
 <!-- LEFT LATEST NEWS -->  
 
 <style>
