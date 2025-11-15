@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Geordie Land News — Discussions</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* ------------------------------
+       DISCUSSION BOX (matches your news style)
+    ------------------------------ */
+    body { font-family: Arial, Helvetica, sans-serif; background: #f7f7f7; margin: 0; padding: 20px; color: #222; }
+    .content-center { max-width: 1400px; margin: 0 auto; }
+
+    .discussion-box {
+      margin-left: 430px;
+      width: 1017px;
+      height: 600px;
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+
+    .discussion-header {
+      background-color: #002147;
+      color: white;
+      font-weight: bold;
+      padding: 10px 15px;
+      font-size: 14px;
+      text-transform: uppercase;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .discussion-header .actions { margin-left: auto; display:flex; gap:8px; align-items:center; }
+    .btn { padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; border: 1px solid #002147; background: white; color: #002147; }
+    .btn.primary { background: #002147; color: white; border: none; }
+
+    .discussion-items {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
+    .discussion-items::-webkit-scrollbar { width: 8px; }
+    .discussion-items::-webkit-scrollbar-thumb { background-color: #002147; border-radius: 4px; }
+
+    .discussion-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 10px;
+      transition: background 0.2s ease;
+    }
+    .discussion-item:hover { background-color: #f1f1f1; cursor: pointer; }
+
+    .discussion-title { color: #0070b8; font-size: 15px; font-weight: bold; margin: 0; }
+    .discussion-preview { font-size: 13px; color: #444; margin: 0; }
+    .discussion-meta { display:flex; align-items:center; gap: 8px; font-size:11px; color:#999; }
+
+    .small { font-size: 12px; color:#666; }
+
+    /* MODALS & PANELS */
+    .panel-backdrop {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 33, 71, 0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .panel {
+      background-color: #f1f1f1;
+      color: #002147;
+      padding: 18px;
+      border-radius: 8px;
+      max-width: 900px;
+      width: 95%;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .panel h2 { margin-top: 0; }
+    .panel label { display:block; margin-top:10px; font-size:13px; }
+    .panel input[type="text"], .panel textarea, .panel input[type="email"], .panel input[type="password"] {
+      width:100%; padding:8px; font-size:14px; margin-top:6px; border:1px solid #ccc; border-radius:4px;
+    }
+    .close-panel { position:absolute; top:10px; right:15px; font-size:26px; color: #002147; cursor:pointer; }
+
+    .post-hero { background:white; padding:12px; border-radius:6px; margin-bottom:12px; }
+    .comments { margin-top:12px; }
+    .comment { padding:8px; border-bottom:1px solid #e6e6e6; }
+    .meta-right { margin-left:auto; color:#999; font-size:12px; }
+
+    .inline { display:inline-flex; gap:8px; align-items:center; }
+    .like-btn.liked { background:#0070b8; color:white; border:none; }
+
+    /* small responsiveness */
+    @media (max-width: 1100px) {
+      .discussion-box { margin-left: 20px; width: calc(100% - 40px); }
+    }
+  </style>
+</head>
+<body>
+  <div style="display:flex; gap:20px; align-items:center; margin-bottom:12px;">
+    <h1 style="margin:0;">Geordie Land News — Discussions</h1>
+    <div id="userArea" style="margin-left:auto;"></div>
+  </div>
+
+  <div class="content-center">
+    <div class="discussion-box">
+      <div class="discussion-header">
+        Fan Discussions
+        <div class="actions">
+          <button class="btn" id="refreshBtn">Refresh</button>
+          <button class="btn primary" id="newPostBtn">New Post</button>
+        </div>
+      </div>
+
+      <div class="discussion-items" id="discussionContainer">
+        <!-- items -->
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW POST PANEL -->
+  <div id="viewPanel" class="panel-backdrop">
+    <div class="panel" id="viewPanelInner">
+      <span class="close-panel" id="closeViewPanel">&times;</span>
+      <div id="postContentArea">
+        <div class="post-hero">
+          <h2 id="postTitle"></h2>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div class="small" id="postMeta"></div>
+            <div class="meta-right small" id="postCounts"></div>
+          </div>
+          <p id="postBody"></p>
+          <div style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+            <button class="btn like-btn" id="likeBtn">Like</button>
+            <span id="likeCount" class="small"></span>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom:6px;">Comments</h3>
+          <div id="commentsList"></div>
+
+          <div id="commentFormArea" style="margin-top:10px;">
+            <label for="commentText">Add a comment</label>
+            <textarea id="commentText" rows="3"></textarea>
+            <div style="margin-top:8px;">
+              <button class="btn primary" id="postCommentBtn">Post Comment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH PANEL (signup/login) -->
+  <div id="authPanel" class="panel-backdrop">
+    <div class="panel">
+      <span class="close-panel" id="closeAuthPanel">&times;</span>
+      <h2 id="authTitle">Sign In</h2>
+
+      <div id="authForms">
+        <div id="signinForm">
+          <label>Email</label>
+          <input type="email" id="signinEmail" placeholder="you@example.com">
+          <label>Password</label>
+          <input type="password" id="signinPassword" placeholder="Password">
+          <div style="margin-top:8px;">
+            <button class="btn primary" id="signinBtn">Sign In</button>
+            <button class="btn" id="showRegisterBtn">Create account</button>
+          </div>
+          <div style="margin-top:10px;" class="small">
+            <a href="#" id="forgotPassword">Forgot password?</a>
+          </div>
+          <div id="signinMessage" class="small"></div>
+        </div>
+
+        <div id="registerForm" style="display:none;">
+          <label>Choose a username</label>
+          <input type="text" id="regUsername" placeholder="Username (public)">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="you@example.com">
+          <label>Password (min 6 chars)</label>
+          <input type="password" id="regPassword">
+          <div style="margin-top:8px;">
+            <button class="btn primary" id="registerBtn">Register & Sign In</button>
+            <button class="btn" id="showSigninBtn">Back</button>
+          </div>
+          <div id="registerMessage" class="small"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW POST PANEL -->
+  <div id="postPanel" class="panel-backdrop">
+    <div class="panel">
+      <span class="close-panel" id="closePostPanel">&times;</span>
+      <h2>New Discussion Post</h2>
+      <label>Title</label>
+      <input type="text" id="postTitleInput">
+      <label>Content</label>
+      <textarea id="postContentInput" rows="6"></textarea>
+      <div style="margin-top:10px;">
+        <button class="btn primary" id="createPostBtn">Create Post</button>
+      </div>
+      <div id="postMessage" class="small"></div>
+    </div>
+  </div>
+
+  <!-- FIREBASE (compat libs for simple code) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBSKmDZW0C_RF_J9BRvc2lUt_gTf2GRp64",
+    authDomain: "geordielandnews-37100.firebaseapp.com",
+    projectId: "geordielandnews-37100",
+    storageBucket: "geordielandnews-37100.firebasestorage.app",
+    messagingSenderId: "336635893130",
+    appId: "1:336635893130:web:ff71b65b148d7622faa473",
+    measurementId: "G-M9YHEVWCKS"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+
+  // DOM refs
+  const discussionContainer = document.getElementById('discussionContainer');
+  const refreshBtn = document.getElementById('refreshBtn');
+  const newPostBtn = document.getElementById('newPostBtn');
+  const userArea = document.getElementById('userArea');
+
+  const authPanel = document.getElementById('authPanel');
+  const postPanel = document.getElementById('postPanel');
+  const viewPanel = document.getElementById('viewPanel');
+
+  const signinForm = document.getElementById('signinForm');
+  const registerForm = document.getElementById('registerForm');
+
+  let currentUser = null;
+  let currentViewingId = null;
+  let discussionsUnsub = null;
+  let postSnapshotUnsub = null;
+
+  // ---- Auth UI ----
+  function updateUserArea() {
+    if (currentUser) {
+      userArea.innerHTML = \`
+        <span class="small">Signed in as <strong>\${escapeHtml(currentUser.displayName || currentUser.email)}</strong></span>
+        <button class="btn" id="logoutBtn">Logout</button>
+      \`;
+      document.getElementById('logoutBtn').onclick = () => auth.signOut();
+    } else {
+      userArea.innerHTML = '<button class="btn" id="loginOpenBtn">Sign In</button>';
+      document.getElementById('loginOpenBtn').onclick = openAuthPanel;
+    }
+  }
+
+  // listen auth changes
+  auth.onAuthStateChanged(async (u) => {
+    if (u) {
+      // fetch username from users collection
+      const userDoc = await db.collection('users').doc(u.uid).get().catch(()=>null);
+      const username = userDoc && userDoc.exists ? userDoc.data().username : null;
+      currentUser = { uid: u.uid, email: u.email, displayName: username || u.email };
+    } else {
+      currentUser = null;
+    }
+    updateUserArea();
+    // show/hide new post button
+  });
+
+  // ---- Realtime feed of discussions ----
+  function startDiscussionsListener() {
+    if (discussionsUnsub) discussionsUnsub();
+    const q = db.collection('discussions').orderBy('createdAt', 'desc').limit(100);
+    discussionsUnsub = q.onSnapshot(snapshot => {
+      discussionContainer.innerHTML = '';
+      if (snapshot.empty) {
+        discussionContainer.innerHTML = '<div class="small">No discussions yet.</div>';
+        return;
+      }
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const id = doc.id;
+        const el = document.createElement('div');
+        el.className = 'discussion-item';
+        el.innerHTML = \`
+          <h3 class="discussion-title">\${escapeHtml(d.title)}</h3>
+          <p class="discussion-preview">\${escapeHtml((d.content || '').slice(0, 200))}\${(d.content||'').length>200?'...':''}</p>
+          <div class="discussion-meta">\${escapeHtml(d.username || 'anonymous')} · \${d.createdAt && d.createdAt.toDate ? new Date(d.createdAt.toDate()).toLocaleString() : ''} · \${d.commentCount || 0} comments · \${d.likeCount || 0} likes</div>
+        \`;
+        el.onclick = () => openDiscussion(id);
+        discussionContainer.appendChild(el);
+      });
+    }, err => {
+      discussionContainer.innerHTML = '<div class="small">Error loading discussions.</div>';
+      console.error('discussions listener error', err);
+    });
+  }
+
+  // ---- Open single discussion with realtime comments + like info ----
+  function openDiscussion(id) {
+    currentViewingId = id;
+    // unsubscribe previous
+    if (postSnapshotUnsub) postSnapshotUnsub();
+
+    const docRef = db.collection('discussions').doc(id);
+    postSnapshotUnsub = docRef.onSnapshot(async snap => {
+      if (!snap.exists) {
+        alert('Post removed');
+        closeViewPanel();
+        return;
+      }
+      const data = snap.data();
+      document.getElementById('postTitle').innerText = data.title;
+      document.getElementById('postBody').innerText = data.content;
+      document.getElementById('postMeta').innerText = (data.username || 'anonymous') + ' · ' + (data.createdAt && data.createdAt.toDate ? new Date(data.createdAt.toDate()).toLocaleString() : '');
+      document.getElementById('postCounts').innerText = (data.commentCount || 0) + ' comments · ' + (data.likeCount || 0) + ' likes';
+      document.getElementById('likeCount').innerText = (data.likeCount || 0) + ' likes';
+      // set like button text/state
+      if (currentUser) {
+        const likeDoc = await docRef.collection('likes').doc(currentUser.uid).get();
+        document.getElementById('likeBtn').innerText = likeDoc.exists ? 'Unlike' : 'Like';
+        document.getElementById('likeBtn').classList.toggle('liked', likeDoc.exists);
+      } else {
+        document.getElementById('likeBtn').innerText = 'Like';
+        document.getElementById('likeBtn').classList.remove('liked');
+      }
+      // load comments (simple fetch - could be realtime with onSnapshot)
+      const commentsSnap = await docRef.collection('comments').orderBy('createdAt', 'asc').get();
+      const commentsList = document.getElementById('commentsList');
+      commentsList.innerHTML = '';
+      commentsSnap.forEach(cDoc => {
+        const c = cDoc.data();
+        const div = document.createElement('div');
+        div.className = 'comment';
+        div.innerHTML = '<strong>' + escapeHtml(c.username || 'anon') + '</strong> <span class="small"> · ' + (c.createdAt && c.createdAt.toDate ? new Date(c.createdAt.toDate()).toLocaleString() : '') + '</span><div>' + escapeHtml(c.content) + '</div>';
+        commentsList.appendChild(div);
+      });
+    }, err => {
+      console.error('post listener error', err);
+    });
+
+    // show/hide comment form
+    document.getElementById('commentFormArea').style.display = currentUser ? 'block' : 'none';
+    viewPanel.style.display = 'flex';
+  }
+
+  // ---- Posting, commenting, liking ----
+  async function createPost(title, content) {
+    if (!currentUser) throw new Error('Not logged in');
+    const docRef = db.collection('discussions').doc();
+    const createdAt = firebase.firestore.FieldValue.serverTimestamp();
+    await docRef.set({
+      title,
+      content,
+      uid: currentUser.uid,
+      username: currentUser.displayName || currentUser.email,
+      createdAt,
+      likeCount: 0,
+      commentCount: 0
+    });
+    return docRef.id;
+  }
+
+  async function postComment(discussionId, content) {
+    if (!currentUser) throw new Error('Not logged in');
+    const docRef = db.collection('discussions').doc(discussionId);
+    const commentsRef = docRef.collection('comments').doc();
+    const createdAt = firebase.firestore.FieldValue.serverTimestamp();
+
+    // transaction: add comment and increment commentCount
+    await db.runTransaction(async (tx) => {
+      tx.set(commentsRef, {
+        content,
+        uid: currentUser.uid,
+        username: currentUser.displayName || currentUser.email,
+        createdAt
+      });
+      const snap = await tx.get(docRef);
+      const prev = snap.exists ? snap.data().commentCount || 0 : 0;
+      tx.update(docRef, { commentCount: prev + 1 });
+    });
+  }
+
+  async function toggleLike(discussionId) {
+    if (!currentUser) return openAuthPanel();
+    const docRef = db.collection('discussions').doc(discussionId);
+    const likeRef = docRef.collection('likes').doc(currentUser.uid);
+
+    await db.runTransaction(async (tx) => {
+      const likeSnap = await tx.get(likeRef);
+      const postSnap = await tx.get(docRef);
+      const prevLikes = postSnap.exists ? postSnap.data().likeCount || 0 : 0;
+      if (likeSnap.exists) {
+        tx.delete(likeRef);
+        tx.update(docRef, { likeCount: prevLikes - 1 });
+      } else {
+        tx.set(likeRef, { uid: currentUser.uid, createdAt: firebase.firestore.FieldValue.serverTimestamp() });
+        tx.update(docRef, { likeCount: prevLikes + 1 });
+      }
+    });
+  }
+
+  // ---- Auth actions (signup/login) ----
+  async function signUp(email, password, username) {
+    // create firebase auth user
+    const cred = await auth.createUserWithEmailAndPassword(email, password);
+    const user = cred.user;
+    // save username in a separate users collection
+    await db.collection('users').doc(user.uid).set({
+      username: username,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      email: user.email
+    });
+    // also set displayName on Auth profile (optional)
+    await user.updateProfile({ displayName: username });
+    return user;
+  }
+
+  async function signIn(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
+
+  async function sendPasswordReset(email) {
+    return auth.sendPasswordResetEmail(email);
+  }
+
+  // ---- UI hooks ----
+  document.getElementById('refreshBtn').onclick = () => startDiscussionsListener();
+  document.getElementById('newPostBtn').onclick = () => {
+    if (!currentUser) return openAuthPanel();
+    postPanel.style.display = 'flex';
+  };
+
+  // Create post
+  document.getElementById('createPostBtn').onclick = async () => {
+    try {
+      const title = document.getElementById('postTitleInput').value.trim();
+      const content = document.getElementById('postContentInput').value.trim();
+      if (!title || !content) return alert('Add title and content');
+      await createPost(title, content);
+      document.getElementById('postTitleInput').value = '';
+      document.getElementById('postContentInput').value = '';
+      postPanel.style.display = 'none';
+      // refresh happens automatically via listener
+    } catch (err) {
+      console.error(err);
+      document.getElementById('postMessage').innerText = err.message || 'Error';
+    }
+  };
+
+  // Auth panel open/close & toggles
+  function openAuthPanel() {
+    authPanel.style.display = 'flex';
+    signinForm.style.display = 'block';
+    registerForm.style.display = 'none';
+  }
+  document.getElementById('showRegisterBtn').onclick = () => {
+    signinForm.style.display = 'none';
+    registerForm.style.display = 'block';
+  };
+  document.getElementById('showSigninBtn').onclick = () => {
+    signinForm.style.display = 'block';
+    registerForm.style.display = 'none';
+  };
+  document.getElementById('closeAuthPanel').onclick = () => authPanel.style.display = 'none';
+  document.getElementById('closePostPanel').onclick = () => postPanel.style.display = 'none';
+  document.getElementById('closeViewPanel').onclick = () => closeViewPanel();
+  document.getElementById('viewPanel').onclick = (e) => { if (e.target === viewPanel) closeViewPanel(); };
+  document.getElementById('authPanel').onclick = (e) => { if (e.target === authPanel) authPanel.style.display = 'none'; };
+  document.getElementById('postPanel').onclick = (e) => { if (e.target === postPanel) postPanel.style.display = 'none'; };
+
+  // Sign up flow
+  document.getElementById('registerBtn').onclick = async () => {
+    const username = document.getElementById('regUsername').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    if (!username || !email || !password) return alert('Fill all fields');
+    try {
+      await signUp(email, password, username);
+      authPanel.style.display = 'none';
+      // user is auto-logged-in; onAuthStateChanged will update UI
+    } catch (err) {
+      console.error(err);
+      document.getElementById('registerMessage').innerText = err.message || 'Error';
+    }
+  };
+
+  // Sign in flow
+  document.getElementById('signinBtn').onclick = async () => {
+    const email = document.getElementById('signinEmail').value.trim();
+    const password = document.getElementById('signinPassword').value;
+    if (!email || !password) return alert('Fill email and password');
+    try {
+      await signIn(email, password);
+      authPanel.style.display = 'none';
+    } catch (err) {
+      console.error(err);
+      document.getElementById('signinMessage').innerText = err.message || 'Error';
+    }
+  };
+
+  // forgot password
+  document.getElementById('forgotPassword').onclick = async (e) => {
+    e.preventDefault();
+    const email = prompt('Enter your email for password reset:');
+    if (!email) return;
+    try {
+      await sendPasswordReset(email);
+      alert('Password reset sent (check your inbox).');
+    } catch (err) {
+      alert('Error: ' + (err.message || err));
+    }
+  };
+
+  // comment post
+  document.getElementById('postCommentBtn').onclick = async () => {
+    if (!currentUser) return openAuthPanel();
+    const text = document.getElementById('commentText').value.trim();
+    if (!text) return alert('Write a comment');
+    try {
+      await postComment(currentViewingId, text);
+      document.getElementById('commentText').value = '';
+    } catch (err) {
+      console.error(err);
+      alert('Error posting comment');
+    }
+  };
+
+  // like/unlike
+  document.getElementById('likeBtn').onclick = async () => {
+    if (!currentUser) return openAuthPanel();
+    try {
+      await toggleLike(currentViewingId);
+    } catch (err) {
+      console.error(err);
+      alert('Error toggling like');
+    }
+  };
+
+  function closeViewPanel() {
+    viewPanel.style.display = 'none';
+    if (postSnapshotUnsub) postSnapshotUnsub();
+    postSnapshotUnsub = null;
+  }
+
+  // helpers
+  function escapeHtml(s = '') {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  // init
+  (function init() {
+    startDiscussionsListener();
+    updateUserArea();
+  })();
+  </script>
+</body>
+</html>
