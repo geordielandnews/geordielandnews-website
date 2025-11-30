@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+  <title>Geordie Land News - Home</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ------------------------------
+       SECTION BARS
+    ------------------------------ */
+    .section-bar1, .section-bar2, .section-bar3, .section-bar4, .section-bar5 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-bar5 {
+      margin-top: 10px;
+    }
+
+    .section-bar4, .section-bar3 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .section-bar2 {
+      margin-bottom: 10px;
+    }
+
+    .section-bar6 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;   
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+
+    /* ------------------------------
+       PAGE LAYOUT
+    ------------------------------ */
+    .content-below-bar1 {
+      display: flex;
+      flex-direction: column; /* stack items vertically */
+      align-items: center;    /* center horizontally */
+    }
+
+    .page-layout {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 2080px;
+      margin: 0 auto;
+    }
+
+    .content-center {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 10px 0 10px;
+    }
+
+/* ------------------------------
+   CAROUSEL TABLES
+------------------------------ */
+.carousel-tables {
+  margin: 0;
+  margin-bottom: 2px;
+  width: 1017px;
+  max-height: 400px;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: #fff;
+  position: relative;
+}
+
+/* Table container */
+.table-container {
+  position: relative;
+  width: 100%;
+  max-height: 360px;
+  margin-right: 8px; /* pushes scrollbar inside the box */
+  overflow-y: auto;
+  background-color: #fff;
+  box-sizing: content-box;
+}
+
+/* Make the blue header stay above everything */
+.table-header {
+  background-color: #002147;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.table-header img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Make thead stick below header */
+table thead {
+  position: sticky;
+  top: 36px; /* same height as .table-header */
+  z-index: 2;
+}
+
+/* Ensure header cells appear above body */
+thead th {
+  background-color: #f1f1f1;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+
+.player-stats-body tr {
+  border-bottom: 1px solid #ddd;
+}
+/* ------------------------------
+   TABLE STYLES
+------------------------------ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+  width: 35%;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+  width: calc(65% / 6);
+}
+
+th {
+  background-color: #f1f1f1;
+  font-size: 12px;
+  color: #333;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Non-sortable columns look neutral */
+th:not(.sortable) {
+  cursor: default;
+}
+
+tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Make sortable headers visually distinct */
+th.sortable {
+  position: relative;
+  color: #333;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Subtle hover highlight */
+th.sortable:hover {
+  background-color: #e6f0ff; /* light blue tint */
+  color: #0070b8; /* blue text to indicate interactivity */
+}
+
+/* After click: indicate active sort column */
+th.sortable.active {
+  background-color: #dce9ff;
+  color: #004b8d;
+  font-weight: bold;
+}
+
+/* Optional: small underline on hover (modern look) */
+th.sortable:hover::after {
+  content: "Click to sort";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #0070b8;
+  opacity: 0.7;
+}
+
+/* ------------------------------
+   PLAYER & FLAG STYLES
+------------------------------ */
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-info img {
+  width: 30px;
+  height: 38px;
+  object-fit: cover;
+}
+
+.player-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-text span:first-child {
+  font-weight: bold;
+  color: #0070b8;
+  font-size: 13px;
+}
+
+.player-text span:last-child {
+  font-size: 12px;
+  color: #555;
+}
+
+.country-flags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.country-flag {
+  width: 35px;
+  height: 25px;
+  object-fit: cover;
+  border: 1px solid #555; /* Change this to any color you like */
+  border-radius: 3px;
+}
+
+.flag-wrapper {
+  position: relative; /* required for the tooltip positioning */
+  display: inline-block;
+  cursor: default;
+}
+
+.flag-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%; /* shows tooltip above the flag */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.flag-wrapper:hover::after {
+  opacity: 1;
+}
+
+td:nth-child(n+3) {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Scrollbar (same as fixtures box) */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #002147;
+  border-radius: 4px;
+}
+</style>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="pictures/newcastle-logo.png" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="fixtures.html">FIXTURES</a></li>
+      <li><a href="squad.html">SQUAD</a></li>
+      <li><a href="transfers.html">TRANSFERS</a></li>
+      <li><a href="stats.html">STATS</a></li>
+      <li><a href="discussions.html">DISCUSSIONS</a></li>
+    </ul>
+  </nav>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
+     crossorigin="anonymous"></script>
+
+<!-- Left ad panel -->
+<div class="ad-panel-left">
+
+  <div class="ad-slot-1-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<!-- Right ad panel -->
+<div class="ad-panel-right">
+
+  <div class="ad-slot-1-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>
+
+  <div class="section-bar1"></div>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>   
+
+<div class="section-bar2"></div>
+
+  <!-- Content below the section bar -->
+  <div class="content-below-bar1">
+
+<!-- PREMIER LEAGUE TABLE -->
+<div class="carousel-tables" id="premier-league-table">
+  <div class="table-container active">
+    <div class="table-header"><img src="https://b.fssta.com/uploads/application/soccer/competition-logos/EnglishPremierLeague.png" alt="Logo">PREMIER LEAGUE STATS</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Player/Position</th>
+          <th>Country</th>
+          <th class="sortable">Appearances</th>
+          <th class="sortable">Goals</th>
+          <th class="sortable">Assists</th>
+          <th class="sortable">🟨</th>
+          <th class="sortable">🟥</th>
+        </tr>
+      </thead>
+      <tbody class="player-stats-body">
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/609556-1693217416.jpg?lm=1"><div class="player-text"><span>William Osula</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/120px-Flag_of_Denmark.svg.png" class="country-flag" title="Denmark"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>10</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/388165-1740646948.jpg?lm=1"><div class="player-text"><span>Yoane Wissa</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg/250px-Flag_of_the_Democratic_Republic_of_the_Congo.svg.png" class="country-flag" title="DR Congo"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/250px-Flag_of_France.svg.png" class="country-flag" title="France"></div></td>          
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/455661-1723707419.jpg?lm=1"><div class="player-text"><span>Nick Woltemade</span><span>Centre-Forward</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"></td>
+          <td>10</td>
+          <td>5</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/199527-1674210561.jpg?lm=1"><div class="player-text"><span>Jacob Murphy</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></div></td>
+          <td>11</td>
+          <td>2</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/583189-1700739021.jpg?lm=1"><div class="player-text"><span>Anthony Elanga</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/250px-Flag_of_Cameroon.svg.png" class="country-flag" title="Cameroon"></div></td>
+          <td>13</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/398065-1761079974.jpg?lm=1"><div class="player-text"><span>Harvey Barnes</span><span>Left Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>       
+          <td>13</td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+         <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503733-1761080304.jpg?lm=1"><div class="player-text"><span>Anthony Gordon</span><span>Left Winger</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>8</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/340329-1761077592.jpg?lm=1"><div class="player-text"><span>Joe Willock</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Montserrat.svg/250px-Flag_of_Montserrat.svg.png" class="country-flag" title="Montserrat"></div></td>
+          <td>5</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/922769-1696453881.jpg?lm=1"><div class="player-text"><span>Lewis Miley</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>9</td>
+          <td>1</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/333241-1674210135.jpg?lm=1"><div class="player-text"><span>Joelinton</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"></td>
+          <td>11</td>
+          <td>0</td>
+          <td>0</td>
+          <td>3</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503749-1687975464.jpg?lm=1"><div class="player-text"><span>Jacob Ramsey</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>6</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>          
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/520624-1668522672.jpg?lm=1"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+          <td>12</td>
+          <td>3</td>
+          <td>2</td>
+          <td>3</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/397033-1688389270.jpg?lm=1"><div class="player-text"><span>Sandro Tonali</span><span>Defensive Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" class="country-flag" title="Italy"></td>
+          <td>13</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/559130-1667548907.jpg?lm=1"><div class="player-text"><span>Harrison Ashby</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/184528-1674210829.jpg?lm=1"><div class="player-text"><span>Emil Krafth</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/95810-1696454076.jpg?lm=1"><div class="player-text"><span>Kieran Trippier</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>9</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503981-1699383321.jpg?lm=1"><div class="player-text"><span>Tino Livramento</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+          <td>8</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/900601-1714056292.jpg?lm=1"><div class="player-text"><span>Alex Murphy</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/670858-1699385942.jpg?lm=1"><div class="player-text"><span>Lewis Hall</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>6</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>     
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/183318-1696454186.jpg?lm=1"><div class="player-text"><span>Jamaal Lascelles</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Flag_of_Barbados.svg/250px-Flag_of_Barbados.svg.png" class="country-flag" title="Barbados"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/134270-1682340860.jpg?lm=1"><div class="player-text"><span>Dan Burn</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>12</td>
+          <td>0</td>
+          <td>2</td>
+          <td>3</td>
+          <td>1</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/135343-1667990394.jpg?lm=1"><div class="player-text"><span>Fabian Schär</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/250px-Flag_of_Switzerland_%28Pantone%29.svg.png" class="country-flag" title="Switzerland"></td>
+          <td>8</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/521964-1682063635.jpg?lm=1"><div class="player-text"><span>Malick Thiaw</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/250px-Flag_of_Finland.svg.png" class="country-flag" title="Finland"></div></td>
+          <td>10</td>
+          <td>2</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/361093-1683290679.jpg?lm=1"><div class="player-text"><span>Sven Botman</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/250px-Flag_of_the_Netherlands.svg.png" class="country-flag" title="Netherlands"></td>
+          <td>10</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/29712-1736421115.jpg?lm=1"><div class="player-text"><span>John Ruddy</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/142389-1746646196.jpg?lm=1"><div class="player-text"><span>Mark Gillespie</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/660768-1761077337.jpg?lm=1"><div class="player-text"><span>Max Thompson</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/header/192080-1663841362.jpg?lm=1"><div class="player-text"><span>Nick Pope</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>12</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>          
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/427568-1681828000.jpg?lm=1"><div class="player-text"><span>Aaron Ramsdale</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                                                                                                                                                                   
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-bar3"></div>
+
+<!-- CHAMPIONS LEAGUE TABLE -->
+<div class="carousel-tables" id="champions-league-table">
+  <div class="table-container active">
+    <div class="table-header"><img src="pictures/Champions-League-Logo.png" alt="Logo">CHAMPIONS LEAGUE STATS</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Player/Position</th>
+          <th>Country</th>
+          <th class="sortable">Appearances</th>
+          <th class="sortable">Goals</th>
+          <th class="sortable">Assists</th>
+          <th class="sortable">🟨</th>
+          <th class="sortable">🟥</th>
+        </tr>
+      </thead>
+      <tbody class="player-stats-body">
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/609556-1693217416.jpg?lm=1"><div class="player-text"><span>William Osula</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/120px-Flag_of_Denmark.svg.png" class="country-flag" title="Denmark"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/388165-1740646948.jpg?lm=1"><div class="player-text"><span>Yoane Wissa</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg/250px-Flag_of_the_Democratic_Republic_of_the_Congo.svg.png" class="country-flag" title="DR Congo"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/250px-Flag_of_France.svg.png" class="country-flag" title="France"></div></td>          
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/455661-1723707419.jpg?lm=1"><div class="player-text"><span>Nick Woltemade</span><span>Centre-Forward</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"></td>
+          <td>5</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/199527-1674210561.jpg?lm=1"><div class="player-text"><span>Jacob Murphy</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></div></td>
+          <td>4</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/583189-1700739021.jpg?lm=1"><div class="player-text"><span>Anthony Elanga</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/250px-Flag_of_Cameroon.svg.png" class="country-flag" title="Cameroon"></div></td>
+          <td>5</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/398065-1761079974.jpg?lm=1"><div class="player-text"><span>Harvey Barnes</span><span>Left Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>       
+          <td>5</td>
+          <td>4</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+         <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503733-1761080304.jpg?lm=1"><div class="player-text"><span>Anthony Gordon</span><span>Left Winger</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>5</td>
+          <td>4</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/340329-1761077592.jpg?lm=1"><div class="player-text"><span>Joe Willock</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Montserrat.svg/250px-Flag_of_Montserrat.svg.png" class="country-flag" title="Montserrat"></div></td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/922769-1696453881.jpg?lm=1"><div class="player-text"><span>Lewis Miley</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/333241-1674210135.jpg?lm=1"><div class="player-text"><span>Joelinton</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"></td>
+          <td>4</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503749-1687975464.jpg?lm=1"><div class="player-text"><span>Jacob Ramsey</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>          
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/520624-1668522672.jpg?lm=1"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+          <td>5</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/397033-1688389270.jpg?lm=1"><div class="player-text"><span>Sandro Tonali</span><span>Defensive Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" class="country-flag" title="Italy"></td>
+          <td>4</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/559130-1667548907.jpg?lm=1"><div class="player-text"><span>Harrison Ashby</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/184528-1674210829.jpg?lm=1"><div class="player-text"><span>Emil Krafth</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/95810-1696454076.jpg?lm=1"><div class="player-text"><span>Kieran Trippier</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>4</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503981-1699383321.jpg?lm=1"><div class="player-text"><span>Tino Livramento</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/900601-1714056292.jpg?lm=1"><div class="player-text"><span>Alex Murphy</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/670858-1699385942.jpg?lm=1"><div class="player-text"><span>Lewis Hall</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>     
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/183318-1696454186.jpg?lm=1"><div class="player-text"><span>Jamaal Lascelles</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Flag_of_Barbados.svg/250px-Flag_of_Barbados.svg.png" class="country-flag" title="Barbados"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/134270-1682340860.jpg?lm=1"><div class="player-text"><span>Dan Burn</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>5</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/135343-1667990394.jpg?lm=1"><div class="player-text"><span>Fabian Schär</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/250px-Flag_of_Switzerland_%28Pantone%29.svg.png" class="country-flag" title="Switzerland"></td>
+          <td>3</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/521964-1682063635.jpg?lm=1"><div class="player-text"><span>Malick Thiaw</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/250px-Flag_of_Finland.svg.png" class="country-flag" title="Finland"></div></td>
+          <td>5</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/361093-1683290679.jpg?lm=1"><div class="player-text"><span>Sven Botman</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/250px-Flag_of_the_Netherlands.svg.png" class="country-flag" title="Netherlands"></td>
+          <td>4</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/29712-1736421115.jpg?lm=1"><div class="player-text"><span>John Ruddy</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/142389-1746646196.jpg?lm=1"><div class="player-text"><span>Mark Gillespie</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/660768-1761077337.jpg?lm=1"><div class="player-text"><span>Max Thompson</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/header/192080-1663841362.jpg?lm=1"><div class="player-text"><span>Nick Pope</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>5</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>         
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/427568-1681828000.jpg?lm=1"><div class="player-text"><span>Aaron Ramsdale</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                                                                                                                                                                   
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-bar4"></div>
+
+<!-- CARABAO CUP TABLE -->
+<div class="carousel-tables" id="carabao-cup-table">
+  <div class="table-container active">
+    <div class="table-header"><img src="pictures/carabao.png" alt="Logo">CARABAO CUP STATS</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Player/Position</th>
+          <th>Country</th>
+          <th class="sortable">Appearances</th>
+          <th class="sortable">Goals</th>
+          <th class="sortable">Assists</th>
+          <th class="sortable">🟨</th>
+          <th class="sortable">🟥</th>
+        </tr>
+      </thead>
+      <tbody class="player-stats-body">
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/609556-1693217416.jpg?lm=1"><div class="player-text"><span>William Osula</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/120px-Flag_of_Denmark.svg.png" class="country-flag" title="Denmark"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>2</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/388165-1740646948.jpg?lm=1"><div class="player-text"><span>Yoane Wissa</span><span>Centre-Forward</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg/250px-Flag_of_the_Democratic_Republic_of_the_Congo.svg.png" class="country-flag" title="DR Congo"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/250px-Flag_of_France.svg.png" class="country-flag" title="France"></div></td>          
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/455661-1723707419.jpg?lm=1"><div class="player-text"><span>Nick Woltemade</span><span>Centre-Forward</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"></td>
+          <td>2</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/199527-1674210561.jpg?lm=1"><div class="player-text"><span>Jacob Murphy</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/583189-1700739021.jpg?lm=1"><div class="player-text"><span>Anthony Elanga</span><span>Right Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/250px-Flag_of_Cameroon.svg.png" class="country-flag" title="Cameroon"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/398065-1761079974.jpg?lm=1"><div class="player-text"><span>Harvey Barnes</span><span>Left Winger</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>       
+          <td>2</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+         <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503733-1761080304.jpg?lm=1"><div class="player-text"><span>Anthony Gordon</span><span>Left Winger</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/340329-1761077592.jpg?lm=1"><div class="player-text"><span>Joe Willock</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Montserrat.svg/250px-Flag_of_Montserrat.svg.png" class="country-flag" title="Montserrat"></div></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/922769-1696453881.jpg?lm=1"><div class="player-text"><span>Lewis Miley</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/333241-1674210135.jpg?lm=1"><div class="player-text"><span>Joelinton</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"></td>
+          <td>2</td>
+          <td>2</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503749-1687975464.jpg?lm=1"><div class="player-text"><span>Jacob Ramsey</span><span>Central Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>          
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/520624-1668522672.jpg?lm=1"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/397033-1688389270.jpg?lm=1"><div class="player-text"><span>Sandro Tonali</span><span>Defensive Midfield</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" class="country-flag" title="Italy"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/559130-1667548907.jpg?lm=1"><div class="player-text"><span>Harrison Ashby</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/184528-1674210829.jpg?lm=1"><div class="player-text"><span>Emil Krafth</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/95810-1696454076.jpg?lm=1"><div class="player-text"><span>Kieran Trippier</span><span>Right-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503981-1699383321.jpg?lm=1"><div class="player-text"><span>Tino Livramento</span><span>Right-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>    
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/900601-1714056292.jpg?lm=1"><div class="player-text"><span>Alex Murphy</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/670858-1699385942.jpg?lm=1"><div class="player-text"><span>Lewis Hall</span><span>Left-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>     
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/183318-1696454186.jpg?lm=1"><div class="player-text"><span>Jamaal Lascelles</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Flag_of_Barbados.svg/250px-Flag_of_Barbados.svg.png" class="country-flag" title="Barbados"></div></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/134270-1682340860.jpg?lm=1"><div class="player-text"><span>Dan Burn</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/135343-1667990394.jpg?lm=1"><div class="player-text"><span>Fabian Schär</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Flag_of_Switzerland_%28Pantone%29.svg/250px-Flag_of_Switzerland_%28Pantone%29.svg.png" class="country-flag" title="Switzerland"></td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/521964-1682063635.jpg?lm=1"><div class="player-text"><span>Malick Thiaw</span><span>Centre-Back</span></div></div></td>
+          <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag" title="Germany"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Finland.svg/250px-Flag_of_Finland.svg.png" class="country-flag" title="Finland"></div></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>                    
+        </tr>   
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/361093-1683290679.jpg?lm=1"><div class="player-text"><span>Sven Botman</span><span>Centre-Back</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/250px-Flag_of_the_Netherlands.svg.png" class="country-flag" title="Netherlands"></td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>  
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/29712-1736421115.jpg?lm=1"><div class="player-text"><span>John Ruddy</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr> 
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/142389-1746646196.jpg?lm=1"><div class="player-text"><span>Mark Gillespie</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>      
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/660768-1761077337.jpg?lm=1"><div class="player-text"><span>Max Thompson</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/header/192080-1663841362.jpg?lm=1"><div class="player-text"><span>Nick Pope</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>         
+        <tr>
+          <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/427568-1681828000.jpg?lm=1"><div class="player-text"><span>Aaron Ramsdale</span><span>Goalkeeper</span></div></div></td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+          <td>2</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>                    
+        </tr>                                                                                                                                                                   
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section-bar5"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  const token = '7a9e21c781464e21a348da033755d3d1';
+  const teamId = 64;
+  const url = `https://api.football-data.org/v4/teams/${teamId}`;
+
+  async function loadPlayers() {
+    try {
+      const res = await fetch(url, {
+        headers: { 'X-Auth-Token': token }
+      });
+      const data = await res.json();
+
+      const players = data.squad;
+      const tbody = document.getElementById('player-stats-body');
+      tbody.innerHTML = '';
+
+      players.forEach(player => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <div class="player-info">
+              <div class="player-text">
+                <span>${player.name}</span>
+                <span>${player.position || 'N/A'}</span>
+              </div>
+            </div>
+          </td>
+          <td><img src="https://countryflagsapi.com/png/${player.nationality}" class="country-flag"></td>
+          <td>${Math.floor(Math.random() * 12)}</td>
+          <td>${Math.floor(Math.random() * 5)}</td>
+          <td>${Math.floor(Math.random() * 3)}</td>
+          <td>${Math.floor(Math.random() * 4)}</td>
+          <td>${Math.floor(Math.random() * 2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    } catch (err) {
+      console.error('Failed to load players:', err);
+    }
+  }
+
+  function sortTable(table, colIndex, desc = true) {
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    rows.sort((a, b) => {
+      const aVal = parseFloat(a.children[colIndex].textContent.trim()) || 0;
+      const bVal = parseFloat(b.children[colIndex].textContent.trim()) || 0;
+      return desc ? bVal - aVal : aVal - bVal;
+    });
+
+    rows.forEach(row => tbody.appendChild(row));
+  }
+
+  // Load player data (for Newcastle, or your data source)
+  await loadPlayers();
+
+  // ✅ Automatically sort BOTH tables by "Goals" (4th column, index 3)
+  document.querySelectorAll('.table-container table').forEach(table => {
+    sortTable(table, 3, true); // sort by goals descending
+    const goalsHeader = table.querySelector('th:nth-child(4)');
+    if (goalsHeader) goalsHeader.classList.add('active', 'sort-desc');
+  });
+
+  // ✅ Enable sorting for each table independently
+  document.querySelectorAll('.table-container table').forEach(table => {
+    const headers = table.querySelectorAll('th.sortable');
+    headers.forEach(th => {
+      let asc = false;
+      th.addEventListener('click', () => {
+        // remove active state from all headers in this table only
+        headers.forEach(h => h.classList.remove('sort-asc', 'sort-desc', 'active'));
+
+        sortTable(table, th.cellIndex, !asc);
+        th.classList.add('active');
+        th.classList.add(asc ? 'sort-asc' : 'sort-desc');
+        asc = !asc;
+      });
+    });
+  });
+});
+
+</script>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+footer {
+  width: 100%;
+  height: 90px;
+  background-color: #00193f;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 0px;
+}
+.social-icons a img {
+   width: 24px;
+  height: 24px;
+  margin-left: 1rem;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1);
+}
+.social-icons a img:hover { 
+  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
+}
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>
+
+<div class="section-bar6"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>
+      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>
+    </div>
+  </footer>

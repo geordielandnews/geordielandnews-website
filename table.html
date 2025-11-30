@@ -1,0 +1,204 @@
+<!-- Compact Ad Card -->
+<style>
+:root{
+  --ad-bg: #ffffff;
+  --accent: #0077cc;
+  --text: #0b1220;
+  --muted: #556270;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(11,18,32,0.08);
+}
+.ad-card{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  background:var(--ad-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:12px;
+  max-width:360px;
+  transition:transform .18s ease, box-shadow .18s ease;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+}
+.ad-card:hover{ transform:translateY(-6px); box-shadow:0 14px 30px rgba(11,18,32,0.12); }
+.ad-card__media{
+  width:72px;
+  height:72px;
+  border-radius:10px;
+  flex:0 0 72px;
+  background:linear-gradient(135deg,var(--accent), #00a3ff);
+  display:grid;
+  place-items:center;
+  color:white;
+  font-weight:700;
+  font-size:18px;
+}
+.ad-card__body{ flex:1 1 auto; min-width:0; }
+.ad-card__title{ color:var(--text); font-weight:700; font-size:15px; margin:0 0 4px 0; line-height:1.15; }
+.ad-card__desc{ color:var(--muted); font-size:13px; margin:0 0 8px 0; }
+.ad-card__cta{
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  background:var(--accent);
+  color:white;
+  padding:8px 12px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:13px;
+  box-shadow:0 6px 18px rgba(0,119,204,0.12);
+}
+.ad-card__cta:focus{ outline:3px solid rgba(0,119,204,0.18); outline-offset:2px; }
+.sr-only{ position:absolute!important; width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+</style>
+
+<article class="ad-card" aria-labelledby="ad1-title" role="region">
+  <div class="ad-card__media" aria-hidden="true">AD</div>
+  <div class="ad-card__body">
+    <h3 id="ad1-title" class="ad-card__title">Boost your site's conversions</h3>
+    <p class="ad-card__desc">Get 30% more signups with our A/B tested templates. Easy install — zero coding.</p>
+    <a class="ad-card__cta" href="#" role="button" aria-label="Start 14-day free trial">
+      Start free
+      <span class="sr-only"> — 14-day free trial</span>
+    </a>
+  </div>
+</article>
+
+
+
+<!-- Hero Banner Ad -->
+<style>
+:root{
+  --hero-bg: linear-gradient(90deg,#ff8a00 0%, #ff3d81 100%);
+  --hero-text: #fff;
+  --hero-radius: 10px;
+}
+.hero-ad{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px;
+  border-radius:var(--hero-radius);
+  color:var(--hero-text);
+  background:var(--hero-bg);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+  position:relative;
+}
+.hero-ad__left{ display:flex; gap:14px; align-items:center; min-width:0; }
+.hero-ad__logo{
+  width:84px; height:84px; border-radius:12px;
+  background:rgba(255,255,255,0.12); display:grid; place-items:center; font-weight:700;
+}
+.hero-ad__copy h2{ margin:0 0 6px 0; font-size:20px; line-height:1.05; }
+.hero-ad__copy p{ margin:0; opacity:0.95; }
+.hero-ad__actions{ display:flex; gap:10px; align-items:center; }
+.hero-ad__btn{
+  padding:10px 16px; border-radius:10px; background:white; color:#111; text-decoration:none; font-weight:700;
+}
+.hero-ad__btn.secondary{
+  background:transparent; color:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.14);
+}
+.hero-ad__close{
+  position:absolute; top:8px; right:8px; background:transparent; border:0; color:rgba(255,255,255,0.9);
+  font-size:18px; cursor:pointer;
+}
+@media (max-width:720px){
+  .hero-ad{ flex-direction:column; align-items:stretch; text-align:center; }
+  .hero-ad__actions{ justify-content:center; width:100%; }
+}
+</style>
+
+<section class="hero-ad" role="region" aria-label="Special offer">
+  <button class="hero-ad__close" aria-label="Close promo" onclick="this.parentElement.style.display='none'">✕</button>
+  <div class="hero-ad__left">
+    <div class="hero-ad__logo" aria-hidden="true">LOGO</div>
+    <div class="hero-ad__copy">
+      <h2>Launch faster with our design kit</h2>
+      <p>Everything you need to ship beautiful pages — templates, components, and support.</p>
+    </div>
+  </div>
+  <div class="hero-ad__actions">
+    <a class="hero-ad__btn" href="#" role="button">Get the kit</a>
+    <a class="hero-ad__btn secondary" href="#" role="button">See demo</a>
+  </div>
+</section>
+
+
+
+<!-- Floating Sticky Ad -->
+<style>
+:root{
+  --float-bg:#0b1220;
+  --float-text:#fff;
+  --float-accent:#ffcc00;
+}
+.float-ad{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px;
+  border-radius:999px;
+  background:var(--float-bg);
+  color:var(--float-text);
+  box-shadow:0 18px 40px rgba(11,18,32,0.3);
+  z-index:9999;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+}
+.float-ad__text{ font-size:14px; }
+.float-ad__cta{
+  background:var(--float-accent);
+  color:#111;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:700;
+  text-decoration:none;
+}
+.float-ad__close{ background:transparent; border:0; color:rgba(255,255,255,0.7); margin-left:8px; cursor:pointer; }
+@media (min-width:900px){ .float-ad{ max-width:420px; right:auto; left:auto; } }
+</style>
+
+<div class="float-ad" role="region" aria-label="Floating promotion" id="floatAd">
+  <div class="float-ad__text">
+    <strong>Limited time:</strong> 40% off first month
+  </div>
+  <div style="display:flex;align-items:center">
+    <a class="float-ad__cta" href="#" role="button">Claim offer</a>
+    <button class="float-ad__close" aria-label="Dismiss" onclick="document.getElementById('floatAd').style.display='none'">✕</button>
+  </div>
+</div>
+
+
+
+<!-- Google Ad Box -->
+<style>
+.google-ad-box {
+  width: 429px;
+  height: 400px;
+  margin-top: 10px;
+  margin-right: 0px;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  background: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  color: #888;
+  font-size: 14px;
+}
+</style>
+
+
+  <!-- Replace this comment with your Google AdSense code -->
+<div class="google-ad-box">
+  Google Ad
+</div>
+

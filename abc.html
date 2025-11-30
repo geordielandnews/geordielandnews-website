@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NUFC Mag Map — Split 1017px Layout</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+<style>
+body {
+  margin: 0;
+  background: #e7e7e7;
+  font-family: Arial, sans-serif;
+  color: #002147;
+}
+
+/* PAGE WRAPPER */
+#page-wrapper {
+  width: 1017px;
+  margin: 20px auto;
+}
+
+/* TITLE */
+#title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #002147;
+}
+
+/* SPLIT LAYOUT */
+#layout {
+  display: flex;
+  width: 1017px;
+  height: 600px;
+  gap: 10px;
+}
+
+/* LEFT MENU PANEL — styled like news-box */
+#pin-menu {
+  width: 300px;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow-y: auto;
+  padding: 0;
+  position: relative;
+}
+
+/* HEADER */
+#pin-menu::before {
+  content: "Add Your Pin";
+  display: block;
+  background-color: #002147;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* CONTENT AREA */
+#pin-menu > *:not(:first-child) {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+/* FORM LABELS */
+#pin-menu label {
+  font-size: 13px;
+  margin-top: 12px;
+  font-weight: bold;
+  color: #002147;
+  display: block;
+}
+
+/* INPUT FIELDS */
+#pin-menu input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  color: #002147;
+}
+
+/* SCROLLBAR */
+#pin-menu::-webkit-scrollbar { width: 8px; }
+#pin-menu::-webkit-scrollbar-thumb {
+  background-color: #002147;
+  border-radius: 4px;
+}
+
+/* BUTTONS */
+button {
+  padding: 10px 15px;
+  border: none;
+  margin-top: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Styled buttons */
+#add-btn {
+  background: #002147;
+  color: white;
+}
+
+#submit-pin {
+  background: #0070b8;
+  color: white;
+}
+
+#clear {
+  background: #ccc;
+  color: #333;
+}
+
+/* MAP PANEL */
+#map {
+  width: 717px;
+  height: 600px;
+  background: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+<div id="page-wrapper">
+
+  <div id="title">⚫⚪ NUFC — Mag Map</div>
+
+  <div id="layout">
+
+    <!-- LEFT SIDE MENU -->
+    <div id="pin-menu">
+
+      <button id="add-btn">Add Pin</button>
+
+      <label>Nickname (optional)</label>
+      <input type="text" id="nickname">
+
+      <label>City / Region *</label>
+      <input type="text" id="location">
+
+      <label>When did you start supporting Newcastle?</label>
+      <input type="text" id="started">
+
+      <label style="margin-top:10px;">
+        <input type="checkbox" id="anonymous"> Submit anonymously
+      </label>
+
+      <button id="submit-pin">Submit Pin</button>
+      <button id="clear">Clear Pins (local)</button>
+
+    </div>
+
+    <!-- RIGHT SIDE MAP -->
+    <div id="map"></div>
+
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+<script>
+
+const defaultIcon = L.icon({
+  iconUrl:"https://unpkg.com/leaflet/dist/images/marker-icon.png",
+  shadowUrl:"https://unpkg.com/leaflet/dist/images/marker-shadow.png"
+});
+
+/* MAP SETUP */
+const map = L.map('map').setView([54.9783, -1.6174], 4);
+
+map.setMinZoom(2);
+map.setMaxBounds([[85,-180],[-85,180]]);
+map.on('drag',()=>map.panInsideBounds(map.options.maxBounds,{animate:false}));
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:"© OpenStreetMap"
+}).addTo(map);
+
+const clusters = L.markerClusterGroup();
+map.addLayer(clusters);
+
+/* ADD PIN */
+document.getElementById("submit-pin").onclick = async ()=>{
+
+  const nick = document.getElementById("anonymous").checked
+    ? "Anonymous Magpie"
+    : (document.getElementById("nickname").value.trim() || "Magpie");
+
+  const loc = document.getElementById("location").value.trim();
+  const start = document.getElementById("started").value.trim();
+
+  if(!loc){
+    alert("Please enter a location.");
+    return;
+  }
+
+  const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(loc)}`);
+  const data = await res.json();
+  if(!data.length){
+    alert("Location not found.");
+    return;
+  }
+
+  const lat = data[0].lat;
+  const lon = data[0].lon;
+
+  const popupHTML = `
+    <b>${nick}</b><br>
+    <b>Location:</b> ${loc}<br>
+    <b>Supporting Since:</b> ${start || "Not specified"}
+  `;
+
+  const marker = L.marker([lat, lon], {icon:defaultIcon}).bindPopup(popupHTML);
+
+  clusters.addLayer(marker);
+  map.setView([lat,lon],6);
+};
+
+/* CLEAR ALL MARKERS (local only) */
+document.getElementById("clear").onclick = ()=>{
+  clusters.clearLayers();
+};
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- AD BLOCKER -->
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>
+
+
+
+
+
+
+</body>
+</html>

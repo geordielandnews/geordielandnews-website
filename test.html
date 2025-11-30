@@ -1,509 +1,258 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>George Land News</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Dynamic Player Carousel</title>
 <style>
-/* ===== Global Reset & Fonts ===== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; font-family: "Times New Roman", Times, serif; background-color: #f0f0f0; color: #000; }
-body { line-height: 1.5; }
-
-/* ===== Header ===== */
-header {
-    background-color: #111;
-    color: #fff;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid #fff;
-}
-.top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-.logo-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-}
-.logo {
-    width: 50px; height: 50px;
-    border-radius: 50%;
-    background-color: #555;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-weight: bold; font-size: 1.2rem;
-}
-.site-title { font-size: 1.5rem; font-weight: bold; }
-
-/* ===== Navigation ===== */
-nav {
-    position: relative;
-    margin-top: 10px;
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
-}
-nav ul li a:hover { color: #1e90ff; }
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #222;
-    top: 100%;
-    left: 0;
-    min-width: 180px;
-    border-radius: 4px;
-    flex-direction: column;
-    border: 1px solid #333;
-    z-index: 999;
-}
-.dropdown-content a { padding: 10px 15px; color: #fff; text-decoration: none; }
-.dropdown-content a:hover { background-color: #333; color: #1e90ff; }
-.dropdown:hover .dropdown-content { display: flex; }
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #fff;
+:root{
+  --navy:#071d35;
+  --teal:#1c92b7;
+  --muted:#f0f0f0;
+  --dark-gray:#222;
+  --accent:#0b74c1;
+  --card-bg:#ffffff;
 }
 
-/* ===== Auth Button & Modal ===== */
-.auth-button {
-    padding: 8px 20px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #111;
-    color: #fff;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-.auth-button:hover { background-color: #1e90ff; }
-
-.auth-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    backdrop-filter: blur(6px);
-    background: rgba(0,0,0,0.6);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-.auth-modal {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    animation: slideIn 0.3s ease forwards;
-    box-sizing: border-box;
-}
-@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@keyframes slideOut { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-50px); opacity: 0; } }
-.auth-modal.closing { animation: slideOut 0.3s ease forwards; }
-
-.auth-tabs { display: flex; justify-content: space-between; margin-bottom: 16px; }
-.auth-tabs .tab { flex: 1; background: none; border: none; color: #bbb; padding: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
-.auth-tabs .tab.active { color: #1e90ff; border-bottom: 2px solid #1e90ff; }
-.close-btn { color: #999; font-size: 1.5rem; cursor: pointer; float: right; }
-.close-btn:hover { color: #1e90ff; }
-
-.auth-form { display: none; flex-direction: column; gap: 12px; }
-.auth-form.active { display: flex; }
-.auth-form input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #444;
-    background: #222;
-    color: #fff;
-    font-size: 0.9rem;
-}
-.primary-btn {
-    background: #1e90ff;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 10px 0;
-    cursor: pointer;
-}
-.primary-btn:hover { background: #0d6efd; }
-
-/* ===== Layout Container ===== */
-.layout-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px;
+html,body{
+  height:100%;
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background:#f6f7f8;
+  color:var(--dark-gray);
 }
 
-/* ===== Left Box ===== */
-.left-box {
-    flex: 1 1 300px;
-    max-width: 400px;
-    height: 400px;
-    background-color: #00ff2a;
-    border-radius: 8px;
-    padding: 20px;
-    overflow-y: auto;
+/* Position carousel next to right ad panel */
+.card{
+  position: fixed;
+  top: 10px; /* adjust vertical position */
+  right: calc(430px + 10px); /* 430px width of right ad + 10px spacing */
+  background:var(--card-bg);
+  box-shadow:0 6px 20px rgba(15,20,30,0.06);
+  overflow:hidden;
+  height: 300px;
+  width: 600px;
+  transform: scale(0.5);
+  transform-origin: top right;   
 }
 
-/* ===== News Slider ===== */
-.news-slider {
-    flex: 2 1 600px;
-    max-width: 1030px;
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    height: 400px;
+.card-header{
+  background:var(--navy);
+  color:white;
+  padding:18px 22px;
+  font-weight:800;
+  font-size:28px;
+  letter-spacing:0.6px;
+  text-align:center;
+  transition:all 0.4s ease-in-out;
 }
-.news-slider img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
-.news-feature-text {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #fff;
-    max-width: 70%;
+
+.carousel{
+  display:flex;
+  transition:transform 0.6s ease-in-out;
+  width:100%;
 }
-.news-feature-text h2 { font-size: 1.8rem; margin-bottom: 10px; }
-.news-feature-text p { font-size: 1rem; margin-bottom: 8px; }
-.news-feature-text .read-more { color: #1e90ff; font-weight: bold; text-decoration: none; }
-.news-feature-text .read-more:hover { color: #0d6efd; }
+
+.slide{
+  min-width:100%;
+  box-sizing:border-box;
+}
+
+.card-body{
+  display:flex;
+  gap:18px;
+  align-items:flex-start;
+  padding:20px;
+}
+
+.portrait{
+  width:150px;
+  flex:0 0 150px;
+}
+.portrait img{
+  width:150px;
+  height:180px;
+  object-fit:cover;
+  border-radius:6px;
+  display:block;
+  border:4px solid #fff;
+  box-shadow:0 6px 18px rgba(10,20,30,0.06);
+}
+
+.info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.name-flag{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:28px;
+  font-weight:700;
+  color:var(--teal);
+}
+
+.flag{
+  width:28px;
+  height:20px;
+  display:inline-block;
+  background-size:cover;
+  border-radius:3px;
+  box-shadow:0 1px 0 rgba(0,0,0,0.08) inset;
+  transform:translateY(1px);
+}
+
+.market{color:#444;font-size:18px;margin-top:6px;}
+
+.stat-box{
+  margin-top:6px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:var(--muted);
+  padding:16px;
+  border-radius:6px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+}
+.stat-number{
+  width:56px;
+  height:56px;
+  border-radius:6px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  font-weight:800;
+  color:var(--accent);
+  flex:0 0 56px;
+}
+.stat-label{
+  font-size:22px;
+  font-weight:700;
+  color:#1e6d92;
+}
+
+.rank{
+  flex:0 0 100px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding-top:10px;
+}
+.rank-box{
+  width:78px;
+  height:78px;
+  background:#f3f5f7;
+  border-radius:6px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:48px;
+  font-weight:800;
+  color:var(--navy);
+  box-shadow:0 4px 16px rgba(10,20,30,0.04);
+}
+
+.dots{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  align-items:center;
+  margin:14px 0 20px 0;
+}
+.dot{
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:#d9d9d9;
+  cursor:pointer;
+}
+.dot.active{
+  background:var(--accent);
+}
+
+@media (max-width:700px){
+  .card-body{flex-direction:column;align-items:center;gap:14px;}
+  .portrait{width:120px;flex:0 0 120px;}
+  .portrait img{width:120px;height:120px;}
+  .rank{order:3;padding-top:6px;}
+}
 </style>
+</head>
+<body>
 
-<!-- ===== Header ===== -->
-<header>
-  <div class="top-row">
-    <div class="logo-container">
-      <img src="pictures/newcastle-logo.jpg" alt="Logo" class="logo">
-      <div class="site-title">George Land News</div>
-    </div>
-    <button class="auth-button" onclick="openAuth()">Sign In / Sign Up</button>
-  </div>
-  <nav>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <ul id="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">News</a></li>
-      <li class="dropdown">
-        <a href="#">Fixtures ▾</a>
-        <div class="dropdown-content">
-          <a href="preseason.html">Pre Season</a>
-          <a href="premierleague.html">Premier League</a>
-          <a href="championsleague.html">Champions League</a>
-          <a href="carabaocup.html">Carabao Cup</a>
-          <a href="facup.html">FA Cup</a>
+<div class="card">
+  <div class="card-header" id="card-header">TOP GOAL SCORER</div>
+
+  <div class="carousel" id="carousel">
+    <div class="slide" data-header="TOP GOAL SCORERS">
+      <div class="card-body">
+        <div class="portrait"><img src="pictures/Woltemade.png" alt="Player portrait"></div>
+        <div class="info">
+          <div class="name-flag">
+            <span>N. Woltemade</span>
+            <span class="flag" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2220%22><rect width=%2228%22 height=%226.67%22 y=%220%22 fill=%22%23000000%22/><rect width=%2228%22 height=%226.67%22 y=%226.67%22 fill=%22%23dd0000%22/><rect width=%2228%22 height=%226.67%22 y=%2213.33%22 fill=%22%23ffce00%22/></svg>');"></span>
+          </div>
+          <div class="market">Market value: <strong>£55.25m</strong></div>
+          <div class="stat-box"><div class="stat-number">5</div><div class="stat-label">Goals</div></div>
         </div>
-      </li>
-      <li><a href="squad.html">Squad</a></li>
-      <li><a href="transfers.html">Transfers</a></li>
-    </ul>
-  </nav>
-</header>
-
-<!-- ===== Auth Modal ===== -->
-<div class="auth-overlay" id="authOverlay">
-  <div class="auth-modal" id="authModal" onclick="event.stopPropagation()">
-    <div class="close-btn" onclick="closeAuth()">×</div>
-    <div class="auth-tabs">
-      <button class="tab active" onclick="showForm('signin')">Sign In</button>
-      <button class="tab" onclick="showForm('signup')">Sign Up</button>
+        <div class="rank"><div class="rank-box">#1</div></div>
+      </div>
     </div>
 
-    <form class="auth-form active" id="signinForm">
-      <input type="text" placeholder="Username or Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit" class="primary-btn">Sign In</button>
-    </form>
-
-    <form class="auth-form" id="signupForm">
-      <input type="text" placeholder="Username" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Password" required>
-      <button type="submit" class="primary-btn">Sign Up</button>
-    </form>
-  </div>
-</div>
-
-<!-- ===== Main Layout ===== -->
-<div class="layout-container">
-
-  <!-- Left Box -->
-  <div class="left-box">
-    <p>GOOGLE AD</p>
-  </div>
-
-  <!-- News Slider -->
-  <div class="news-slider">
-    <img src="pictures/news1.jpg" alt="News Slide">
-    <div class="news-feature-text">
-      <h2>Featured News Headline</h2>
-      <p>Short description of the news goes here...</p>
-      <a href="#readmore" class="read-more">Read more</a>
+    <div class="slide" data-header="TOP ASSISTER">
+      <div class="card-body">
+        <div class="portrait"><img src="pictures/bruno.png" alt="Player portrait"></div>
+        <div class="info">
+          <div class="name-flag">
+            <span>B. Guimarães</span>
+            <span class="flag" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2220%22 viewBox=%220 0 7 5%22><rect width=%227%22 height=%225%22 fill=%22%23009b3a%22/><polygon points=%223.5,0.5 6.5,2.5 3.5,4.5 0.5,2.5%22 fill=%22%23ffdf00%22/><circle cx=%223.5%22 cy=%222.5%22 r=%221.1%22 fill=%22%23002776%22/></svg>');"></span>
+          </div>
+          <div class="market">Market value: <strong>£68.00m</strong></div>
+          <div class="stat-box"><div class="stat-number">2</div><div class="stat-label">Assists</div></div>
+        </div>
+        <div class="rank"><div class="rank-box">#1</div></div>
+      </div>
     </div>
   </div>
 
-  <!-- ===== SIDEBAR PREMIER LEAGUE TABLE ===== -->
-<style>
-/* === Enhanced Responsive Compact Table with Logos and Zone Colors === */
-.sidebar-pl-table {
-  position: relative;
-  margin-left: auto;
-  width: 90%;
-  max-width: 400px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-  font-size: 0.78rem;
-  color: #222;
-  overflow: hidden;
-  transition: transform 0.2s ease;
-  z-index: 5;
-}
-
-.sidebar-pl-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: linear-gradient(90deg, #38003c, #e90052);
-  color: #fff;
-  padding: 8px 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.03em;
-  border-radius: 12px 12px 0 0;
-}
-.sidebar-pl-header img {
-  width: 20px;
-  height: 20px;
-}
-
-/* Table styling */
-.sidebar-pl-table table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
-}
-
-.sidebar-pl-table thead {
-  background: linear-gradient(90deg, #38003c, #e90052);
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.sidebar-pl-table th,
-.sidebar-pl-table td {
-  padding: 6px 5px;
-  text-align: center;
-  vertical-align: middle;
-  border-bottom: 1px solid #eee;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-/* Column widths */
-.sidebar-pl-table td:first-child,
-.sidebar-pl-table th:first-child { width: 28px; }
-.sidebar-pl-table th:nth-child(2),
-.sidebar-pl-table td:nth-child(2) { width: 160px; text-align: left; }
-
-/* Club cell with logo and name */
-.club-cell {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-}
-.club-cell img {
-  width: 23px;           /* fixed width */
-  height: 23px;          /* fixed height */
-  border-radius: 50%;    /* circular crop */
-  object-fit: contain;    /* keeps logo aspect ratio inside box */
-  padding: 2px;           /* optional: adds spacing inside the circle */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-}
-.club-cell img:hover {
-  transform: scale(1.2);
-}
-
-/* Highlight zones for positions */
-
-/* Top 4 – Champions League */
-.sidebar-pl-table tbody tr:nth-child(-n+4) {
-  background: #bdd6ff;   /* soft purple */
-  border-left: 3px solid #4285f4;
-}
-
-/* 5th place – Europa/Conference League */
-.sidebar-pl-table tbody tr:nth-child(5) {
-  background: #ffd7b8;   /* soft pink */
-  border-left: 3px solid #fa7b17;
-}
-
-/* Relegation – bottom 3 */
-.sidebar-pl-table tbody tr:nth-last-child(-n+3) {
-  background: #ffcccc;   /* light red */
-  border-left: 3px solid #ea4335;
-}
-
-/* Hover effect */
-.sidebar-pl-table tbody tr:hover {
-  background: #eae6f5;
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-  .sidebar-pl-table {
-    right: 10px;
-    top: 120px;
-    max-width: 95%;
-  }
-  .sidebar-pl-table th, .sidebar-pl-table td {
-    font-size: 0.7rem;
-    padding: 4px 3px;
-  }
-  .club-cell img { width: 18px; height: 18px; }
-}
-</style>
-
-<div class="sidebar-pl-table">
-  <div class="sidebar-pl-header">
-    <img src="data:image/png;base64,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" alt="Logo">
-    Premier League Standings
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>Pos</th>
-        <th>Club</th>
-        <th>MP</th>
-        <th>W</th>
-        <th>D</th>
-        <th>L</th>
-        <th>GF</th>
-        <th>GA</th>
-        <th>GD</th>
-        <th>Pts</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.t249WBVNHcUC6zL5JNm99A--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Bournemouth"> Bournemouth</td><td>7</td><td>4</td><td>2</td><td>1</td><td>11</td><td>8</td><td>0</td><td>0</td></tr>
-      <tr><td>2</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.VXxjrqWZWwmw2Ju4T8AJJA--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Arsenal"> Arsenal</td><td>7</td><td>5</td><td>1</td><td>1</td><td>14</td><td>3</td><td>0</td><td>0</td></tr>
-      <tr><td>3</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.c0Wl6P2ZplnxMOIL8XIkqQ--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Aston Villa"> Aston Villa</td><td>7</td><td>2</td><td>3</td><td>2</td><td>6</td><td>7</td><td>0</td><td>0</td></tr>
-      <tr><td>4</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.FJw_mVOK3zvWmJ7SvVcpfw--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Brentford"> Brentford</td><td>7</td><td>2</td><td>1</td><td>4</td><td>9</td><td>12</td><td>0</td><td>0</td></tr>
-      <tr><td>5</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.A9nqpYdR1qusXH0SMgPF0Q--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Brighton"> Brighton</td><td>7</td><td>2</td><td>3</td><td>2</td><td>10</td><td>10</td><td>0</td><td>0</td></tr>
-      <tr><td>6</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.Pb9jN4QC3cKm3ENgENZ4fA--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Burnley"> Burnley</td><td>7</td><td>1</td><td>1</td><td>5</td><td>7</td><td>15</td><td>0</td><td>0</td></tr>
-      <tr><td>7</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.uAKJHtbZ2yBdJDNZ7GD2Kg--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Chelsea"> Chelsea</td><td>7</td><td>3</td><td>2</td><td>2</td><td>13</td><td>9</td><td>0</td><td>0</td></tr>
-      <tr><td>8</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.GYPkqcRWTGgPFYS_XlHoXQ--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Crystal Palace"> Crystal Palace</td><td>7</td><td>3</td><td>3</td><td>1</td><td>9</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>9</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.U85%7chNIizWDKorNHKWraKQ--.png&w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Everton"> Everton</td><td>7</td><td>3</td><td>2</td><td>2</td><td>9</td><td>7</td><td>0</td><td>0</td></tr>
-      <tr><td>10</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.fBgzdPOe19DW2zxf8y0p4w--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Fulham"> Fulham</td><td>7</td><td>2</td><td>2</td><td>3</td><td>8</td><td>11</td><td>0</td><td>0</td></tr>
-      <tr><td>11</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.mdxK%7cbOVVunhA%7cIWJgVSSQ--.png&w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Leeds United"> Leeds United</td><td>7</td><td>2</td><td>2</td><td>3</td><td>7</td><td>11</td><td>0</td><td>0</td></tr>
-      <tr><td>12</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.PGJxes%7caBVYuf_nP8XCIlg--.png&w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Liverpool"> Liverpool</td><td>7</td><td>5</td><td>0</td><td>2</td><td>13</td><td>9</td><td>0</td><td>0</td></tr>
-      <tr><td>13</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.by_oG1thdqgW2cd%7clhtlSA--.png&w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Man City"> Man City</td><td>7</td><td>4</td><td>1</td><td>2</td><td>15</td><td>6</td><td>0</td><td>0</td></tr>
-      <tr><td>14</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.s5_l9XhAYkUktfwbMYBFuw--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Man United"> Man United</td><td>7</td><td>3</td><td>1</td><td>3</td><td>9</td><td>11</td><td>0</td><td>0</td></tr>
-      <tr><td>15</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.jw3UB8bVF9gP2h1IrKVTnA--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Newcastle"> Newcastle</td><td>7</td><td>2</td><td>3</td><td>2</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>16</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.bWWuS5gSRvHE82C2Kgo8UQ--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Nottm Forest"> Nottm Forest</td><td>7</td><td>1</td><td>2</td><td>4</td><td>5</td><td>12</td><td>0</td><td>0</td></tr>
-      <tr><td>17</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.3wVjeCzzD%7c_L9VHTN0z1qg--.png&w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Sunderland"> Sunderland</td><td>7</td><td>3</td><td>2</td><td>2</td><td>7</td><td>6</td><td>0</td><td>0</td></tr>
-      <tr><td>18</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.qBF1zqdas8aJ0kPGNrZZlw--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Tottenham"> Tottenham</td><td>7</td><td>4</td><td>2</td><td>1</td><td>13</td><td>5</td><td>0</td><td>0</td></tr>
-      <tr><td>19</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB._m3f1ZK9o9rzWkcS0KbkPA--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="West Ham"> West Ham</td><td>7</td><td>1</td><td>1</td><td>5</td><td>6</td><td>16</td><td>0</td><td>0</td></tr>
-      <tr><td>20</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.0xkbpFmnNFMuN38MvedBDA--.png?w=24&h=24&c=6&qlt=90&o=6&cb=12&dpr=2&pid=BingSports" alt="Wolves"> Wolves</td><td>7</td><td>0</td><td>2</td><td>5</td><td>5</td><td>14</td><td>0</td><td>0</td></tr>
-    </tbody>
-  </table>
+  <div class="dots" id="dots"><div class="dot active"></div><div class="dot"></div></div>
 </div>
 
 <script>
-function sortPLTable() {
-  const table = document.querySelector('.sidebar-pl-table tbody');
-  const rows = Array.from(table.querySelectorAll('tr'));
+const carousel = document.getElementById('carousel');
+const dots = document.querySelectorAll('#dots .dot');
+const slides = document.querySelectorAll('.slide');
+const header = document.getElementById('card-header');
+let current = 0;
+const total = slides.length;
 
-  // Convert rows into structured data for sorting
-  const sorted = rows.sort((a, b) => {
-    const cellsA = a.querySelectorAll('td');
-    const cellsB = b.querySelectorAll('td');
+function showSlide(index){
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach((dot,i)=>dot.classList.toggle('active', i===index));
+  const newHeader = slides[index].dataset.header;
+  header.style.opacity = 0;
+  setTimeout(()=>{
+    header.textContent = newHeader;
+    header.style.opacity = 1;
+  }, 300);
+}
 
-    const pointsA = parseInt(cellsA[9].textContent) || 0;
-    const pointsB = parseInt(cellsB[9].textContent) || 0;
+setInterval(()=>{
+  current = (current + 1) % total;
+  showSlide(current);
+},4000);
 
-    const gdA = parseInt(cellsA[8].textContent) || 0;
-    const gdB = parseInt(cellsB[8].textContent) || 0;
-
-    const gfA = parseInt(cellsA[6].textContent) || 0;
-    const gfB = parseInt(cellsB[6].textContent) || 0;
-
-    // Sort by Points > Goal Difference > Goals For
-    if (pointsA !== pointsB) return pointsB - pointsA;
-    if (gdA !== gdB) return gdB - gdA;
-    return gfB - gfA;
+dots.forEach((dot,i)=>{
+  dot.addEventListener('click',()=>{
+    current=i;
+    showSlide(current);
   });
-
-  // Rewrite table rows in new order and update position numbers
-  sorted.forEach((row, index) => {
-    row.querySelector('td:first-child').textContent = index + 1;
-    table.appendChild(row);
-  });
-}
-
-// Run after the page loads
-window.addEventListener('DOMContentLoaded', sortPLTable);
-</script>
-
-
-<!-- ===== Scripts ===== -->
-<script>
-function toggleMenu() {
-    document.getElementById('nav-links').classList.toggle('show');
-}
-function openAuth() {
-    document.getElementById('authOverlay').style.display = 'flex';
-}
-function closeAuth() {
-    const modal = document.getElementById('authModal');
-    modal.classList.add('closing');
-    setTimeout(() => {
-        document.getElementById('authOverlay').style.display = 'none';
-        modal.classList.remove('closing');
-    }, 300);
-}
-function showForm(form) {
-    document.getElementById('signinForm').classList.remove('active');
-    document.getElementById('signupForm').classList.remove('active');
-    document.querySelectorAll('.auth-tabs .tab').forEach(t => t.classList.remove('active'));
-    if(form === 'signin') {
-        document.getElementById('signinForm').classList.add('active');
-        document.querySelector('.auth-tabs .tab:nth-child(1)').classList.add('active');
-    } else {
-        document.getElementById('signupForm').classList.add('active');
-        document.querySelector('.auth-tabs .tab:nth-child(2)').classList.add('active');
-    }
-}
-document.getElementById('authOverlay').addEventListener('click', closeAuth);
+});
 </script>
 
 </body>

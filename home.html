@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+  <title>Geordie Land News - Home</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ------------------------------
+       SECTION BARS
+    ------------------------------ */
+    .section-bar1, .section-bar2, .section-bar3, .section-bar4, .section-bar6, .section-bar7 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;
+    }
+    .section-bar2, .section-bar3, .section-bar4, .section-bar6, .section-bar7 { margin-top: 10px; }
+
+    .section-bar5 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;
+      margin-top: 10px;      
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+
+    /* ------------------------------
+       PAGE LAYOUT
+    ------------------------------ */
+    .content-below-bar1 {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+
+    .page-layout {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 2080px;
+      margin: 0 auto;
+    }
+
+    .content-center {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 10px 0 10px;
+    }
+
+    /* ------------------------------
+       NEWS SLIDER
+    ------------------------------ */
+    .news-slider {
+      margin-left: 440px;
+      width: 560px;
+      height: 400px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      position: relative;
+    }
+
+    .news-slider img {
+      opacity: 25%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .overlay-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: #002147;
+      color: #fff;
+      box-sizing: border-box;
+    }
+
+    .overlay-text h2 { margin: 0 0 10px 0; font-size: 1.3rem; }
+    .overlay-text p { margin: 0 0 8px 0; font-size: 0.8rem; line-height: 1.4; }
+    .article-date { font-size: 0.7rem; color: #ccc; margin-bottom: 10px; }
+
+    /* ------------------------------
+       CAROUSEL TABLES
+    ------------------------------ */
+    .carousel-tables {
+      margin-right: 440px;
+      width: 448px;
+      height: 400px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      position: relative;
+    }
+
+    .table-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 0;
+    }
+    .table-container.active { opacity: 1; z-index: 1; }
+
+    .table-header {
+      background-color: #002147;
+      color: white;
+      font-weight: bold;
+      padding: 10px 15px;
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 8px 12px; }
+    th { background-color: #f1f1f1; font-size: 11px; color: #333; text-transform: uppercase; }
+    tr { border-bottom: 1px solid #e0e0e0; }
+
+    .player-info { display: flex; align-items: center; gap: 8px; }
+    .player-info img { width: 30px; height: 38px; object-fit: cover; }
+    .player-text { display: flex; flex-direction: column; }
+    .player-text span:first-child { font-weight: bold; color: #0070b8; font-size: 13px; }
+    .player-text span:last-child { font-size: 12px; color: #555; }
+
+.country-flags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.country-flag {
+  width: 35px;
+  height: 25px;
+  object-fit: cover;
+  border: 1px solid #555; /* Change this to any color you like */
+  border-radius: 3px;
+}
+
+.flag-wrapper {
+  position: relative; /* required for the tooltip positioning */
+  display: inline-block;
+  cursor: default;
+}
+
+.flag-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%; /* shows tooltip above the flag */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.flag-wrapper:hover::after {
+  opacity: 1;
+}
+
+    th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3), th:last-child, td:last-child { text-align: center; vertical-align: middle; }
+    td:nth-child(3), td:last-child { font-size: 18px; }
+
+    /* ------------------------------
+       NEWS BOX
+    ------------------------------ */
+    .news-box {
+      margin-left: 430px;
+      width: 1017px;
+      height: 400px;
+      position: relative;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+
+    .news-header {
+      background-color: #002147;
+      color: white;
+      font-weight: bold;
+      padding: 10px 15px;
+      font-size: 14px;
+      text-transform: uppercase;
+      box-sizing: border-box;
+    }
+
+    .news-articles {  
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-sizing: border-box;
+    }
+
+    /* Scrollbar styling */
+    .news-articles::-webkit-scrollbar {
+      width: 8px;
+    }
+    .news-articles::-webkit-scrollbar-thumb {
+      background-color: #002147;
+      border-radius: 4px;
+    }
+
+    .news-item { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #e0e0e0; padding: 6px 0; transition: background 0.2s ease; }
+    .news-item:hover { background-color: #f1f1f1; cursor: pointer; }
+    .news-item img { width: 50px; height: 38px; object-fit: cover; border-radius: 2px; }
+
+    .news-text h3 { color: #0070b8; font-size: 13px; margin: 0; line-height: 1.2; }
+    .news-text p { font-size: 12px; color: #555; margin: 2px 0 0 0; }
+    .news-text a.read-more { color: #0070b8; font-size: 12px; font-weight: bold; text-decoration: none; }
+    .news-text a.read-more:hover { text-decoration: underline; }
+
+    .news-date { font-size: 11px; color: #999; margin-left: auto; }
+
+    @keyframes highlightGlow {
+      0% { box-shadow: 0 0 0px rgba(255, 215, 0, 0); border: 1px solid transparent; }
+      30% { box-shadow: 0 0 12px rgba(255, 215, 0, 0.9); border: 1px solid gold; }
+      100% { box-shadow: 0 0 0px rgba(255, 215, 0, 0); border: 1px solid transparent; }
+    }
+    .news-item.highlight { animation: highlightGlow 1.5s ease; }
+
+    /* ------------------------------
+       MODAL
+    ------------------------------ */
+    .news-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 33, 71, 0.85);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background-color: #f1f1f1;
+      color: #002147;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 650px;
+      width: 90%;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      animation: modalFadeIn 0.4s ease;
+    }
+
+    .modal-content p:last-child { margin-bottom: 0; }
+    
+    .modal-content h2 { margin-top: 0; font-size: 22px; }
+    .modal-content p { color: #333; line-height: 1.5; }
+    .modal-content span#modalDate { display: block; font-size: 13px; color: #555; margin-bottom: 10px; }
+
+    .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #002147; cursor: pointer; transition: color 0.2s ease; }
+    .close-btn:hover { color: #000; }
+
+    #modalMedia { margin-bottom: 15px; text-align: center; }
+    #modalMedia img, #modalMedia iframe { width: 100%; border-radius: 6px; max-height: 400px; object-fit: cover; }
+
+    @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+  </style>
+</head>
+<body> 
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
+     crossorigin="anonymous"></script>
+
+<!-- Left ad panel -->
+<div class="ad-panel-left">
+
+  <div class="ad-slot-1-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<!-- Right ad panel -->
+<div class="ad-panel-right">
+
+  <div class="ad-slot-1-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="pictures/newcastle-logo.png" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="fixtures.html">FIXTURES</a></li>
+      <li><a href="squad.html">SQUAD</a></li>
+      <li><a href="transfers.html">TRANSFERS</a></li>
+      <li><a href="stats.html">STATS</a></li>
+      <li><a href="discussions.html">DISCUSSIONS</a></li>
+    </ul>
+  </nav>
+
+  <div class="section-bar1"></div>
+
+  <!-- Content below the section bar -->
+  <div class="content-below-bar1">
+    <!-- News Slider -->
+    <div class="news-slider">
+      <img src="pictures/newcastle-logo.png" alt="Newcastle United News">
+      <div class="overlay-text">
+        <h2>Geordie Land News</h2>
+        <p class="article-date">28 May 2022</p>
+        <p>Founded in 2022, Geordie Land News is a fan-built Newcastle United brand that brings Magpies supporters together across our website, Twitter, and Instagram. What started as a small passion project has grown into a lively space where fans can get quick updates, honest opinions, and dedicated coverage of everything happening at NUFC. Geordie Land News is all about celebrating the club, connecting supporters, and giving fans a voice in the heartbeat of Newcastle United.</p>
+      </div>
+    </div>
+
+    <!-- Carousel Tables -->
+    <div class="carousel-tables">
+      <!-- TABLE 1 -->
+      <div class="table-container active">
+        <div class="table-header">Top Goal Scorers</div>
+        <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Country</th>
+            <th>Appearances</th>
+            <th>Goals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/398065-1761079974.jpg?lm=1"><div class="player-text"><span>Harvey Barnes</span><span>Left Winger</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+            <td>19</td>
+            <td>7</td>            
+          </tr>           
+          <tr>
+            <td><div class="player-info"><img src="pictures/Nick-Woltemade.png"><div class="player-text"><span>Nick Woltemade</span><span>Centre-Forward</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag"></td>
+            <td>16</td>
+            <td>6</td>
+          </tr>         
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503733-1761080304.jpg?lm=1"><div class="player-text"><span>Anthony Gordon</span><span>Left Winger</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></td>
+            <td>14</td>
+            <td>4</td>            
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/609556-1693217416.jpg?lm=1"><div class="player-text"><span>William Osula</span><span>Centre-Forward</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/120px-Flag_of_Denmark.svg.png" class="country-flag" title="Denmark"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"></div></td>
+            <td>14</td>
+            <td>3</td>            
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/333241-1674210135.jpg?lm=1"><div class="player-text"><span>Joelinton</span><span>Central Midfield</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"></td>
+            <td>16</td>
+            <td>3</td>            
+          </tr>          
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/520624-1668522672.jpg?lm=1"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+            <td>18</td>
+            <td>3</td>            
+          </tr>       
+        </tbody>
+        </table>
+      </div>
+
+      <!-- TABLE 2 -->
+      <div class="table-container">
+        <div class="table-header">Most Assists</div>
+        <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Country</th>
+            <th>Appearances</th>
+            <th>Assists</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/520624-1668522672.jpg?lm=1"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+            <td>18</td>
+            <td>4</td>            
+          </tr>           
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/199527-1674210561.jpg?lm=1"><div class="player-text"><span>Jacob Murphy</span><span>Right Winger</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Flag_of_Ireland.svg/330px-Flag_of_Ireland.svg.png" class="country-flag" title="Ireland"></div></td>
+            <td>15</td>
+            <td>3</td>            
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/397033-1688389270.jpg?lm=1"><div class="player-text"><span>Sandro Tonali</span><span>Defensive Midfield</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" class="country-flag" title="Italy"></td>
+            <td>17</td>
+            <td>3</td>            
+          </tr>         
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/398065-1761079974.jpg?lm=1"><div class="player-text"><span>Harvey Barnes</span><span>Left Winger</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+            <td>19</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/340329-1761077592.jpg?lm=1"><div class="player-text"><span>Joe Willock</span><span>Central Midfield</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Flag_of_Montserrat.svg/250px-Flag_of_Montserrat.svg.png" class="country-flag" title="Montserrat"></div></td>
+            <td>8</td> 
+            <td>1</td>           
+          </tr>                         
+          <tr>
+            <td><div class="player-info"><img src="https://img.a.transfermarkt.technology/portrait/medium/503981-1699383321.jpg?lm=1"><div class="player-text"><span>Tino Livramento</span><span>Right-Back</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag" title="England"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/250px-Flag_of_Scotland.svg.png" class="country-flag" title="Scotland"></div></td>
+            <td>10</td>
+            <td>1</td>            
+          </tr>                                  
+        </tbody>
+        </table>
+      </div>
+
+      <!-- TABLE 3 -->
+      <div class="table-container">
+        <div class="table-header">Most Valuable Players</div>
+        <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Country</th>
+            <th>Market Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="player-info"><img src="pictures/Bruno-Guimarães.png"><div class="player-text"><span>Bruno Guimarães</span><span>Central Midfield</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/250px-Flag_of_Brazil.svg.png" class="country-flag" title="Brazil"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/250px-Bandera_de_Espa%C3%B1a.svg.png" class="country-flag" title="Spain"></div></td>
+            <td>€80.00m</td>
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="pictures/Sandro-Tonali.png"><div class="player-text"><span>Sandro Tonali</span><span>Defensive Midfield</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/03/Flag_of_Italy.svg/250px-Flag_of_Italy.svg.png" class="country-flag"></td>
+            <td>€75.00m</td>
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="pictures/Nick-Woltemade.png"><div class="player-text"><span>Nick Woltemade</span><span>Centre-Forward</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/250px-Flag_of_Germany.svg.png" class="country-flag"></td>
+            <td>€65.00m</td>
+          </tr>
+          <tr>
+            <td><div class="player-info"><img src="pictures/Anthony-Gordon.png"><div class="player-text"><span>Anthony Gordon</span><span>Left Winger</span></div></div></td>
+            <td><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Flag_of_England.svg/250px-Flag_of_England.svg.png" class="country-flag"></td>
+            <td>€65.00m</td>
+          </tr>          
+            <td><div class="player-info"><img src="pictures/Anthony-Elanga.png"><div class="player-text"><span>Anthony Elanga</span><span>Right Winger</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/250px-Flag_of_Sweden.svg.png" class="country-flag" title="Sweden"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Flag_of_Cameroon.svg/250px-Flag_of_Cameroon.svg.png" class="country-flag" title="Cameroon"></div></td>
+            <td>€55.00m</td>
+          </tr>          
+          </tr>          
+            <td><div class="player-info"><img src="pictures/Yoane-Wissa.png"><div class="player-text"><span>Yoane Wissa</span><span>Centre-Forward</span></div></div></td>
+            <td><div class="country-flags"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Flag_of_the_Democratic_Republic_of_the_Congo.svg/250px-Flag_of_the_Democratic_Republic_of_the_Congo.svg.png" class="country-flag" title="DR Congo"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/250px-Flag_of_France.svg.png" class="country-flag" title="France"></div></td>
+            <td>€42.00m</td>
+          </tr>                    
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+    // 1️⃣ Find all text nodes containing € amounts
+    function getTextNodes(node) {
+        let textNodes = [];
+        if (node.nodeType === Node.TEXT_NODE) {
+            if (node.nodeValue.includes("€")) textNodes.push(node);
+        } else {
+            node.childNodes.forEach(child => {
+                textNodes = textNodes.concat(getTextNodes(child));
+            });
+        }
+        return textNodes;
+    }
+
+    const textNodes = getTextNodes(document.body);
+
+    // 2️⃣ Get exchange rate EUR → GBP
+    let rateGBP = 0.88; // fallback
+    try {
+        const res = await fetch("https://api.exchangerate.host/latest?base=EUR&symbols=GBP");
+        const data = await res.json();
+        rateGBP = data.rates.GBP;
+    } catch (e) {
+        console.warn("Using fallback GBP rate:", rateGBP);
+    }
+
+    // 3️⃣ Convert € amounts to £
+    textNodes.forEach(node => {
+        node.nodeValue = node.nodeValue.replace(/€\s*([\d.,]+)\s*(m|k)?/gi, (match, num, suffix) => {
+            let value = parseFloat(num.replace(",", ""));
+            value = value * rateGBP;
+
+            let result = suffix === "m" ? value.toFixed(2) + "m" :
+                         suffix === "k" ? Math.round(value) + "k" :
+                         value.toFixed(2);
+
+            return "£" + result;
+        });
+    });
+});
+</script>
+
+  <div class="section-bar2"></div>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%px;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>
+
+  <div class="section-bar3"></div>
+
+  <!-- NEWS BOX -->
+  <div class="content-center">
+    <div class="news-box">
+      <div class="news-header">Latest News</div>
+      <div class="news-articles" id="newsContainer">
+        <!-- News articles dynamically load here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP MODAL -->
+  <div id="newsModal" class="news-modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <div id="modalMedia"></div>
+      <h2 id="modalTitle"></h2>
+      <span id="modalDate"></span>
+      <p id="modalContent"></p>
+    </div>
+  </div>  
+
+  <div class="section-bar4"></div>
+
+
+<style>
+/* === Enhanced Responsive Compact Table with Logos and Zone Colors === */
+.sidebar-pl-table {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 440px;
+  width: 429px;
+  height: 400px;              /* ✅ Limit height to 400px */
+  position: relative;
+  overflow-y: auto;           /* ✅ Allow vertical scrolling */
+  overflow-x: hidden;         /* ✅ Prevent horizontal scroll */
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+
+
+  /* ✅ Hide scrollbars (Chrome, Edge, Safari, Firefox) */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and Edge Legacy */
+}
+.sidebar-pl-table::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari */
+}
+
+.sidebar-pl-header {
+  background-color: #002147;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sidebar-pl-header img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Table styling */
+.sidebar-pl-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Column header fixed too */
+.sidebar-pl-table thead {
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 12px;
+  text-transform: uppercase;
+  position: sticky;
+  top: 40px; /* directly under .sidebar-pl-header */
+  z-index: 2;
+}
+
+.sidebar-pl-table th,
+.sidebar-pl-table td {
+  padding: 6px 5px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* Column widths */
+.sidebar-pl-table td:first-child,
+.sidebar-pl-table th:first-child { width: 28px; }
+.sidebar-pl-table th:nth-child(2),
+.sidebar-pl-table td:nth-child(2) { width: 160px; text-align: left; }
+
+/* Club cell with logo and name */
+.club-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.club-cell img {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  object-fit: contain;
+  padding: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  background: #fff;
+}
+.club-cell img:hover {
+  transform: scale(1.2);
+}
+
+/* Highlight zones for positions */
+
+/* Top 4 – Champions League */
+.sidebar-pl-table tbody tr:nth-child(-n+4) {
+  background: #bdd6ff;
+  border-left: 3px solid #4285f4;
+}
+
+/* 5th place – Europa/Conference League */
+.sidebar-pl-table tbody tr:nth-child(5) {
+  background: #ffd7b8;
+  border-left: 3px solid #fa7b17;
+}
+
+/* Relegation – bottom 3 */
+.sidebar-pl-table tbody tr:nth-last-child(-n+3) {
+  background: #ffcccc;
+  border-left: 3px solid #ea4335;
+}
+
+/* Hover effect */
+.sidebar-pl-table tbody tr:hover {
+  background: #eae6f5;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .sidebar-pl-table { right: 10px; top: 120px; max-width: 95%; }
+  .sidebar-pl-table th, .sidebar-pl-table td { font-size: 0.7rem; padding: 4px 3px; }
+  .club-cell img { width: 18px; height: 18px; }
+}
+</style>
+
+<div class="sidebar-pl-table">
+  <div class="sidebar-pl-header">
+    <img src="https://b.fssta.com/uploads/application/soccer/competition-logos/EnglishPremierLeague.png" alt="Logo">
+    PREMIER LEAGUE TABLE
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Club</th>
+        <th>MP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>GF</th>
+        <th>GA</th>
+        <th>GD</th>
+        <th>Pts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.VXxjrqWZWwmw2Ju4T8AJJA--.png?w=24&h=24" alt="Arsenal"> Arsenal</td><td>12</td><td>9</td><td>2</td><td>1</td><td>24</td><td>6</td><td></td><td></td></tr>
+      <tr><td>2</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.uAKJHtbZ2yBdJDNZ7GD2Kg--.png?w=24&h=24" alt="Chelsea"> Chelsea</td><td>12</td><td>7</td><td>2</td><td>3</td><td>23</td><td>11</td><td></td><td></td></tr>
+      <tr><td>3</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.by_oG1thdqgW2cd%7clhtlSA--.png&w=24&h=24" alt="Manchester City"> Manchester City</td><td>13</td><td>8</td><td>1</td><td>4</td><td>27</td><td>12</td><td></td><td></td></tr>
+      <tr><td>4</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.3wVjeCzzD%7c_L9VHTN0z1qg--.png&w=24&h=24" alt="Sunderland"> Sunderland</td><td>13</td><td>6</td><td>4</td><td>3</td><td>17</td><td>13</td><td></td><td></td></tr>
+      <tr><td>5</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.qBF1zqdas8aJ0kPGNrZZlw--.png?w=24&h=24" alt="Tottenham"> Tottenham</td><td>12</td><td>5</td><td>3</td><td>4</td><td>20</td><td>14</td><td></td><td></td></tr>
+      <tr><td>6</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.PGJxes%7caBVYuf_nP8XCIlg--.png&w=24&h=24" alt="Liverpool"> Liverpool</td><td>12</td><td>6</td><td>0</td><td>6</td><td>18</td><td>20</td><td></td><td></td></tr>
+      <tr><td>7</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.t249WBVNHcUC6zL5JNm99A--.png?w=24&h=24" alt="Bournemouth"> Bournemouth</td><td>13</td><td>5</td><td>4</td><td>4</td><td>21</td><td>23</td><td></td><td></td></tr>
+      <tr><td>8</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.s5_l9XhAYkUktfwbMYBFuw--.png?w=24&h=24" alt="Manchester United"> Manchester United</td><td>12</td><td>5</td><td>3</td><td>4</td><td>19</td><td>19</td><td></td><td></td></tr>
+      <tr><td>9</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.GYPkqcRWTGgPFYS_XlHoXQ--.png?w=24&h=24" alt="Crystal Palace"> Crystal Palace</td><td>12</td><td>5</td><td>5</td><td>2</td><td>16</td><td>9</td><td></td><td></td></tr>
+      <tr><td>10</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.A9nqpYdR1qusXH0SMgPF0Q--.png?w=24&h=24" alt="Brighton"> Brighton</td><td>12</td><td>5</td><td>4</td><td>3</td><td>19</td><td>16</td><td></td><td></td></tr>
+      <tr><td>11</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.U85%7chNIizWDKorNHKWraKQ--.png&w=24&h=24" alt="Everton"> Everton</td><td>12</td><td>5</td><td>3</td><td>4</td><td>13</td><td>13</td><td></td><td></td></tr>
+      <tr><td>12</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.c0Wl6P2ZplnxMOIL8XIkqQ--.png?w=24&h=24" alt="Aston Villa"> Aston Villa</td><td>12</td><td>6</td><td>3</td><td>3</td><td>15</td><td>11</td><td></td><td></td></tr>
+      <tr><td>13</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.FJw_mVOK3zvWmJ7SvVcpfw--.png?w=24&h=24" alt="Brentford"> Brentford</td><td>13</td><td>6</td><td>1</td><td>6</td><td>21</td><td>20</td><td></td><td></td></tr>
+      <tr><td>14</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.jw3UB8bVF9gP2h1IrKVTnA--.png?w=24&h=24" alt="Newcastle"> Newcastle</td><td>12</td><td>4</td><td>3</td><td>5</td><td>13</td><td>15</td><td></td><td></td></tr>
+      <tr><td>15</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.fBgzdPOe19DW2zxf8y0p4w--.png?w=24&h=24" alt="Fulham"> Fulham</td><td>12</td><td>4</td><td>2</td><td>6</td><td>13</td><td>16</td><td></td><td></td></tr>
+      <tr><td>16</td><td class="club-cell"><img src="https://www.bing.com/th?id=OSB.mdxK%7cbOVVunhA%7cIWJgVSSQ--.png&w=24&h=24" alt="Leeds United"> Leeds United</td><td>13</td><td>3</td><td>2</td><td>8</td><td>13</td><td>25</td><td></td><td></td></tr>
+      <tr><td>17</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.Pb9jN4QC3cKm3ENgENZ4fA--.png?w=24&h=24" alt="Burnley"> Burnley</td><td>13</td><td>3</td><td>1</td><td>9</td><td>15</td><td>27</td><td></td><td></td></tr>
+      <tr><td>18</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB._m3f1ZK9o9rzWkcS0KbkPA--.png?w=24&h=24" alt="West Ham"> West Ham</td><td>12</td><td>3</td><td>2</td><td>7</td><td>15</td><td>25</td><td></td><td></td></tr>
+      <tr><td>19</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.bWWuS5gSRvHE82C2Kgo8UQ--.png?w=24&h=24" alt="Nottingham Forest"> Nottingham Forest</td><td>12</td><td>3</td><td>3</td><td>6</td><td>13</td><td>20</td><td></td><td></td></tr>
+      <tr><td>20</td><td class="club-cell"><img src="https://www.bing.com/th/id/OSB.0xkbpFmnNFMuN38MvedBDA--.png?w=24&h=24" alt="Wolves"> Wolves</td><td>12</td><td>0</td><td>2</td><td>10</td><td>7</td><td>27</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const tableContainer = document.querySelector(".sidebar-pl-table");
+  if (!tableContainer) return;
+
+  let scrollSpeed = 0.5;     // Adjust speed (lower = slower)
+  let isPaused = false;      // Used for the pause at bottom
+  let pauseDuration = 2000;  // Pause for 2 seconds (in ms)
+
+  function autoScroll() {
+    if (!isPaused) {
+      tableContainer.scrollTop += scrollSpeed;
+
+      // When bottom is reached
+      if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
+        isPaused = true; // pause scrolling
+
+        // After pause, reset to top
+        setTimeout(() => {
+          tableContainer.scrollTop = 0;
+          isPaused = false;
+        }, pauseDuration);
+      }
+    }
+
+    requestAnimationFrame(autoScroll);
+  }
+
+  // ✅ Pause on hover
+  tableContainer.addEventListener("mouseenter", () => isPaused = true);
+  tableContainer.addEventListener("mouseleave", () => isPaused = false);
+
+  autoScroll();
+});
+
+// --- Sort Premier League Table ---
+function calculateAndSortPLTable() {
+  const table = document.querySelector('.sidebar-pl-table tbody');
+  const rows = Array.from(table.querySelectorAll('tr'));
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    const W = Number(cells[3].textContent) || 0;
+    const D = Number(cells[4].textContent) || 0;
+    const GF = Number(cells[6].textContent) || 0;
+    const GA = Number(cells[7].textContent) || 0;
+
+    const GD = GF - GA;
+    const Pts = W * 3 + D;
+
+    cells[8].textContent = GD;
+    cells[9].textContent = Pts;
+  });
+
+  const sorted = rows.sort((a,b)=>{
+    const cA = a.querySelectorAll('td');
+    const cB = b.querySelectorAll('td');
+    const ptsA = Number(cA[9].textContent);
+    const ptsB = Number(cB[9].textContent);
+    if(ptsA!==ptsB) return ptsB - ptsA;
+    const gdA = Number(cA[8].textContent);
+    const gdB = Number(cB[8].textContent);
+    if(gdA!==gdB) return gdB - gdA;
+    const gfA = Number(cA[6].textContent);
+    const gfB = Number(cB[6].textContent);
+    return gfB - gfA;
+  });
+
+  sorted.forEach((row,index)=>{
+    row.querySelector('td:first-child').textContent = index + 1;
+    table.appendChild(row);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', calculateAndSortPLTable);
+
+// --- Smooth Auto-Scroll with manual override ---
+const tableBody = document.querySelector('.sidebar-pl-table tbody');
+let scrollSpeed = 0.5;
+let scrollAnimation;
+let scrollTop = tableBody.scrollTop;
+let isPaused = false;
+
+// calculate the height of the last row
+const rows = Array.from(tableBody.querySelectorAll('tr'));
+const lastRow = rows[rows.length - 1];
+const lastRowHeight = lastRow ? lastRow.offsetHeight : 0;
+
+// maximum scrollTop to fully show last row
+const maxScroll = tableBody.scrollHeight - tableBody.clientHeight;
+
+function scrollStep() {
+  if (isPaused) return;
+
+  scrollTop += scrollSpeed;
+
+  // stop when last row fully visible
+  if (scrollTop >= maxScroll) {
+    scrollTop = maxScroll; // ensure fully at bottom
+    tableBody.scrollTop = scrollTop;
+
+    isPaused = true;
+    setTimeout(() => {
+      scrollTop = 0;
+      tableBody.scrollTop = scrollTop;
+      isPaused = false;
+      scrollAnimation = requestAnimationFrame(scrollStep);
+    }, 1000);
+    return;
+  }
+
+  tableBody.scrollTop = scrollTop;
+  scrollAnimation = requestAnimationFrame(scrollStep);
+}
+
+function startScroll() { scrollAnimation = requestAnimationFrame(scrollStep); }
+function stopScroll() { cancelAnimationFrame(scrollAnimation); }
+
+tableBody.addEventListener('mouseenter', stopScroll);
+tableBody.addEventListener('mouseleave', () => {
+  scrollTop = tableBody.scrollTop;
+  startScroll();
+});
+
+tableBody.addEventListener('scroll', () => {
+  scrollTop = tableBody.scrollTop;
+});
+
+window.addEventListener('DOMContentLoaded', startScroll);
+</script>
+
+
+
+
+<style>
+/* Fixtures box */
+.fixtures-box {
+  margin-top: -400px;
+  margin-left: 440px;
+  width: 579px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fixtures-header {
+  background-color: #002147;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  font-size: 14px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.fixtures-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px;
+}
+
+/* Scrollbar */
+.fixtures-list::-webkit-scrollbar {
+  width: 8px;
+}
+.fixtures-list::-webkit-scrollbar-thumb {
+  background-color: #002147;
+  border-radius: 4px;
+}
+
+/* Fixture row */
+.fixture-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafc;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 6px;
+  transition: transform 0.2s, background 0.2s;
+}
+.fixture-row:hover {
+  transform: translateY(-2px);
+  background-color: #eef2f7;
+}
+
+/* Main fixture content */
+.fixture-teams {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Column widths to align everything */
+.team, .match-datetime {
+  display: flex;
+  align-items: center;
+}
+.team {
+  gap: 5px;
+  min-width: 130px; /* ensures logos/names align */
+}
+.match-datetime {
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+/* Logos */
+.team-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Text */
+.team-name {
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.team-score {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+}
+
+/* Date/Time */
+.match-date {
+  font-size: 13px;
+  color: #555;
+}
+.match-time {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+}
+
+/* LIVE */
+.match-time.live-indicator {
+  color: red;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 4px rgba(255,0,0,0.5);
+}
+.match-time.live-indicator .dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+.match-datetime.live .cl-match-date {
+  display: none;
+}
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+
+/* Right column */
+.fixture-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11.4px;
+  color: #555;
+  gap: 4px;
+}
+.ticket-btn {
+  background-color: #0070b8;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.ticket-btn:hover {
+  background-color: #005b92;
+}
+
+/* Divider */
+.fixture-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 6px 0;
+}
+</style>
+
+<div class="fixtures-box premier-league">
+  <div class="fixtures-header">PREMIER LEAGUE FIXTURES</div>
+  <div class="fixtures-list premier-list">
+
+    <!-- Fixture 1 -->
+    <div class="fixture-row" data-date="2025-08-16" data-time="14:24">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_48x48.png" class="team-logo">
+          <span class="team-name">Aston Villa</span>
+          <span class="team-score">0</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">26 Oct</div>
+          <div class="match-time">14:24</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Villa Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 2 -->
+    <div class="fixture-row" data-date="2025-08-25" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">25 Aug</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">3</span>
+          <span class="team-name">Liverpool</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/nGfV05dipbAc7zzojivKew_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 3 -->
+    <div class="fixture-row" data-date="2025-08-30" data-time="17:30">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/5dqfOKpjjW6EwTAx_FysKQ_96x96.png" class="team-logo">
+          <span class="team-name">Leeds United</span>
+          <span class="team-score">0</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">29 Nov</div>
+          <div class="match-time">17:30</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Elland Road</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>    
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 4 -->
+    <div class="fixture-row" data-date="2025-09-13" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">1</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Wolves</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/-WjHLbBIQO9xE2e2MW3OPQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>    
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 5 -->
+    <div class="fixture-row" data-date="2025-09-21" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/IcOt-hrK04B-RlRwI3R0yA_48x48.png" class="team-logo">
+          <span class="team-name">Bournemouth</span>
+          <span class="team-score">0</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Vitality Stadium</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>  
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 6 -->
+    <div class="fixture-row" data-date="2025-09-28" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_48x48.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">1</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">2</span>
+          <span class="team-name">Arsenal</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/4us2nCgl6kgZc0t3hpW75Q_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>      
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 7 -->
+    <div class="fixture-row" data-date="2025-10-05" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_48x48.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Nottingham Forest</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/Zr6FbE-8pDH7UBpWCO8U9A_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>      
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 8 -->
+    <div class="fixture-row" data-date="2025-10-18" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/EKIe0e-ZIphOcfQAwsuEEQ_48x48.png" class="team-logo">
+          <span class="team-name">Brighton</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: American Express Stadium</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>      
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 9 -->
+    <div class="fixture-row" data-date="2025-10-25" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_48x48.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Fulham</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/Gh7_5p3n364p4vxeM8FhNg_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>         
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 10 -->
+    <div class="fixture-row" data-date="2025-11-02" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/bXkiyIzsbDip3x2FFcUU3A_96x96.png" class="team-logo">
+          <span class="team-name">West Ham</span>
+          <span class="team-score">3</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Nov</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: London Stadium</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>         
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 11 -->
+    <div class="fixture-row" data-date="2025-11-09" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/QOUce0WQBYqnkSmN6_TxGA_48x48.png" class="team-logo">
+          <span class="team-name">Brentford</span>
+          <span class="team-score">3</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">9 Nov</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Gtech Community Stadium</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>      
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 11 -->
+    <div class="fixture-row" data-date="2025-11-22" data-time="17:30">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">22 Nov</div>
+          <div class="match-time">17:30</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Man City</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/z44l-a0W1v5FmgPnemV6Xw_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>      
+    
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 12 -->
+    <div class="fixture-row" data-date="2025-11-29" data-time="17:30">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/C3J47ea36cMBc4XPbp9aaA_96x96.png" class="team-logo">
+          <span class="team-name">Everton</span>
+          <span class="team-score">1</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">29 Nov</div>
+          <div class="match-time">17:30</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">4</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Hill Dickinson Stadium</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>        
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 13 -->
+    <div class="fixture-row" data-date="2025-12-02" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">2 Dec</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Tottenham</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/k3Q_mKE98Dnohrcea0JFgQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20tottenham%20hotspur/2025-12-2_20.15/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>       
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 14 -->
+    <div class="fixture-row" data-date="2025-12-06" data-time="15:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">6 Dec</div>
+          <div class="match-time">15:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Burnley</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/XC5UrPpuN5yzkgCiiz9yWg_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20burnley/2025-12-6_15.00/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>         
+    
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 15 -->
+    <div class="fixture-row" data-date="2025-12-14" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/CQFeTfHrtxqgr3VKWtTwfA_48x48.png" class="team-logo">
+          <span class="team-name">Sunderland</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">14 Dec</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_48x48.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Stadium of Light</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>      
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 15 -->
+    <div class="fixture-row" data-date="2025-12-20" data-time="12:30">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">20 Dec</div>
+          <div class="match-time">12:30</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Chelsea</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/fhBITrIlbQxhVB6IjxUO6Q_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20chelsea/2025-12-20_12.30/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>          
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 16 -->
+    <div class="fixture-row" data-date="2025-12-26" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/udQ6ns69PctCv143h-GeYw_96x96.png" class="team-logo">
+          <span class="team-name">Manchester United</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">26 Dec</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Old Trafford</div>
+        <a href="#" class="ticket-btn">Sold Out</a>        
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 17 -->
+    <div class="fixture-row" data-date="2025-12-30" data-time="19:30">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/XC5UrPpuN5yzkgCiiz9yWg_96x96.png" class="team-logo">
+          <span class="team-name">Burnley</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">30 Dec</div>
+          <div class="match-time">19:30</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Turf Moor</div>
+        <a href="#" class="ticket-btn">Restricted Sale</a>        
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 18 -->
+    <div class="fixture-row" data-date="2026-01-04" data-time="15:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">4 Jan</div>
+          <div class="match-time">15:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Crystal Palace</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/8piQOzndGmApKYTcvyN9vA_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20crystal%20palace/2026-1-4_15.00/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>     
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 19 -->
+    <div class="fixture-row" data-date="2026-01-07" data-time="20:15">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">7 Jan</div>
+          <div class="match-time">20:15</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Leeds United</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/5dqfOKpjjW6EwTAx_FysKQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20leeds%20united/2026-1-7_20.15/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>     
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 20 -->
+    <div class="fixture-row" data-date="2026-01-18" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/-WjHLbBIQO9xE2e2MW3OPQ_96x96.png" class="team-logo">
+          <span class="team-name">Wolves</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">18 Jan</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Molineux Stadium</div>
+        <a href="#" class="ticket-btn">Restricted Sale</a>        
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 21 -->
+    <div class="fixture-row" data-date="2026-01-25" data-time="14:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">25 Jan</div>
+          <div class="match-time">14:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Aston Villa</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/uyNNelfnFvCEnsLrUL-j2Q_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20aston%20villa/2026-1-25_14.00/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>     
+      </div>
+    </div>              
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 22 -->
+    <div class="fixture-row" data-date="2026-01-31" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/nGfV05dipbAc7zzojivKew_96x96.png" class="team-logo">
+          <span class="team-name">Liverpool</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">31 Jan</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Anfield</div>
+        <a href="#" class="ticket-btn">Restricted Sale</a>                
+      </div>
+    </div>              
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const fixtures = document.querySelectorAll(".premier-list .fixture-row");
+
+  function updateFixtures() {
+    const now = new Date();
+    fixtures.forEach(fixture => {
+      const dateStr = fixture.getAttribute("data-date");
+      const timeStr = fixture.getAttribute("data-time");
+      if (!dateStr || !timeStr) return;
+
+      const [year, month, day] = dateStr.split("-").map(Number);
+      const [hour, minute] = timeStr.split(":").map(Number);
+      const fixtureTime = new Date(year, month - 1, day, hour, minute);
+      const matchEndTime = new Date(fixtureTime.getTime() + 110 * 60 * 1000);
+
+      const matchTimeEl = fixture.querySelector(".match-time");
+      const matchDateEl = fixture.querySelector(".match-date");
+      const matchDatetimeEl = fixture.querySelector(".match-datetime");
+      const ticketBtn = fixture.querySelector(".ticket-btn");
+
+      if (now >= fixtureTime && now <= matchEndTime) {
+        // Match is LIVE
+        matchDatetimeEl.classList.add("live");
+        matchTimeEl.classList.add("live-indicator");
+        matchTimeEl.innerHTML = '<span class="dot"></span>LIVE';
+        matchDateEl.style.display = "none"; // hide date during live
+        if (ticketBtn) ticketBtn.style.display = "none";
+      } else if (now > matchEndTime) {
+        // Match has ended
+        matchDatetimeEl.classList.remove("live");
+        matchTimeEl.classList.remove("live-indicator");
+        matchTimeEl.textContent = "Full-time";
+        matchDateEl.style.display = "none"; // hide date completely
+        if (ticketBtn) ticketBtn.style.display = "none";
+      } else {
+        // Match has not started yet
+        matchDatetimeEl.classList.remove("live");
+        matchTimeEl.classList.remove("live-indicator");
+        matchTimeEl.textContent = timeStr; // show match time
+        matchDateEl.textContent = formatDateDisplay(dateStr); // show readable date
+        matchDateEl.style.display = "block"; // show date
+        if (ticketBtn) ticketBtn.style.display = "inline-block";
+      }
+    });
+  }
+
+  updateFixtures();
+  setInterval(updateFixtures, 60000);
+});
+</script>
+
+  <div class="section-bar5"></div>
+
+<style>
+/* === Enhanced Responsive Compact Table with Logos and Zone Colors === */
+.sidebar-cl-table {
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: 440px;
+  width: 429px;
+  height: 400px;              /* ✅ Limit height to 400px */
+  position: relative;
+  overflow-y: auto;           /* ✅ Allow vertical scrolling */
+  overflow-x: hidden;         /* ✅ Prevent horizontal scroll */
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0px;
+
+
+  /* ✅ Hide scrollbars (Chrome, Edge, Safari, Firefox) */
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE and Edge Legacy */
+}
+.sidebar-cl-table::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari */
+}
+
+.sidebar-cl-header {
+  background-color: #002147;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sidebar-cl-header img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Table styling */
+.sidebar-cl-table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+/* Column header fixed too */
+.sidebar-cl-table thead {
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 12px;
+  text-transform: uppercase;
+  position: sticky;
+  top: 40px; /* directly under .sidebar-pl-header */
+  z-index: 2;
+}
+
+.sidebar-cl-table th,
+.sidebar-cl-table td {
+  padding: 6px 5px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+/* Column widths */
+.sidebar-cl-table td:first-child,
+.sidebar-cl-table th:first-child { width: 28px; }
+.sidebar-cl-table th:nth-child(2),
+.sidebar-cl-table td:nth-child(2) { width: 160px; text-align: left; }
+
+/* Club cell with logo and name */
+.club-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.club-cell img {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  object-fit: contain;
+  padding: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+  background: #fff;
+}
+.club-cell img:hover {
+  transform: scale(1.2);
+}
+
+/* Highlight zones for positions */
+
+/* === Top 24 Highlight: Champions League Qualified === */
+.sidebar-cl-table tbody tr:nth-child(-n+24) {
+  background: #bdd6ff;
+  border-left: 3px solid #4285f4;
+}
+
+/* Hover effect */
+.sidebar-cl-table tbody tr:hover {
+  background: #eae6f5;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .sidebar-cl-table { right: 10px; top: 120px; max-width: 95%; }
+  .sidebar-cl-table th, .sidebar-cl-table td { font-size: 0.7rem; padding: 4px 3px; }
+  .club-cell img { width: 18px; height: 18px; }
+}
+</style>
+
+<div class="sidebar-cl-table">
+  <div class="sidebar-cl-header">
+    <img class="Champions League Logo" src="pictures/Champions-League-Logo.png" alt="logo">
+    CHAMPIONS LEAGUE TABLE
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Pos</th>
+        <th>Club</th>
+        <th>MP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>GF</th>
+        <th>GA</th>
+        <th>GD</th>
+        <th>Pts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/250px-Paris_Saint-Germain_F.C..svg.png" alt="PSG"> PSG</td><td>5</td><td>4</td><td>0</td><td>1</td><td>19</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>2</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/250px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png" alt="Bayern"> Bayern Munich</td><td>5</td><td>4</td><td>0</td><td>1</td><td>15</td><td>6</td><td>0</td><td>0</td></tr>
+      <tr><td>3</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/250px-FC_Internazionale_Milano_2021.svg.png" alt="Inter"> Inter Milan</td><td>5</td><td>4</td><td>0</td><td>1</td><td>12</td><td>3</td><td>0</td><td>0</td></tr>
+      <tr><td>4</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/53/Arsenal_FC.svg/250px-Arsenal_FC.svg.png" alt="Arsenal"> Arsenal</td><td>5</td><td>5</td><td>0</td><td>0</td><td>14</td><td>1</td><td>0</td><td>0</td></tr>
+      <tr><td>5</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/250px-Real_Madrid_CF.svg.png" alt="Real Madrid"> Real Madrid</td><td>5</td><td>4</td><td>0</td><td>1</td><td>12</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>6</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Borussia_Dortmund_logo.svg/250px-Borussia_Dortmund_logo.svg.png" alt="Dortmund"> Dortmund</td><td>5</td><td>3</td><td>1</td><td>1</td><td>17</td><td>11</td><td>0</td><td>0</td></tr>
+      <tr><td>7</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/250px-Manchester_City_FC_badge.svg.png" alt="Man City"> Man City</td><td>5</td><td>3</td><td>1</td><td>1</td><td>10</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>8</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" alt="Newcastle"> Newcastle</td><td>5</td><td>3</td><td>0</td><td>2</td><td>11</td><td>4</td><td>0</td><td>0</td></tr>
+      <tr><td>9</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/230px-FC_Barcelona_%28crest%29.svg.png" alt="Barcelona"> Barcelona</td><td>5</td><td>2</td><td>1</td><td>2</td><td>12</td><td>10</td><td>0</td><td>0</td></tr>
+      <tr><td>10</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/0c/Liverpool_FC.svg/190px-Liverpool_FC.svg.png" alt="Liverpool"> Liverpool</td><td>5</td><td>3</td><td>0</td><td>2</td><td>10</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>11</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Chelsea_FC.svg/215px-Chelsea_FC.svg.png" alt="Chelsea"> Chelsea</td><td>5</td><td>3</td><td>1</td><td>1</td><td>12</td><td>6</td><td>0</td><td>0</td></tr>
+      <tr><td>12</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Sporting_CP_crest.svg/180px-Sporting_CP_crest.svg.png" alt="Sporting"> Sporting CP</td><td>5</td><td>3</td><td>1</td><td>1</td><td>11</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>13</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Qaraba%C4%9F_FK_logo.svg/180px-Qaraba%C4%9F_FK_logo.svg.png" alt="Qarabag FK"> Qarabag FK</td><td>5</td><td>2</td><td>1</td><td>2</td><td>8</td><td>9</td><td>0</td><td>0</td></tr>
+      <tr><td>14</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Galatasaray_SK_football_logo.png/250px-Galatasaray_SK_football_logo.png" alt="Galatasaray"> Galatasaray</td><td>5</td><td>3</td><td>0</td><td>2</td><td>8</td><td>7</td><td>0</td><td>0</td></tr>
+      <tr><td>15</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b4/Tottenham_Hotspur.svg/130px-Tottenham_Hotspur.svg.png" alt="Tottenham"> Tottenham</td><td>5</td><td>2</td><td>2</td><td>1</td><td>10</td><td>7</td><td>0</td><td>0</td></tr>
+      <tr><td>16</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/PSV_Eindhoven.svg/250px-PSV_Eindhoven.svg.png" alt="PSV"> PSV</td><td>5</td><td>2</td><td>2</td><td>1</td><td>13</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>17</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/66/AtalantaBC.svg/140px-AtalantaBC.svg.png" alt="Atalanta"> Atalanta</td><td>5</td><td>3</td><td>1</td><td>1</td><td>6</td><td>5</td><td>0</td><td>0</td></tr>
+      <tr><td>18</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Olympique_Marseille_logo.svg/200px-Olympique_Marseille_logo.svg.png" alt="Marseille"> Marseille</td><td>5</td><td>2</td><td>0</td><td>3</td><td>8</td><td>6</td><td>0</td><td>0</td></tr>
+      <tr><td>19</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Atletico_Madrid_Logo_2024.svg/250px-Atletico_Madrid_Logo_2024.svg.png" alt="Atlético Madrid"> Atlético Madrid</td><td>5</td><td>3</td><td>0</td><td>2</td><td>12</td><td>10</td><td>0</td><td>0</td></tr>
+      <tr><td>20</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d0/Club_Brugge_KV_logo.svg/200px-Club_Brugge_KV_logo.svg.png" alt="Club Brugge"> Club Brugge</td><td>5</td><td>1</td><td>1</td><td>3</td><td>8</td><td>13</td><td>0</td><td>0</td></tr>
+      <tr><td>21</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Club_Athletic_Bilbao_logo.svg/180px-Club_Athletic_Bilbao_logo.svg.png" alt="Athletic Club"> Athletic Club</td><td>5</td><td>1</td><td>1</td><td>3</td><td>4</td><td>9</td><td>0</td><td>0</td></tr>
+      <tr><td>22</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Eintracht_Frankfurt_crest.svg/250px-Eintracht_Frankfurt_crest.svg.png" alt="Eintracht Frankfurt"> Eintracht Frankfurt</td><td>5</td><td>1</td><td>1</td><td>3</td><td>7</td><td>14</td><td>0</td><td>0</td></tr>
+      <tr><td>23</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/SSC_Napoli_2025_%28white_and_azure%29.svg/250px-SSC_Napoli_2025_%28white_and_azure%29.svg.png" alt="Napoli"> Napoli</td><td>5</td><td>2</td><td>1</td><td>2</td><td>6</td><td>9</td><td>0</td><td>0</td></tr>
+      <tr><td>24</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Royale_Union_Saint-Gilloise_logo.png/250px-Royale_Union_Saint-Gilloise_logo.png" alt="Union Saint-Gilloise"> Union Saint-Gilloise</td><td>5</td><td>2</td><td>0</td><td>3</td><td>5</td><td>12</td><td>0</td><td>0</td></tr>
+      <tr><td>25</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg/130px-Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg.png" alt="Juventus"> Juventus</td><td>5</td><td>1</td><td>3</td><td>1</td><td>10</td><td>10</td><td>0</td><td>0</td></tr>
+      <tr><td>26</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/FK_Bodo_Glimt_logo.svg/200px-FK_Bodo_Glimt_logo.svg.png" alt="Bodø/Glimt"> Bodø/Glimt</td><td>5</td><td>0</td><td>2</td><td>3</td><td>7</td><td>11</td><td>0</td><td>0</td></tr>
+      <tr><td>27</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/LogoASMonacoFC2021.svg/135px-LogoASMonacoFC2021.svg.png" alt="Monaco"> Monaco</td><td>5</td><td>1</td><td>3</td><td>1</td><td>6</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>28</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/SK_Slavia_Praha_full_logo.svg/250px-SK_Slavia_Praha_full_logo.svg.png" alt="Slavia Praha"> Slavia Praha</td><td>5</td><td>0</td><td>3</td><td>2</td><td>2</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>29</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Pafos_FC_crest.svg/250px-Pafos_FC_crest.svg.png" alt="Pafos"> Pafos</td><td>5</td><td>1</td><td>3</td><td>1</td><td>4</td><td>7</td><td>0</td><td>0</td></tr>
+      <tr><td>30</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Bayer_04_Leverkusen_logo.svg/250px-Bayer_04_Leverkusen_logo.svg.png" alt="Leverkusen"> Leverkusen</td><td>5</td><td>2</td><td>2</td><td>1</td><td>8</td><td>10</td><td>0</td><td>0</td></tr>
+      <tr><td>31</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Villarreal_CF_logo-en.svg/250px-Villarreal_CF_logo-en.svg.png" alt="Villarreal"> Villarreal</td><td>5</td><td>0</td><td>1</td><td>4</td><td>2</td><td>10</td><td>0</td><td>0</td></tr>
+      <tr><td>32</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/26/FC_Copenhagen_logo.svg/250px-FC_Copenhagen_logo.svg.png" alt="Copenhagen"> Copenhagen</td><td>5</td><td>1</td><td>1</td><td>3</td><td>7</td><td>14</td><td>0</td><td>0</td></tr>
+      <tr><td>33</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/Olympiacos_FC_crest.svg/250px-Olympiacos_FC_crest.svg.png" alt="Olympiacos"> Olympiacos</td><td>5</td><td>0</td><td>2</td><td>3</td><td>5</td><td>13</td><td>0</td><td>0</td></tr>
+      <tr><td>34</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FCKairat_logo.png/250px-FCKairat_logo.png" alt="Kairat"> Kairat</td><td>5</td><td>0</td><td>1</td><td>4</td><td>4</td><td>14</td><td>0</td><td>0</td></tr>
+      <tr><td>35</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/SL_Benfica_logo.svg/250px-SL_Benfica_logo.svg.png" alt="Benfica"> Benfica</td><td>5</td><td>1</td><td>0</td><td>4</td><td>4</td><td>8</td><td>0</td><td>0</td></tr>
+      <tr><td>36</td><td class="club-cell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/01/AFC_Ajax_crest.svg/250px-AFC_Ajax_crest.svg.png" alt="Ajax"> Ajax</td><td>5</td><td>0</td><td>0</td><td>5</td><td>1</td><td>16</td><td>0</td><td>0</td></tr> 
+    </tbody>
+  </table>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const tableContainer = document.querySelector(".sidebar-cl-table");
+  if (!tableContainer) return;
+
+  let scrollSpeed = 0.5;     // Adjust speed (lower = slower)
+  let isPaused = false;      // Used for the pause at bottom
+  let pauseDuration = 2000;  // Pause for 2 seconds (in ms)
+
+  function autoScroll() {
+    if (!isPaused) {
+      tableContainer.scrollTop += scrollSpeed;
+
+      // When bottom is reached
+      if (tableContainer.scrollTop + tableContainer.clientHeight >= tableContainer.scrollHeight) {
+        isPaused = true; // pause scrolling
+
+        // After pause, reset to top
+        setTimeout(() => {
+          tableContainer.scrollTop = 0;
+          isPaused = false;
+        }, pauseDuration);
+      }
+    }
+
+    requestAnimationFrame(autoScroll);
+  }
+
+  // ✅ Pause on hover
+  tableContainer.addEventListener("mouseenter", () => isPaused = true);
+  tableContainer.addEventListener("mouseleave", () => isPaused = false);
+
+  autoScroll();
+});
+
+// --- Sort Champions League Table ---
+function calculateAndSortCLTable() {
+  const table = document.querySelector('.sidebar-cl-table tbody');
+  const rows = Array.from(table.querySelectorAll('tr'));
+
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    const W = Number(cells[3].textContent) || 0;
+    const D = Number(cells[4].textContent) || 0;
+    const GF = Number(cells[6].textContent) || 0;
+    const GA = Number(cells[7].textContent) || 0;
+
+    const GD = GF - GA;
+    const Pts = W * 3 + D;
+
+    cells[8].textContent = GD;
+    cells[9].textContent = Pts;
+  });
+
+  const sorted = rows.sort((a,b)=>{
+    const cA = a.querySelectorAll('td');
+    const cB = b.querySelectorAll('td');
+    const ptsA = Number(cA[9].textContent);
+    const ptsB = Number(cB[9].textContent);
+    if(ptsA!==ptsB) return ptsB - ptsA;
+    const gdA = Number(cA[8].textContent);
+    const gdB = Number(cB[8].textContent);
+    if(gdA!==gdB) return gdB - gdA;
+    const gfA = Number(cA[6].textContent);
+    const gfB = Number(cB[6].textContent);
+    return gfB - gfA;
+  });
+
+  sorted.forEach((row,index)=>{
+    row.querySelector('td:first-child').textContent = index + 1;
+    table.appendChild(row);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', calculateAndSortCLTable);
+
+
+
+
+function scrollStep() {
+  if (isPaused) return;
+
+  scrollTop += scrollSpeed;
+
+  // stop when last row fully visible
+  if (scrollTop >= maxScroll) {
+    scrollTop = maxScroll; // ensure fully at bottom
+    tableBody.scrollTop = scrollTop;
+
+    isPaused = true;
+    setTimeout(() => {
+      scrollTop = 0;
+      tableBody.scrollTop = scrollTop;
+      isPaused = false;
+      scrollAnimation = requestAnimationFrame(scrollStep);
+    }, 1000);
+    return;
+  }
+
+  tableBody.scrollTop = scrollTop;
+  scrollAnimation = requestAnimationFrame(scrollStep);
+}
+
+function startScroll() { scrollAnimation = requestAnimationFrame(scrollStep); }
+function stopScroll() { cancelAnimationFrame(scrollAnimation); }
+
+tableBody.addEventListener('mouseenter', stopScroll);
+tableBody.addEventListener('mouseleave', () => {
+  scrollTop = tableBody.scrollTop;
+  startScroll();
+});
+
+tableBody.addEventListener('scroll', () => {
+  scrollTop = tableBody.scrollTop;
+});
+
+window.addEventListener('DOMContentLoaded', startScroll);
+</script>
+
+
+
+
+<style>
+/* Fixtures box */
+.fixtures-box {
+  margin-top: -400px;
+  margin-left: 440px;
+  width: 579px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fixtures-header {
+  background-color: #002147;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 15px;
+  font-size: 14px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.fixtures-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 20px;
+}
+
+/* Scrollbar */
+.fixtures-list::-webkit-scrollbar {
+  width: 8px;
+}
+.fixtures-list::-webkit-scrollbar-thumb {
+  background-color: #002147;
+  border-radius: 4px;
+}
+
+/* Fixture row */
+.fixture-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fafc;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 6px;
+  transition: transform 0.2s, background 0.2s;
+}
+.fixture-row:hover {
+  transform: translateY(-2px);
+  background-color: #eef2f7;
+}
+
+/* Main fixture content */
+.fixture-teams {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Column widths to align everything */
+.team, .cl-match-datetime {
+  display: flex;
+  align-items: center;
+}
+.team {
+  gap: 5px;
+  min-width: 130px; /* ensures logos/names align */
+}
+.match-datetime {
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+/* Logos */
+.team-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+/* Text */
+.team-name {
+  font-weight: bold;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.team-score {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+}
+
+/* Date/Time */
+.match-date {
+  font-size: 13px;
+  color: #555;
+}
+.match-time {
+  font-weight: bold;
+  font-size: 14px;
+  color: #222;
+}
+
+/* LIVE */
+.match-time.live-indicator {
+  color: red;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 4px rgba(255,0,0,0.5);
+}
+.match-time.live-indicator .dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+.match-datetime.live .cl-match-date {
+  display: none;
+}
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+
+/* Right column */
+.fixture-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 11.4px;
+  color: #555;
+  gap: 4px;
+}
+.ticket-btn {
+  background-color: #0070b8;
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.ticket-btn:hover {
+  background-color: #005b92;
+}
+
+/* Divider */
+.fixture-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 6px 0;
+}
+</style>
+
+<div class="fixtures-box champions-league">
+  <div class="fixtures-header">CHAMPIONS LEAGUE FIXTURES</div>
+  <div class="fixtures-list champions-list">
+
+    <!-- Fixture 1 -->
+    <div class="fixture-row" data-date="2025-09-18" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">1</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">18 Sep</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">2</span>
+          <span class="team-name">Barcelona</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/230px-FC_Barcelona_%28crest%29.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 2 -->
+    <div class="fixture-row" data-date="2025-10-01" data-time="17:45">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Royale_Union_Saint-Gilloise_logo.png/250px-Royale_Union_Saint-Gilloise_logo.png" class="team-logo">
+          <span class="team-name">Union Saint-Gilloise</span>
+          <span class="team-score">0</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">1 Oct</div>
+          <div class="match-time">17:45</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">4</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Lotto Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 3 -->
+    <div class="fixture-row" data-date="2025-10-21" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">3</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">21 Oct</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Benfica</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a2/SL_Benfica_logo.svg/250px-SL_Benfica_logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="#" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 4 -->
+    <div class="fixture-row" data-date="2025-11-05" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">5 Nov</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">0</span>
+          <span class="team-name">Athletic Club</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Club_Athletic_Bilbao_logo.svg/180px-Club_Athletic_Bilbao_logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="https://book.newcastleunited.com/en-GB/events/newcastle%20united%20v%20athletic%20club%20bilbao/2025-11-5_20.00/st_%20james'%20park?hallmap" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>    
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 5 -->
+    <div class="fixture-row" data-date="2025-11-25" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Olympique_Marseille_logo.svg/200px-Olympique_Marseille_logo.svg.png" class="team-logo">
+          <span class="team-name">Marseille</span>
+          <span class="team-score">2</span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">25 Nov</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score">1</span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Stade Vélodrome</div>
+        <a href="#" class="ticket-btn">Restricted Sale</a>
+      </div>
+    </div>    
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 6 -->
+    <div class="fixture-row" data-date="2025-12-10" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Bayer_04_Leverkusen_logo.svg/250px-Bayer_04_Leverkusen_logo.svg.png" class="team-logo">
+          <span class="team-name">Leverkusen</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">10 Dec</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: BayArena</div>
+        <a href="#" class="ticket-btn">Sold Out</a>
+      </div>
+    </div>       
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 7 -->
+    <div class="fixture-row" data-date="2026-01-21" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+          <span class="team-name">Newcastle</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">21 Jan</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">PSV</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/05/PSV_Eindhoven.svg/250px-PSV_Eindhoven.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: St. James' Park</div>
+        <a href="" class="ticket-btn">Buy Tickets</a>
+      </div>
+    </div>     
+
+    <div class="fixture-divider"></div>
+
+    <!-- Fixture 8 -->
+    <div class="fixture-row" data-date="2026-01-28" data-time="20:00">
+      <div class="fixture-teams">
+        <div class="team home-team">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/250px-Paris_Saint-Germain_F.C..svg.png" class="team-logo">
+          <span class="team-name">PSG</span>
+          <span class="team-score"></span>
+        </div>
+        <div class="match-datetime">
+          <div class="match-date">28 Jan</div>
+          <div class="match-time">20:00</div>
+        </div>
+        <div class="team away-team">
+          <span class="team-score"></span>
+          <span class="team-name">Newcastle</span>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Newcastle_United_Logo.svg/250px-Newcastle_United_Logo.svg.png" class="team-logo">
+        </div>
+      </div>
+      <div class="fixture-side">
+        <div class="fixture-venue">Venue: Parc des Princes</div>
+        <a href="#" class="ticket-btn">Not on Sale</a>
+      </div>
+    </div>      
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const fixtures = document.querySelectorAll(".champions-list .fixture-row");
+
+  function updateFixtures() {
+    const now = new Date();
+    fixtures.forEach(fixture => {
+      const dateStr = fixture.getAttribute("data-date");
+      const timeStr = fixture.getAttribute("data-time");
+      if (!dateStr || !timeStr) return;
+
+      const [year, month, day] = dateStr.split("-").map(Number);
+      const [hour, minute] = timeStr.split(":").map(Number);
+      const fixtureTime = new Date(year, month - 1, day, hour, minute);
+      const matchEndTime = new Date(fixtureTime.getTime() + 110 * 60 * 1000);
+
+      const matchTimeEl = fixture.querySelector(".match-time");
+      const matchDateEl = fixture.querySelector(".match-date");
+      const matchDatetimeEl = fixture.querySelector(".match-datetime");
+      const ticketBtn = fixture.querySelector(".ticket-btn");
+
+      if (now >= fixtureTime && now <= matchEndTime) {
+        // Match is LIVE
+        matchDatetimeEl.classList.add("live");
+        matchTimeEl.classList.add("live-indicator");
+        matchTimeEl.innerHTML = '<span class="dot"></span>LIVE';
+        matchDateEl.style.display = "none"; // hide date during live
+        if (ticketBtn) ticketBtn.style.display = "none";
+      } else if (now > matchEndTime) {
+        // Match has ended
+        matchDatetimeEl.classList.remove("live");
+        matchTimeEl.classList.remove("live-indicator");
+        matchTimeEl.textContent = "Full-time";
+        matchDateEl.style.display = "none"; // hide date completely
+        if (ticketBtn) ticketBtn.style.display = "none";
+      } else {
+        // Match has not started yet
+        matchDatetimeEl.classList.remove("live");
+        matchTimeEl.classList.remove("live-indicator");
+        matchTimeEl.textContent = timeStr; // show match time
+        matchDateEl.textContent = formatDateDisplay(dateStr); // show readable date
+        matchDateEl.style.display = "block"; // show date
+        if (ticketBtn) ticketBtn.style.display = "inline-block";
+      }
+    });
+  }
+
+  updateFixtures();
+  setInterval(updateFixtures, 60000);
+});
+</script>
+
+  <div class="section-bar6"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>
+
+<div class="section-bar7"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>
+      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>
+    </div>
+  </footer>
+
+  <script>
+    // Carousel rotation
+    const tables = document.querySelectorAll('.table-container');
+    let current = 0;
+    setInterval(() => {
+      tables[current].classList.remove('active');
+      current = (current + 1) % tables.length;
+      tables[current].classList.add('active');
+    }, 4000);
+
+    // News fetch
+    const newsContainer = document.getElementById("newsContainer");
+    const modal = document.getElementById("newsModal");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+    const modalDate = document.getElementById("modalDate");
+    const modalMedia = document.getElementById("modalMedia");
+    const closeBtn = document.querySelector(".close-btn");
+    let lastData = [];
+
+    function openModal(article) {
+      modalTitle.textContent = article.title;
+      modalContent.textContent = article.content;
+      modalDate.textContent = article.date;
+      modalMedia.innerHTML = "";
+
+      if (article.media) {
+        if (article.media.includes("youtube.com") || article.media.includes("youtu.be")) {
+          const videoId = article.media.match(/(youtu\.be\/|v=)([^&]+)/)?.[2];
+          if (videoId) modalMedia.innerHTML = `<iframe width="100%" height="360" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
+        } else {
+          modalMedia.innerHTML = `<img src="${article.media}" alt="Article media">`;
+        }
+      }
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      modalMedia.innerHTML = "";
+    }
+    closeBtn.addEventListener("click", closeModal);
+    window.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+
+    function renderNews(data) {
+      newsContainer.style.opacity = 0;
+      setTimeout(() => {
+        newsContainer.innerHTML = "";
+        data.forEach(article => {
+          const item = document.createElement("div");
+          item.className = "news-item";
+          const imageSrc = article.media && !article.media.includes("youtube") ? article.media : "https://via.placeholder.com/100x70";
+
+          item.innerHTML = `
+            <img src="${imageSrc}" alt="News image">
+            <div class="news-text">
+              <h3>${article.title}</h3>
+              <p>${article.summary} <a href="#" class="read-more">Read more →</a></p>
+              <span class="news-date">${article.date}</span>
+            </div>
+          `;
+
+          if (!lastData.some(old => old.title === article.title) && lastData.length > 0) item.classList.add("highlight");
+
+          item.addEventListener("click", () => openModal(article));
+          item.querySelector(".read-more").addEventListener("click", e => { e.preventDefault(); e.stopPropagation(); openModal(article); });
+
+          newsContainer.appendChild(item);
+        });
+        setTimeout(() => newsContainer.style.opacity = 1, 100);
+      }, 300);
+    }
+
+    function fetchNews(initial = false) {
+      fetch("news.json?nocache=" + new Date().getTime())
+        .then(res => res.json())
+        .then(data => {
+          if (JSON.stringify(data) !== JSON.stringify(lastData) || initial) {
+            renderNews(data);
+            lastData = data;
+            console.log("✅ News updated at", new Date().toLocaleTimeString());
+          }
+        })
+        .catch(err => {
+          newsContainer.innerHTML = "<p style='color:#002147;'>Failed to load news.</p>";
+          console.error("Error loading news.json:", err);
+        });
+    }
+
+    fetchNews(true);
+    setInterval(fetchNews, 30000);
+  </script>
+
+
+
+
+<!-- AD BLOCKER -->
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,635 @@
+<div class="headlines-carousel">
+  <div class="headline-item">
+    <img src="pictures/headline1.png" alt="Headline 1">
+    <p>Callum Wilson scores in thrilling comeback</p>
+  </div>
+  <div class="headline-item">
+    <img src="pictures/headline2.png" alt="Headline 2">
+    <p>New signing shines in debut match</p>
+  </div>
+  <!-- More items -->
+</div>
+
+<style>
+.headlines-carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.headline-item {
+  flex: 0 0 200px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+.headline-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.headline-item img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.headline-item p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #0070b8;
+}
+</style>
+
+
+
+<div class="video-highlights">
+  <div class="video-item">
+    <img src="pictures/video1.png" alt="Video 1">
+    <div class="play-overlay">&#9658;</div>
+    <p>Magpies vs Rivals - Goals Highlights</p>
+  </div>
+  <div class="video-item">
+    <img src="pictures/video2.png" alt="Video 2">
+    <div class="play-overlay">&#9658;</div>
+    <p>Press Conference - Eddie Howe</p>
+  </div>
+</div>
+
+<style>
+.video-highlights {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+.video-item {
+  position: relative;
+  width: 250px;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.video-item img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+.play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  color: rgba(255,255,255,0.8);
+  pointer-events: none;
+}
+.video-item p {
+  margin: 5px 10px;
+  font-size: 13px;
+  color: #002147;
+}
+</style>
+
+
+
+<div class="fixtures-box">
+  <div class="fixture">
+    <img src="pictures/opponent1.png" alt="Opponent">
+    <span>Newcastle 2 - 1 Liverpool</span>
+    <span class="fixture-date">18 Oct 2025</span>
+  </div>
+  <div class="fixture">
+    <img src="pictures/opponent2.png" alt="Opponent">
+    <span>Newcastle 0 - 0 Chelsea</span>
+    <span class="fixture-date">25 Oct 2025</span>
+  </div>
+</div>
+
+<style>
+.fixtures-box {
+  width: 400px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.fixture {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #eee;
+  padding: 6px 0;
+}
+.fixture img {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+}
+.fixture-date {
+  margin-left: auto;
+  font-size: 12px;
+  color: #999;
+}
+</style>
+
+
+
+<div class="fan-poll">
+  <h4>Vote Player of the Week</h4>
+  <div class="poll-option">Callum Wilson</div>
+  <div class="poll-option">Bruno Guimarães</div>
+  <div class="poll-option">Nick Woltemade</div>
+</div>
+
+<style>
+.fan-poll {
+  width: 400px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.fan-poll h4 {
+  color: #002147;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+.poll-option {
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  background: #f1f1f1;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.poll-option:hover {
+  background: #002147;
+  color: white;
+}
+</style>
+
+
+
+<div class="featured-article">
+  <img src="pictures/featured.png" alt="Featured">
+  <div class="article-text">
+    <h3>Newcastle’s Midfield Masterclass</h3>
+    <p>Bruno Guimarães shows exceptional vision in recent matches. Click to read full analysis.</p>
+    <a href="#" class="read-more">Read More</a>
+  </div>
+</div>
+
+<style>
+.featured-article {
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.featured-article img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.article-text h3 {
+  margin: 0;
+  color: #002147;
+  font-size: 14px;
+}
+.article-text p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #555;
+}
+.read-more {
+  font-size: 12px;
+  color: #0070b8;
+  font-weight: bold;
+  text-decoration: none;
+}
+.read-more:hover {
+  text-decoration: underline;
+}
+</style>
+
+
+
+<div class="player-spotlight">
+  <img src="pictures/bruno-guimaraes.png" alt="Player Spotlight">
+  <div class="spotlight-details">
+    <h3>Bruno Guimarães</h3>
+    <p>Excellent control and vision in midfield this week.</p>
+    <div class="spotlight-stats">
+      <div><img src="pictures/league-icon.png" alt="League"> 2 Goals</div>
+      <div><img src="pictures/cup-icon.png" alt="Cup"> 1 Assist</div>
+      <div><img src="pictures/europa-icon.png" alt="Europe"> 3 Appearances</div>
+    </div>
+  </div>
+</div>
+
+<style>
+.player-spotlight {
+  display: flex;
+  gap: 15px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.player-spotlight img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.spotlight-details h3 {
+  margin: 0;
+  color: #002147;
+  font-size: 14px;
+}
+.spotlight-details p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #555;
+}
+.spotlight-stats {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+.spotlight-stats div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #0070b8;
+}
+.spotlight-stats img {
+  width: 16px;
+  height: 16px;
+}
+</style>
+
+
+
+<div class="fan-feed">
+  <div class="tweet">
+    <p>"Amazing goal by Callum Wilson! #NUFC"</p>
+    <span>@fan123 · 20 Oct 2025</span>
+  </div>
+  <div class="tweet">
+    <p>"Bruno Guimarães is our midfield maestro! 🔥"</p>
+    <span>@geordiefan · 19 Oct 2025</span>
+  </div>
+</div>
+
+<style>
+.fan-feed {
+  width: 400px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.tweet {
+  border-bottom: 1px solid #eee;
+  padding: 6px 0;
+}
+.tweet p {
+  margin: 0;
+  font-size: 13px;
+  color: #002147;
+}
+.tweet span {
+  font-size: 11px;
+  color: #999;
+}
+</style>
+
+
+
+<div class="weekly-quiz">
+  <h4>Who scored the winning goal this week?</h4>
+  <div class="quiz-option">Callum Wilson</div>
+  <div class="quiz-option">Bruno Guimarães</div>
+  <div class="quiz-option">Nick Woltemade</div>
+</div>
+
+<style>
+.weekly-quiz {
+  width: 400px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+.weekly-quiz h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #002147;
+}
+.quiz-option {
+  background: #f1f1f1;
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.quiz-option:hover {
+  background: #0070b8;
+  color: #fff;
+}
+</style>
+
+
+
+<div class="mini-stats">
+  <div class="stat">
+    <span>Goals</span>
+    <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+  </div>
+  <div class="stat">
+    <span>Assists</span>
+    <div class="bar"><div class="fill" style="width: 60%;"></div></div>
+  </div>
+</div>
+
+<style>
+.mini-stats { width: 400px; margin-top: 20px; }
+.stat { margin-bottom: 8px; }
+.stat span { font-size: 12px; color: #002147; }
+.bar {
+  width: 100%;
+  height: 10px;
+  background: #f1f1f1;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+.fill {
+  height: 100%;
+  background: #0070b8;
+  border-radius: 4px;
+}
+</style>
+
+
+
+<div class="match-highlights">
+  <h4>Recent Match Highlights</h4>
+  <div class="highlight-slider">
+    <div class="highlight-card">
+      <img src="pictures/highlight1.png" alt="Goal">
+      <p>Callum Wilson scores in the 23rd minute</p>
+    </div>
+    <div class="highlight-card">
+      <img src="pictures/highlight2.png" alt="Assist">
+      <p>Bruno Guimarães assists Wilson</p>
+    </div>
+    <div class="highlight-card">
+      <img src="pictures/highlight3.png" alt="Save">
+      <p>Nick Pope makes a fantastic save</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.match-highlights { width: 420px; margin-top: 20px; }
+.highlight-slider { display: flex; overflow-x: auto; gap: 10px; padding: 5px 0; }
+.highlight-card { min-width: 130px; background: #fff; padding: 5px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+.highlight-card img { width: 100%; height: 80px; object-fit: cover; border-radius: 4px; }
+.highlight-card p { font-size: 12px; color: #002147; margin: 5px 0 0 0; }
+</style>
+
+
+
+<div class="upcoming-fixtures">
+  <h4>Upcoming Fixtures</h4>
+  <div class="fixture">
+    <img src="pictures/opponent1.png" alt="Opponent Logo">
+    <span>Vs Chelsea - 1 Nov 2025</span>
+    <img src="pictures/premier-league.png" alt="Competition Logo">
+  </div>
+  <div class="fixture">
+    <img src="pictures/opponent2.png" alt="Opponent Logo">
+    <span>Vs Liverpool - 5 Nov 2025</span>
+    <img src="pictures/premier-league.png" alt="Competition Logo">
+  </div>
+</div>
+
+<style>
+.upcoming-fixtures { width: 400px; background: #fff; border-radius: 4px; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; }
+.upcoming-fixtures h4 { font-size: 14px; color: #002147; margin-bottom: 8px; }
+.fixture { display: flex; align-items: center; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; }
+.fixture img { width: 24px; height: 24px; object-fit: cover; }
+.fixture span { font-size: 12px; color: #0070b8; margin: 0 5px; flex-grow: 1; }
+</style>
+
+
+
+<div class="update-box">
+  <h4>Latest Updates</h4>
+  <div class="update-item">
+    <img src="pictures/player1.png" alt="Player">
+    <div>
+      <p>Callum Wilson injured - out for 2 weeks</p>
+      <span>20 Oct 2025</span>
+    </div>
+  </div>
+  <div class="update-item">
+    <img src="pictures/player2.png" alt="Player">
+    <div>
+      <p>New signing announced: Tino Livramento</p>
+      <span>18 Oct 2025</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.update-box { width: 400px; background: #fff; border-radius: 4px; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; }
+.update-box h4 { font-size: 14px; color: #002147; margin-bottom: 8px; }
+.update-item { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding: 6px 0; }
+.update-item img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+.update-item p { margin: 0; font-size: 12px; color: #0070b8; }
+.update-item span { font-size: 11px; color: #999; }
+</style>
+
+
+
+<div class="quote-box">
+  <p>“We need to stay focused and keep pushing for every point.”</p>
+  <span>- Eddie Howe, Manager</span>
+</div>
+
+<style>
+.quote-box { width: 400px; background: #002147; color: #fff; padding: 10px; border-radius: 4px; margin-top: 20px; font-style: italic; }
+.quote-box p { margin: 0 0 5px 0; font-size: 13px; }
+.quote-box span { font-size: 11px; color: #ffd700; }
+</style>
+
+
+
+<div class="weather-box">
+  <h4>Match Day Weather</h4>
+  <div class="weather-info">
+    <img src="pictures/sunny.png" alt="Sunny">
+    <span>19°C, Sunny</span>
+  </div>
+</div>
+
+<style>
+.weather-box { width: 200px; background: #fff; border-radius: 4px; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; }
+.weather-box h4 { font-size: 14px; color: #002147; margin-bottom: 6px; }
+.weather-info { display: flex; align-items: center; gap: 8px; }
+.weather-info img { width: 24px; height: 24px; }
+.weather-info span { font-size: 12px; color: #0070b8; }
+</style>
+
+
+
+<div class="player-spotlight">
+  <h4>Player Spotlight</h4>
+  <div class="spotlight-slider">
+    <div class="player-card">
+      <img src="pictures/bruno-guimaraes.png" alt="Bruno Guimarães">
+      <p><strong>Bruno Guimarães</strong></p>
+      <span>Midfield Maestro, 2 goals, 3 assists</span>
+    </div>
+    <div class="player-card">
+      <img src="pictures/callum-wilson.png" alt="Callum Wilson">
+      <p><strong>Callum Wilson</strong></p>
+      <span>Clinical Finisher, 5 goals</span>
+    </div>
+  </div>
+</div>
+
+<style>
+.player-spotlight { width: 420px; margin-top: 20px; }
+.spotlight-slider { display: flex; overflow-x: auto; gap: 10px; padding: 5px 0; }
+.player-card { min-width: 120px; background: #fff; padding: 6px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+.player-card img { width: 100%; height: 100px; object-fit: cover; border-radius: 4px; }
+.player-card p { margin: 5px 0 0 0; font-size: 13px; color: #002147; font-weight: bold; }
+.player-card span { font-size: 11px; color: #0070b8; }
+</style>
+
+
+
+<div class="fan-poll">
+  <h4>Vote: Goal of the Week</h4>
+  <div class="poll-option">
+    <span>Callum Wilson</span>
+    <div class="poll-bar" style="width: 60%;"></div>
+  </div>
+  <div class="poll-option">
+    <span>Bruno Guimarães</span>
+    <div class="poll-bar" style="width: 25%;"></div>
+  </div>
+  <div class="poll-option">
+    <span>Alexander Isak</span>
+    <div class="poll-bar" style="width: 15%;"></div>
+  </div>
+</div>
+
+<style>
+.fan-poll { width: 400px; background: #fff; padding: 10px; border-radius: 4px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.fan-poll h4 { font-size: 14px; color: #002147; margin-bottom: 8px; }
+.poll-option { margin-bottom: 6px; }
+.poll-option span { font-size: 12px; color: #0070b8; display: block; margin-bottom: 2px; }
+.poll-bar { height: 10px; background: #002147; border-radius: 4px; }
+</style>
+
+
+
+<div class="video-highlights">
+  <h4>Video Highlights</h4>
+  <div class="video-card">
+    <iframe width="100%" height="180" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen></iframe>
+    <p>Wilson’s Stunning Goal vs Chelsea</p>
+  </div>
+  <div class="video-card">
+    <iframe width="100%" height="180" src="https://www.youtube.com/embed/example2" frameborder="0" allowfullscreen></iframe>
+    <p>Bruno Guimarães Midfield Magic</p>
+  </div>
+</div>
+
+<style>
+.video-highlights { width: 420px; margin-top: 20px; }
+.video-card { background: #fff; border-radius: 4px; padding: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-bottom: 10px; }
+.video-card p { font-size: 12px; color: #0070b8; margin-top: 4px; }
+</style>
+
+
+
+<div class="match-timeline">
+  <h4>Match Recap: Newcastle vs Liverpool</h4>
+  <div class="timeline-event"><span>23'</span> ⚽ Goal - Callum Wilson</div>
+  <div class="timeline-event"><span>45'</span> 🟨 Yellow Card - Dan Burn</div>
+  <div class="timeline-event"><span>67'</span> ⚽ Goal - Bruno Guimarães</div>
+</div>
+
+<style>
+.match-timeline { width: 420px; background: #fff; padding: 10px; border-radius: 4px; margin-top: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.match-timeline h4 { font-size: 14px; color: #002147; margin-bottom: 8px; }
+.timeline-event { font-size: 12px; color: #0070b8; padding: 4px 0; border-bottom: 1px solid #eee; }
+.timeline-event span { font-weight: bold; margin-right: 6px; color: #002147; }
+</style>
+
+
+
+<div class="stats-widgets">
+  <div class="widget">
+    <p>Top Scorer</p>
+    <h3>Callum Wilson</h3>
+    <span>5 Goals</span>
+  </div>
+  <div class="widget">
+    <p>Most Assists</p>
+    <h3>Bruno Guimarães</h3>
+    <span>3 Assists</span>
+  </div>
+  <div class="widget">
+    <p>Clean Sheets</p>
+    <h3>Nick Pope</h3>
+    <span>4 Games</span>
+  </div>
+</div>
+
+<style>
+.stats-widgets { display: flex; gap: 10px; margin-top: 20px; }
+.widget { width: 130px; background: #fff; padding: 10px; border-radius: 4px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+.widget p { font-size: 11px; color: #0070b8; margin: 0 0 2px 0; }
+.widget h3 { font-size: 14px; color: #002147; margin: 0 0 2px 0; }
+.widget span { font-size: 11px; color: #555; }
+</style>
+
+
+
+<div class="fan-wall">
+  <h4>Fan Photos</h4>
+  <div class="fan-grid">
+    <img src="pictures/fan1.jpg" alt="Fan 1">
+    <img src="pictures/fan2.jpg" alt="Fan 2">
+    <img src="pictures/fan3.jpg" alt="Fan 3">
+    <img src="pictures/fan4.jpg" alt="Fan 4">
+  </div>
+</div>
+
+<style>
+.fan-wall { width: 420px; margin-top: 20px; }
+.fan-wall h4 { font-size: 14px; color: #002147; margin-bottom: 8px; }
+.fan-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.fan-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 4px; }
+</style>

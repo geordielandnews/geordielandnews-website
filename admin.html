@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin Analytics — Geordie Land News</title>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --brand:#002147;
+      --muted:#666;
+      --card-bg:#fff;
+      --page-bg:#f6f8fb;
+    }
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;}
+    body{background:var(--page-bg); color:#111; padding:18px; box-sizing:border-box;}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+    h1{margin:0;font-size:20px;color:var(--brand);}
+    .small{font-size:13px;color:var(--muted);}
+    .toolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    button{background:var(--brand);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:#fff;color:var(--brand);border:1px solid var(--brand)}
+    button.warn{background:#fff;color:#a00;border:1px solid #a00}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:14px;align-items:start}
+    .card{background:var(--card-bg);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(20,30,70,0.06)}
+    .row{display:flex;gap:8px;align-items:center}
+    .stats{display:flex;gap:14px;flex-wrap:wrap}
+    .stat{background:#f0f6ff;padding:10px;border-radius:8px;min-width:140px}
+    ol,ul{padding-left:18px;margin:6px 0}
+    .list{max-height:360px;overflow:auto;padding-right:6px}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px;border-bottom:1px solid #f0f0f0;text-align:left;font-size:13px}
+    #modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.45);justify-content:center;align-items:center}
+    #modal .box{width:92%;max-width:1100px;background:#fff;border-radius:10px;padding:14px;max-height:86vh;overflow:auto}
+    .inline-btn{padding:6px 8px;border-radius:8px;border:1px solid #ddd;background:#fff;cursor:pointer}
+    .danger{background:#ffecec;border:1px solid #f3c6c6;color:#900}
+    .controls{display:flex;gap:8px;align-items:center}
+    input[type="text"]{padding:8px;border-radius:8px;border:1px solid #ddd}
+    .tag{background:#eef6ff;padding:6px 10px;border-radius:12px;color:var(--brand);font-size:13px}
+    .muted{color:var(--muted)}
+    @media (max-width:980px){
+      .grid{grid-template-columns:1fr; }
+      .card{margin-bottom:12px}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Admin Analytics — Geordie Land News</h1>
+  <div id="status" class="small">Checking admin access...</div>
+</header>
+
+<div class="toolbar">
+  <div class="controls">
+    <button id="refreshAll">Refresh</button>
+    <button id="exportCSV" class="secondary">Export CSV</button>
+    <button id="purgeOldViews" class="secondary danger">Purge >365 days</button>
+    <button id="clearVisitorCache" class="secondary">Clear visitorId (local)</button>
+  </div>
+  <div style="margin-left:auto" class="small">Signed in: <span id="who" class="tag">—</span></div>
+</div>
+
+<div class="grid">
+  <!-- LEFT: Main -->
+  <div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between;margin-bottom:8px;">
+        <div>
+          <div class="small">Totals</div>
+          <div style="display:flex;gap:14px;margin-top:8px;">
+            <div class="stat"><div class="small">Total views</div><div id="totalViews" style="font-weight:700;font-size:18px">—</div></div>
+            <div class="stat"><div class="small">Unique visitors</div><div id="uniqueVisitors" style="font-weight:700;font-size:18px">—</div></div>
+            <div class="stat"><div class="small">Active sessions</div><div id="onlineCount" style="font-weight:700;font-size:18px">0</div></div>
+          </div>
+        </div>
+        <div style="min-width:220px;text-align:right">
+          <div class="small">Admin UID</div>
+          <div id="adminUid" class="tag" style="display:inline-block;margin-top:6px"></div>
+        </div>
+      </div>
+      <div class="small muted">Note: This dashboard reads per-post /views subcollections. For large data sets consider using Cloud Functions to aggregate into summary docs.</div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Daily Views (last 30 days)</h3>
+      <canvas id="dailyChart" height="120"></canvas>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Hourly Views (aggregate)</h3>
+      <canvas id="hourlyChart" height="120"></canvas>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Views by Country (top)</h3>
+      <canvas id="countryChart" height="260"></canvas>
+      <div class="small muted" style="margin-top:8px">Country info depends on view docs recording a `country` field (optional).</div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Posts — performance (click Details)</h3>
+      <div id="postsList" class="list"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Side panels -->
+  <div>
+    <div class="card">
+      <h3 style="margin:0 0 8px 0">Top Viewed Posts</h3>
+      <ol id="topPosts" style="margin:8px 0 0 0"></ol>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Top Active Visitors</h3>
+      <ol id="topUsers" style="margin:8px 0 0 0"></ol>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Realtime Sessions</h3>
+      <div id="sessions" class="list"></div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <h3 style="margin:0 0 8px 0">Admin Tools</h3>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button id="banUserBtn" class="secondary">Ban visitorId / uid</button>
+        <button id="deleteAllViewsBtn" class="secondary">Delete ALL views (danger)</button>
+        <div class="small muted">Bans are written to /admin/bannedUsers (admin-only doc)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal">
+  <div class="box">
+    <button id="modalClose" style="float:right" class="inline-btn">Close</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script type="module">
+/* ===========================================
+   Admin Dashboard — standalone admin.html
+   Implements: all requested analytics & tools
+   =========================================== */
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import {
+  getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import {
+  getFirestore, collection, doc, getDocs, query, where, orderBy,
+  onSnapshot, deleteDoc, setDoc, writeBatch, Timestamp
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+/* --------- YOUR FIREBASE CONFIG & ADMIN UID (already provided) --------- */
+const firebaseConfig = {
+  apiKey: "AIzaSyBSKmDZW0C_RF_J9BRvc2lUt_gTf2GRp64",
+  authDomain: "geordielandnews-37100.firebaseapp.com",
+  projectId: "geordielandnews-37100",
+};
+
+const ADMIN_UID = "R8k0n5wG06U3sjWDgBNNDzA6sK23";
+
+/* Initialize */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+/* UI refs */
+const statusEl = document.getElementById("status");
+const whoEl = document.getElementById("who");
+const adminUidEl = document.getElementById("adminUid");
+const totalViewsEl = document.getElementById("totalViews");
+const uniqueEl = document.getElementById("uniqueVisitors");
+const onlineCountEl = document.getElementById("onlineCount");
+const topPostsEl = document.getElementById("topPosts");
+const topUsersEl = document.getElementById("topUsers");
+const postsListEl = document.getElementById("postsList");
+const sessionsEl = document.getElementById("sessions");
+const modal = document.getElementById("modal");
+const modalContent = document.getElementById("modalContent");
+
+const dailyCtx = document.getElementById("dailyChart").getContext("2d");
+const hourlyCtx = document.getElementById("hourlyChart").getContext("2d");
+const countryCtx = document.getElementById("countryChart").getContext("2d");
+
+let dailyChart, hourlyChart, countryChart;
+
+/* Buttons */
+document.getElementById("refreshAll").addEventListener("click", loadAllAnalytics);
+document.getElementById("exportCSV").addEventListener("click", exportCSV);
+document.getElementById("purgeOldViews").addEventListener("click", async ()=>{
+  if(!confirm("Purge views older than 365 days? This permanently deletes view docs.")) return;
+  await purgeOldViews(365);
+  alert("Purge complete.");
+  loadAllAnalytics();
+});
+document.getElementById("clearVisitorCache").addEventListener("click", ()=>{
+  localStorage.removeItem("geo_visitorId");
+  alert("Cleared local visitorId on this browser.");
+});
+document.getElementById("banUserBtn").addEventListener("click", async ()=>{
+  const id = prompt("Enter visitorId or uid to ban:");
+  if(!id) return;
+  await setDoc(doc(db,"admin","bannedUsers"),{ [id]: true }, { merge:true });
+  alert("Banned: " + id);
+});
+document.getElementById("deleteAllViewsBtn").addEventListener("click", async ()=>{
+  if(!confirm("Delete ALL view documents for all posts? This is irreversible.")) return;
+  await deleteAllViews();
+  alert("All view docs deleted (where deletion allowed).");
+  loadAllAnalytics();
+});
+document.getElementById("modalClose").addEventListener("click", ()=>modal.style.display="none");
+
+/* Auth state: only allow ADMIN_UID */
+onAuthStateChanged(auth, user => {
+  if(!user) {
+    // show sign-in button
+    statusEl.innerHTML = 'Please sign in as admin via Google: <button id="signInBtn" class="secondary">Sign in</button>';
+    document.getElementById("signInBtn").addEventListener("click", signInWithGoogle);
+    whoEl.innerText = "not signed in";
+    adminUidEl.innerText = ADMIN_UID;
+    return;
+  }
+  whoEl.innerText = user.email || user.uid;
+  adminUidEl.innerText = ADMIN_UID;
+
+  if(user.uid !== ADMIN_UID) {
+    statusEl.innerText = "Access denied: you are not the admin.";
+    // show sign out option
+    statusEl.innerHTML += ' <button id="signOutBtn" class="secondary">Sign out</button>';
+    document.getElementById("signOutBtn").addEventListener("click", ()=>signOut(auth));
+    return;
+  }
+
+  statusEl.style.display = "none";
+  loadAllAnalytics();
+  setupRealtimeSessionsListener();
+});
+
+/* Google sign-in helper (admin should use same account) */
+async function signInWithGoogle(){
+  try {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+  } catch (err) {
+    alert("Sign in failed: " + err.message);
+  }
+}
+
+/* ==========================
+   MAIN: loadAllAnalytics
+   ========================== */
+async function loadAllAnalytics(){
+  // reset UI
+  totalViewsEl.innerText = "...";
+  uniqueEl.innerText = "...";
+  topPostsEl.innerHTML = "<li>Loading...</li>";
+  topUsersEl.innerHTML = "<li>Loading...</li>";
+  postsListEl.innerHTML = "Loading...";
+
+  // gather posts
+  const postsSnap = await getDocs(collection(db,"posts"));
+  const posts = postsSnap.docs.map(d => ({ id:d.id, ...d.data() }));
+
+  // accumulators
+  let totalViews = 0;
+  const visitorSet = new Set();
+  const dailyMap = new Map(); // YYYY-MM-DD => count
+  const hourlyArr = new Array(24).fill(0);
+  const countryMap = new Map();
+  const perPost = {}; // postId -> {id,title,count,uniqueSet,durations,viewsDocs}
+
+  // For performance, iterate posts and read views per post
+  for(const p of posts) {
+    perPost[p.id] = { id:p.id, title: p.title || (p.content? p.content.slice(0,60) : "Untitled"), count:0, uniqueSet: new Set(), durations:[], views:[] };
+    const viewsSnap = await getDocs(collection(db,"posts",p.id,"views"));
+    viewsSnap.forEach(vdoc=>{
+      const v = vdoc.data();
+      totalViews++;
+      const vid = v.visitorId || v.user || "guest";
+      visitorSet.add(vid);
+      perPost[p.id].count++;
+      perPost[p.id].uniqueSet.add(vid);
+      if(typeof v.durationSeconds === "number") perPost[p.id].durations.push(v.durationSeconds);
+      perPost[p.id].views.push({ id: vdoc.id, ...v });
+
+      // date & hour
+      if(v.viewedAt && v.viewedAt.toDate) {
+        const dt = v.viewedAt.toDate();
+        const key = `${dt.getFullYear()}-${String(dt.getMonth()+1).padStart(2,"0")}-${String(dt.getDate()).padStart(2,"0")}`;
+        dailyMap.set(key, (dailyMap.get(key)||0) + 1);
+        hourlyArr[dt.getHours()] = (hourlyArr[dt.getHours()]||0) + 1;
+      }
+      // country
+      const country = v.country || "Unknown";
+      countryMap.set(country, (countryMap.get(country)||0) + 1);
+    });
+  }
+
+  // Update top-level stats
+  totalViewsEl.innerText = totalViews.toLocaleString();
+  uniqueEl.innerText = visitorSet.size.toLocaleString();
+
+  // Build top posts & posts list
+  const postsArray = Object.values(perPost).sort((a,b) => b.count - a.count);
+  topPostsEl.innerHTML = postsArray.slice(0,8).map(p => `<li><b>${escapeHtml(p.title)}</b> — ${p.count} views (${p.uniqueSet.size} unique)</li>`).join("") || "<li>—</li>";
+
+  // Top users across all posts (simple aggregation)
+  const userCounts = new Map();
+  for(const p of postsArray){
+    p.views.forEach(v => {
+      const id = v.visitorId || v.user || "guest";
+      userCounts.set(id, (userCounts.get(id)||0)+1);
+    });
+  }
+  const topUsersArr = Array.from(userCounts.entries()).map(([id,count])=>({id,count})).sort((a,b)=>b.count-a.count).slice(0,12);
+  topUsersEl.innerHTML = topUsersArr.map(u => `<li>${escapeHtml(u.id)} — ${u.count} views</li>`).join("") || "<li>—</li>";
+
+  // Posts list (with details & delete)
+  postsListEl.innerHTML = "";
+  for(const p of postsArray){
+    const avgDur = p.durations.length ? Math.round(p.durations.reduce((a,b)=>a+b,0) / p.durations.length) : "-";
+    const node = document.createElement("div");
+    node.style.padding = "10px";
+    node.style.borderBottom = "1px solid #f3f6f9";
+    node.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="flex:1">
+          <div style="font-weight:600">${escapeHtml(p.title)}</div>
+          <div class="small muted">Views: ${p.count} • Unique: ${p.uniqueSet.size} • Avg duration: ${avgDur}s</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="inline-btn" data-id="${p.id}" data-action="details">Details</button>
+          <button class="inline-btn danger" data-id="${p.id}" data-action="delete">Delete Post</button>
+        </div>
+      </div>
+    `;
+    postsListEl.appendChild(node);
+  }
+
+  // Attach click handlers for details and delete
+  postsListEl.querySelectorAll("button").forEach(b=>{
+    b.addEventListener("click", async (e)=>{
+      const id = b.getAttribute("data-id");
+      const action = b.getAttribute("data-action");
+      if(action === "details") {
+        showPostDetails(id, perPost[id]);
+      } else if(action === "delete") {
+        if(!confirm("Delete post and its comments & views?")) return;
+        await deletePostAndSubcollections(id);
+        alert("Deleted post: " + id);
+        loadAllAnalytics();
+      }
+    });
+  });
+
+  // Build charts
+  buildDailyChart(dailyMap);
+  buildHourlyChart(hourlyArr);
+  buildCountryChart(countryMap);
+}
+
+/* ==========================
+   Charts builders
+   ========================== */
+function buildDailyChart(dailyMap) {
+  const labels = [];
+  const data = [];
+  const now = new Date();
+  for(let i=29;i>=0;i--){
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    labels.push(key);
+    data.push(dailyMap.get(key) || 0);
+  }
+  if(dailyChart) dailyChart.destroy();
+  dailyChart = new Chart(dailyCtx, {
+    type: 'line',
+    data: { labels, datasets: [{ label:'Views', data, fill:true, tension:0.25 }] },
+    options: { plugins:{legend:{display:false}}, responsive:true }
+  });
+}
+
+function buildHourlyChart(hourlyArr) {
+  const labels = Array.from({length:24}, (_,i) => String(i).padStart(2,'0') + ':00');
+  if(hourlyChart) hourlyChart.destroy();
+  hourlyChart = new Chart(hourlyCtx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label:'Views by hour', data: hourlyArr }] },
+    options: { plugins:{legend:{display:false}}, responsive:true }
+  });
+}
+
+function buildCountryChart(countryMap) {
+  const arr = Array.from(countryMap.entries()).map(([k,v])=>({k,v})).sort((a,b)=>b.v-a.v).slice(0,20);
+  const labels = arr.map(x=>x.k);
+  const data = arr.map(x=>x.v);
+  if(countryChart) countryChart.destroy();
+  countryChart = new Chart(countryCtx, {
+    type: 'bar',
+    data: { labels, datasets: [{ label:'Views by country', data }] },
+    options: { indexAxis: 'y', plugins:{legend:{display:false}}, responsive:true }
+  });
+}
+
+/* ==========================
+   Post details modal
+   ========================== */
+async function showPostDetails(postId, postSummary) {
+  // If postSummary provided, use it; otherwise load views
+  let views = postSummary?.views || [];
+  if(!views || !views.length) {
+    const snap = await getDocs(collection(db,"posts",postId,"views"));
+    views = snap.docs.map(d => ({ id:d.id, ...d.data() }));
+  }
+
+  const topViewers = {};
+  const recent = views.slice().sort((a,b)=>{
+    const at = a.viewedAt && a.viewedAt.toDate ? a.viewedAt.toDate() : 0;
+    const bt = b.viewedAt && b.viewedAt.toDate ? b.viewedAt.toDate() : 0;
+    return bt - at;
+  }).slice(0,200);
+
+  recent.forEach(v=>{
+    const id = v.visitorId || v.user || "guest";
+    topViewers[id] = (topViewers[id]||0) + 1;
+  });
+
+  const topArr = Object.entries(topViewers).map(([id,count])=>({id,count})).sort((a,b)=>b.count-a.count).slice(0,40);
+
+  modalContent.innerHTML = `
+    <h3>Post: ${escapeHtml(postSummary?.title || postId)}</h3>
+    <div style="display:flex;gap:12px">
+      <div style="flex:1">
+        <h4>Top viewers</h4>
+        <ol>${topArr.map(v=>`<li>${escapeHtml(v.id)} — ${v.count} views</li>`).join("")}</ol>
+      </div>
+      <div style="flex:2">
+        <h4>Recent views (latest ${recent.length})</h4>
+        <div style="max-height:420px;overflow:auto">
+          <table>
+            <thead><tr><th>Visitor</th><th>When</th><th>Country</th><th>Duration(s)</th><th>Action</th></tr></thead>
+            <tbody>
+              ${recent.map(v => `<tr>
+                <td>${escapeHtml(v.visitorId || v.user || "guest")}</td>
+                <td>${v.viewedAt && v.viewedAt.toDate ? v.viewedAt.toDate().toLocaleString() : "-"}</td>
+                <td>${escapeHtml(v.country || "-")}</td>
+                <td>${typeof v.durationSeconds === 'number' ? v.durationSeconds : "-"}</td>
+                <td><button data-docid="${v.id}" data-postid="${postId}" class="inline-btn danger del-view">Delete</button></td>
+              </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
+  modal.style.display = "flex";
+
+  // attach delete handlers for view docs
+  modalContent.querySelectorAll(".del-view").forEach(btn=>{
+    btn.addEventListener("click", async () => {
+      const docId = btn.getAttribute("data-docid");
+      const pid = btn.getAttribute("data-postid");
+      if(!confirm("Delete this view doc?")) return;
+      await deleteDoc(doc(db,"posts",pid,"views",docId));
+      alert("Deleted view doc");
+      showPostDetails(pid, null);
+    });
+  });
+}
+
+/* ==========================
+   Realtime sessions listener
+   ========================== */
+function setupRealtimeSessionsListener() {
+  const sessionsRef = collection(db, "sessions");
+  onSnapshot(sessionsRef, snap => {
+    const now = Date.now();
+    let onlineCount = 0;
+    const rows = [];
+    snap.forEach(d=>{
+      const data = d.data();
+      const last = data.lastSeen && data.lastSeen.toDate ? data.lastSeen.toDate().getTime() : 0;
+      const online = (now - last) < 20000;
+      if(online) onlineCount++;
+      rows.push(`<div style="padding:8px;border-bottom:1px solid #f4f6f9">
+        <div style="font-weight:600">${escapeHtml(d.id)}</div>
+        <div class="small muted">page: ${escapeHtml(data.page||"n/a")} • lastSeen: ${data.lastSeen? data.lastSeen.toDate().toLocaleTimeString() : "-"} • country: ${escapeHtml(data.country||"-")}</div>
+      </div>`);
+    });
+    sessionsEl.innerHTML = rows.join("") || "<div class='small muted'>No sessions</div>";
+    onlineCountEl.innerText = onlineCount;
+  });
+}
+
+/* ==========================
+   COUNTRY LOCATION
+   ========================== */
+async function getCountry() {
+  try {
+    const res = await fetch("https://ipwho.is/");
+    const data = await res.json();
+    return data.country || "Unknown";
+  } catch (err) {
+    return "Unknown";
+  }
+}
+
+async function recordView(postId) {
+  const visitorId = getOrCreateVisitorId(); // your visitor system
+  const country = await getCountry();
+
+  await addDoc(collection(db, "posts", postId, "views"), {
+    visitorId: visitorId,
+    viewedAt: Timestamp.now(),
+    country: country,
+    durationSeconds: 0
+  });
+}
+
+/* ==========================
+   Exports & admin utilities
+   ========================== */
+async function exportCSV() {
+  const rows = [["type","postId","postTitle","viewerId","viewedAt","country","durationSeconds"]];
+  const postsSnap = await getDocs(collection(db,"posts"));
+  for(const p of postsSnap.docs) {
+    const pid = p.id;
+    const title = p.data().title || "";
+    const viewsSnap = await getDocs(collection(db,"posts",pid,"views"));
+    viewsSnap.forEach(vdoc=>{
+      const v = vdoc.data();
+      rows.push(["view", pid, title, v.visitorId || v.user || "guest", v.viewedAt && v.viewedAt.toDate ? v.viewedAt.toDate().toISOString() : "", v.country || "", v.durationSeconds || ""]);
+    });
+  }
+  const csv = rows.map(r => r.map(cell => `"${String(cell||"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = `analytics_export_${new Date().toISOString().slice(0,10)}.csv`; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+}
+
+/* Delete a post and its subcollections (views & comments) — moderate-sized only */
+async function deletePostAndSubcollections(postId) {
+  // Delete views & comments in simple batches. For huge volumes use Cloud Functions or batch runner.
+  const batch = writeBatch(db);
+  const viewsSnap = await getDocs(collection(db,"posts",postId,"views"));
+  viewsSnap.forEach(v => batch.delete(doc(db,"posts",postId,"views",v.id)));
+  const commentsSnap = await getDocs(collection(db,"posts",postId,"comments"));
+  commentsSnap.forEach(c => batch.delete(doc(db,"posts",postId,"comments",c.id)));
+  batch.delete(doc(db,"posts",postId));
+  await batch.commit();
+}
+
+/* Delete all view docs (danger) */
+async function deleteAllViews() {
+  const postsSnap = await getDocs(collection(db,"posts"));
+  for(const p of postsSnap.docs) {
+    const viewsSnap = await getDocs(collection(db,"posts",p.id,"views"));
+    for(const v of viewsSnap.docs) {
+      await deleteDoc(doc(db,"posts",p.id,"views",v.id));
+    }
+  }
+}
+
+/* Purge views older than X days */
+async function purgeOldViews(days=365) {
+  const cutoff = Date.now() - days * 24 * 60 * 60 * 1000;
+  const postsSnap = await getDocs(collection(db,"posts"));
+  for(const p of postsSnap.docs) {
+    const viewsSnap = await getDocs(collection(db,"posts",p.id,"views"));
+    for(const v of viewsSnap.docs) {
+      const data = v.data();
+      const ts = data.viewedAt && data.viewedAt.toDate ? data.viewedAt.toDate().getTime() : 0;
+      if(ts && ts < cutoff) {
+        await deleteDoc(doc(db,"posts",p.id,"views",v.id));
+      }
+    }
+  }
+}
+
+/* Utility: delete a nested doc caller uses writeBatch from firestore (imported above) */
+function escapeHtml(s){ if(!s) return ""; return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
+
+</script>
+</body>
+</html>

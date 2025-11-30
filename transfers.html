@@ -3,166 +3,383 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="google-adsense-account" content="ca-pub-6068321329701529">
-  <title>Geordie Land News - Transfers</title>
+  <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+  <title>Geordie Land News - Home</title>
+
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
-    /* Dropdown container */
-    .navbar ul {
-      list-style: none;
+    /* ------------------------------
+       SECTION BARS
+    ------------------------------ */
+    .section-bar1, .section-bar2, .section-bar3, .section-bar4, .section-bar5 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
       margin: 0;
       padding: 0;
     }
 
-    .navbar ul li {
-      display: inline-block;
-      position: relative;
+    .section-bar3 {
+      margin-top: 10px;
     }
 
-    .navbar ul li a {
-      font-size: 14px;
-      padding: 6px 12px;
-      line-height: 1.3;
-      font-family: Arial, sans-serif;
-      font-weight: normal;
-      color: white;
-      text-decoration: none;
-    }
-
-    /* Dropdown content */
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 24px;
-      background-color: #111;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-      z-index: 1;
-      border-radius: 4px;
-    }
-
-    .dropdown-content a {
-      display: block;
-      color: white;
-      padding: 12px 16px;
-      text-decoration: none;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #444;
-    }
-
-    /* Show dropdown on hover */
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* News slot */
-    .left-news-slot {
-      display: flex;          /* makes image + text side by side */
-      align-items: flex-start;
-      gap: 12px;              /* space between image and text */
-      width: 700px;           /* control overall width */
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background-color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 20px auto;      /* center it horizontally */
-      cursor: default;      
-    }
-
-    .left-news-slot img {
-      width: 200px;           /* fixed image size */
-      height: auto;
-      border-radius: 4px;
-      flex-shrink: 0;         /* stops image shrinking */
-      cursor: default;
-    }
-
-    .left-news-content {
-      flex: 1;                /* text takes remaining space */
-    }
-
-    .left-news-slot h3 {
-      margin: 0 0 6px 0;
-      font-size: 1.15rem;
-      color: #222;
-    }
-
-    .left-news-slot h3 a {
-      text-decoration: none;
-      color: #222;
-    }
-
-    .left-news-slot .date {
-      font-size: 0.85rem;
-      color: #666;
+    .section-bar2 {
       margin-bottom: 10px;
-      cursor: default;    
     }
 
-    .left-news-slot p {
-      font-size: 0.95rem;
-      line-height: 1.3;
-      color: #333;
-      margin: 0 0 1em 0;
-      cursor: default;  
+    /* ------------------------------
+       PAGE LAYOUT
+    ------------------------------ */
+    .content-below-bar1 {
+      display: flex;
+      flex-direction: column; /* stack items vertically */
+      align-items: center;    /* center horizontally */
     }
 
-    .left-news-slot h3 a:hover {
-      text-decoration: underline;
-      color: #0066cc;
-    }  
-
-    .left-news-slot p a {
-      color: #333;          /* same as your paragraph text */
-      text-decoration: none; /* remove underline */
+    .page-layout {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 2080px;
+      margin: 0 auto;
     }
 
-    .left-news-slot p a:hover {
-      color: #0066cc;        /* Newcastle blue */
-      text-decoration: underline;
+    .content-center {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 10px 0 10px;
     }
-  </style>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Newcastle United News</title>
 
-  <!-- AdSense script (only once) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529" crossorigin="anonymous"></script>
+/* ------------------------------
+   CAROUSEL TABLES
+------------------------------ */
+/* Remove fixed height/scroll from carousel */
+.carousel-tables {
+  width: 1017px;
+  max-height: none;      /* let it grow with content */
+  overflow: visible;     /* show full tables */
+}
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
+/* Let each season container expand naturally */
+.transfers-season {
+  display: block;        /* only the active season shows */
+  max-height: none;      /* remove any restriction */
+  overflow: visible;     
+}
 
-  <!-- Left panel ad -->
-  <div class="ad-panel-left">
+/* Table container no scroll */
+.table-container {
+  max-height: 100%;
+  overflow-y: visible !important;
+}
+
+
+/* Make the blue header stay above everything */
+.table-header {
+  background-color: #002147;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.table-header img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Make thead stick below header */
+table thead {
+  position: sticky;
+  top: 36px; /* same height as .table-header */
+  z-index: 2;
+}
+
+/* Ensure header cells appear above body */
+thead th {
+  background-color: #f1f1f1;
+  position: sticky;
+  top: 0px;
+  z-index: 2;
+}
+
+.player-stats-body tr {
+  border-bottom: 1px solid #ddd;
+}
+/* ------------------------------
+   TABLE STYLES
+------------------------------ */
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+}
+
+th, td {
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+  width: 35%;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+  width: calc(65% / 6);
+}
+
+th {
+  background-color: #f1f1f1;
+  font-size: 12px;
+  color: #333;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Non-sortable columns look neutral */
+th:not(.sortable) {
+  cursor: default;
+}
+
+tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Make sortable headers visually distinct */
+th.sortable {
+  position: relative;
+  color: #333;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Subtle hover highlight */
+th.sortable:hover {
+  background-color: #e6f0ff; /* light blue tint */
+  color: #0070b8; /* blue text to indicate interactivity */
+}
+
+/* After click: indicate active sort column */
+th.sortable.active {
+  background-color: #dce9ff;
+  color: #004b8d;
+  font-weight: bold;
+}
+
+/* Optional: small underline on hover (modern look) */
+th.sortable:hover::after {
+  content: "Click to sort";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #0070b8;
+  opacity: 0.7;
+}
+
+/* ------------------------------
+   PLAYER & FLAG STYLES
+------------------------------ */
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.player-info img {
+  width: 30px;
+  height: 38px;
+  object-fit: cover;
+}
+
+.player-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-text span:first-child {
+  font-weight: bold;
+  color: #0070b8;
+  font-size: 13px;
+}
+
+.player-text span:last-child {
+  font-size: 12px;
+  color: #555;
+}
+
+.country-flags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.country-flag {
+  width: 35px;
+  height: 25px;
+  object-fit: cover;
+  border: 1px solid #555; /* Change this to any color you like */
+  border-radius: 3px;
+}
+
+.flag-wrapper {
+  position: relative; /* required for the tooltip positioning */
+  display: inline-block;
+  cursor: default;
+}
+
+.flag-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%; /* shows tooltip above the flag */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+}
+
+.flag-wrapper:hover::after {
+  opacity: 1;
+}
+
+td:nth-child(n+3) {
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Scrollbar (same as fixtures box) */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #002147;
+  border-radius: 4px;
+}
+</style>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="pictures/newcastle-logo.png" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="fixtures.html">FIXTURES</a></li>
+      <li><a href="squad.html">SQUAD</a></li>
+      <li><a href="transfers.html">TRANSFERS</a></li>
+      <li><a href="stats.html">STATS</a></li>
+      <li><a href="discussions.html">DISCUSSIONS</a></li>
+    </ul>
+  </nav>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
+     crossorigin="anonymous"></script>
+
+<!-- Left ad panel -->
+<div class="ad-panel-left">
+
+  <div class="ad-slot-1-left">
     <ins class="adsbygoogle"
-         style="display:inline-block;width:140px;height:1000px"
+         style="display:inline-block;width:430px;height:25%"
          data-ad-client="ca-pub-6068321329701529"
          data-ad-slot="4420623902"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
-  <!-- Right panel ad -->
-  <div class="ad-panel-right">
+  <div class="ad-slot-2-left">
     <ins class="adsbygoogle"
-         style="display:inline-block;width:140px;height:1000px"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<!-- Right ad panel -->
+<div class="ad-panel-right">
+
+  <div class="ad-slot-1-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
          data-ad-client="ca-pub-6068321329701529"
          data-ad-slot="4894416560"></ins>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
+  <div class="ad-slot-2-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
-<!-- AD BLOCKER -->
+  <div class="ad-slot-3-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
 
 <style>
 #adblock-overlay {
@@ -246,307 +463,3424 @@ window.addEventListener('load', () => {
     location.reload();
   });
 });
-</script>  
-
-
-  <!-- Your page content starts here -->
-  <header class="header">
-    <img src="pictures/newcastle-logo.jpg" alt="Newcastle Logo" class="logo" />
-    <h1 class="title">Geordie Land News</h1>
-  </header>
-
-</body>
-</html>
-
-<!-- NAVIGATION -->
-
-<nav class="navbar">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="news.html">News</a></li>
-
-    <!-- Dropdown for Fixtures -->
-    <li class="dropdown">
-      <a href="" class="dropbtn">Fixtures</a>
-      <div class="dropdown-content">
-        <a href="preseason.html">Pre Season</a>
-        <a href="premierleague.html">Premier League</a>
-        <a href="championsleague.html">Champions League</a>
-        <a href="carabaocup.html">Carabao Cup</a>
-        <a href="facup.html">FA Cup</a>  
-      </div>
-    </li>
-
-    <li><a href="squad.html">Squad</a></li>
-    <li><a href="transfers.html">Transfers</a></li>    
-  </ul>
-</nav>
-
-  <!-- SUB TITLE -->
-  <div class="sub-header">Newcastle United Transfers 25/26</div>
-
-<!-- WOLTEMADE SIGNED -->
-<div class="left-news-slot">
-  <img src="pictures/Malilkommen-Woltemade-Signed.png" alt="Malilkommen Woltemade Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1961731284683616441" target="_blank" rel="noopener noreferrer">
-        ⚪️⚫️<img src="pictures/germany-flag.png" alt="Germany Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;">Official, confirmed. Nick Woltemade joins Newcastle on €85m club record deal from Stuttgart.
-      </a>
-    </h3></a></h3>
-    <div class="date">11:02AM August 30, 2025</div>
-    <p>Official, confirmed. Nick Woltemade joins Newcastle on €85m club record deal from Stuttgart.</p>
-    <p>Woltemade signed a long term contract at the club as new star upfront for #NUFC project.</p>
-  </div>
-</div>
-
-<!-- WOLTEMADE HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Malilkommen-Woltemade-HEREWEGO.png" alt="Malilkommen Woltemade Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1961114426330812890" target="_blank" rel="noopener noreferrer">
-        🚨💣 BREAKING: Nick Woltemade to Newcastle, here we go! Agreement in place after official bid accepted.
-      </a>
-    </h3></a></h3>
-    <div class="date">6:11PM August 28, 2025</div>
-    <p>BREAKING: Nick Woltemade to Newcastle, here we go! Agreement in place after official bid accepted.</p>
-    <p>Fee over €80m plus add-ons, medical in England in the next 24 hours with travel being arranged right now.</p>
-    <p>Long term deal agreed with Woltemade who says yes to #NUFC. ⚪️⚫️<img src="pictures/germany-flag.png" alt="Germany Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;"></p> 
-  </div>
-</div>
-
-<!-- RAMSEY SIGNED -->
-<div class="left-news-slot">
-  <img src="pictures/Jacob-Ramsey-Signed.png" alt="Jacob Ramsey Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://www.newcastleunited.com/en/news/jacob-ramsey-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
-        ⚪️⚫️ Official, confirmed. Jacob Ramsey joins Newcastle on deal worth over £40m from Aston Villa.
-      </a>
-    </h3></a></h3>
-    <div class="date">5:01PM August 17, 2025</div>
-    <p>Official, confirmed. Jacob Ramsey joins Newcastle on deal worth over £40m from Aston Villa.</p>
-    <p>“I’m happy and proud to join this club!”. 🤝🏽</p>
-  </div>
-</div>
-
-<!-- RAMSEY HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Jacob-Ramsey-HEREWEGO.png" alt="Jacob Ramsey Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1955974358200893548" target="_blank" rel="noopener noreferrer">
-        🚨⚪️⚫️ EXCLUSIVE: Jacob Ramsey to Newcastle, here we go! Agreement for £40m fee from Aston Villa.
-      </a>
-    </h3></a></h3>
-    <div class="date">1:46PM August 14, 2025</div>
-    <p>EXCLUSIVE: Jacob Ramsey to Newcastle, here we go! Agreement for £40m fee from Aston Villa.</p>
-    <p>Ramsey agreed on personal terms and travels for medical at #NUFC right now.</p>
-    <p>Ramsey strongly wanted Newcastle and deal now done.</p> 
-  </div>
-</div>
-
-<!-- ELANGA SIGNED -->
-<div class="left-news-slot">
-  <img src="pictures/Malick-Thiaw-Signed.png" alt="Malick Thiaw Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://www.newcastleunited.com/en/news/malick-thiaw-signs" target="_blank" rel="noopener noreferrer">
-        ⚪️⚫️ Official, confirmed. Newcastle sign Malick Thiaw on €40m deal from AC Milan.
-      </a>
-    </h3></a></h3>
-    <div class="date">10:04PM August 12, 2025</div>
-    <p>Official, confirmed. Newcastle sign Malick Thiaw on €40m deal from AC Milan.</p>
-    <p>€36m fixed fee, €4m add-ons and four year contract.</p>
-  </div>
-</div>
-
-<!-- THIAW HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Malick-Thiaw-HEREWEGO.png" alt="Malick Thiaw Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1954216426601947408" target="_blank" rel="noopener noreferrer">
-        🚨⚪️⚫️ Malick Thiaw to Newcastle, here we go! New centre back for Eddie Howe.
-      </a>
-    </h3></a></h3>
-    <div class="date">5:21PM August 9, 2025</div>
-    <p>Malick Thiaw to Newcastle, here we go! New centre back for Eddie Howe.
-</p>
-    <p>Agreement in place for €40m package, add-ons included. AC Milan verbally accepted the proposal.</p>
-    <p>Deal at the final stages as reported earlier and now done. Thiaw only wanted #NUFC. Medical soon.</p> 
-  </div>
-</div>
-
-<!-- RAMSDALE LOANED IN -->
-<div class="left-news-slot">
-  <img src="pictures/Aaron-Ramsdale-Signed.png" alt="Aaron Ramsdale Loaned" />
-  <div class="left-news-content">
-    <h3><a href="https://www.newcastleunited.com/en/news/aaron-ramsdale-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
-        🚨⚪️⚫️ Official, confirmed. Aaron Ramsdale joins Newcastle United on loan deal from Southampton.
-      </a>
-    </h3></a></h3>
-    <div class="date">2:19PM August 2, 2025</div>
-    <p>Official, confirmed. Aaron Ramsdale joins Newcastle United on loan deal from Southampton.
-</p>
-    <p>The agreement includes an option to buy.</p>
-  </div>
-</div>
-
-<!-- CORDERO LOANED OUT -->
-<div class="left-news-slot">
-  <img src="pictures/Antonio-Cordero-Loaned.png" alt="Antonio Cordero Loaned" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1951259553225486533" target="_blank" rel="noopener noreferrer">
-        🚨<img src="pictures/belgium-flag.png" alt="Belgium Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;"> After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
-      </a>
-    </h3></a></h3>
-    <div class="date">1:31PM August 1, 2025</div>
-    <p>After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
-</p>
-    <p>No buy option clause, straight loan as Cordero will be important piece of Newcastle future project.</p>
-  </div>
-</div>
-
-<!-- RAMSDALE HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Aaron-Ramsdale-HEREWEGO.png" alt="Aaron Ramsdale Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1950295941598367783" target="_blank" rel="noopener noreferrer">
-        🚨⚪️⚫️ Aaron Ramsdale to Newcastle, here we go! Deal in place with Southampton for the goalkeeper.
-      </a>
-    </h3></a></h3>
-    <div class="date">9:42PM July 29, 2025</div>
-    <p>Aaron Ramsdale to Newcastle, here we go! Deal in place with Southampton for the goalkeeper.</p>
-    <p>Buy option clause also included in the deal.</p>
-    <p>Heavy loan fee and salary covered by #NUFC, as 
-    <a href="https://x.com/David_Ornstein" target="_blank" rel="noopener noreferrer">@David_Ornstein</a> reports.
-    </p>
-    <p>Ramsdale will travel for medical later this week.</p>
-  </div>
-</div>
-
-<!-- LONGSTAFF HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Sean-Longstaff-Signed.png" alt="Sean Longstaff Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://www.leedsunited.com/en/news/sean-longstaff-signs-for-leeds-united" target="_blank" rel="noopener noreferrer">
-        🚨✍🏻 Official: Leeds United confirm Sean Longstaff's transfer from Newcastle.
-      </a>
-    </h3></a></h3>
-    <div class="date">9:14PM July 18, 2025</div>
-    <p>Official: Leeds United confirm Sean Longstaff's transfer from Newcastle.</p>
-    <p>He's signed a four-year contract after £12m plus £3m add-ons.</p>
-    <p>Deal done by Pini Zahavi’s Gol International.
-</p>
-    <p>Here we go. ✅</p>
-  </div>
-</div>
-
-<!-- LONGSTAFF HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Sean-Longstaff-HEREWEGO.png" alt="Sean Longstaff Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1945417398229647814" target="_blank" rel="noopener noreferrer">
-        🚨⚪️ Newcastle have authorized Sean Longstaff to undergo medical at Leeds United, agreement sealed.
-      </a>
-    </h3></a></h3>
-    <div class="date">10:37AM July 16, 2025</div>
-    <p>Newcastle have authorized Sean Longstaff to undergo medical at Leeds United, agreement sealed.</p>
-    <p>#LUFC set to pay fee in excess of £12m for Longstaff who said yes to the project in June.
-</p>
-    <p>Here we go. ✅</p>
-  </div>
-</div>
-
-<!-- ELANGA SIGNED -->
-<div class="left-news-slot">
-  <img src="pictures/Anthony-Elanga-Signed.png" alt="Anthony Elanga Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://www.newcastleunited.com/en/news/anthony-elanga-signs-for-newcastle-united" target="_blank" rel="noopener noreferrer">
-        🚨<img src="pictures/sweden-flag.png" alt="Sweden Flag" style="width:16px;height:11px;vertical-align:middle;margin-right:4px;"> After joining Newcastle on a free transfer from Malaga, Spanish talent Antonio Cordero signs for KVC Westerlo on loan for the 2025/26 season.
-      </a>
-    </h3></a></h3>
-    <div class="date">8:04PM July 11, 2025</div>
-    <p>Official, confirmed. Anthony Elanga signs in as Newcastle player on £55m deal from Nottingham Forest.</p>
-    <p>Excellent addition for #NUFC. ⚡️</p>
-  </div>
-</div>
-
-<!-- ELANGA HEREWEGO -->
-<div class="left-news-slot">
-  <img src="pictures/Anthony-Elanga-HEREWEGO.png" alt="Anthony Elanga Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1942311322131038592" target="_blank" rel="noopener noreferrer">
-        🚨💣 EXCLUSIVE: Anthony Elanga to Newcastle, here we go! Deal in place club to club with Nottingham Forest for £55m.
-      </a>
-    </h3></a></h3>
-    <div class="date">9:42PM July 7, 2025</div>
-    <p>EXCLUSIVE: Anthony Elanga to Newcastle, here we go! Deal in place club to club with Nottingham Forest for £55m.</p>
-    <p>Agreement also in place with player’s camp on long term deal. 🤍🖤</p>
-    <p>Excellent addition for #NUFC.</p>
-  </div>
-</div>
-
-<!-- CORDERO SIGNED -->
-<div class="left-news-slot">
-  <img src="pictures/Antonio-Cordero-HEREWEGO.png" alt="Antonio Cordero Signing" />
-  <div class="left-news-content">
-    <h3><a href="https://x.com/FabrizioRomano/status/1912023330602840204" target="_blank" rel="noopener noreferrer">
-        🚨⚪️⚫️ EXCL: Newcastle have completed deal to sign Spanish 18 year old talent Antonio Cordero from Malaga, here we go!
-      </a>
-    </h3></a></h3>
-    <div class="date">7:01AM April 15, 2025</div>
-    <p>EXCL: Newcastle have completed deal to sign Spanish 18 year old talent Antonio Cordero from Malaga, here we go!</p>
-    <p>Announcement set to take place for Cordero to join #NUFC project.</p>
-    <p>Barça and Real Madrid were both keen on signing Cordero; he picked Newcastle.</p>
-  </div>
-</div>
-
-<script>
-  const container = document.getElementById("news-container");
-  const articles = Array.from(container.children);
-
-  // Sort descending (newest first)
-  articles.sort((a, b) => {
-    return new Date(b.dataset.date) - new Date(a.dataset.date);
-  });
-
-  // Re-append in sorted order
-  articles.forEach(article => container.appendChild(article));
 </script>
 
-<!-- FOOTER -->
+  <div class="section-bar1"></div>
 
 <style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>   
+
+<div class="section-bar2"></div>
+
+  <!-- Content below the section bar -->
+  <div class="content-below-bar1">
+
+<!-- SEASON TABS -->
+<div class="year-tabs" style="margin-bottom:10px; display:flex; gap:10px; justify-content:center;">   
+  <button class="season-tab active" data-season="25/26" style="padding:5px 15px; cursor:pointer; border:none; background-color:#002147; color:white;">25/26</button>    
+  <button class="season-tab" data-season="24/25" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">24/25</button>
+  <button class="season-tab" data-season="23/24" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">23/24</button>
+  <button class="season-tab" data-season="22/23" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">22/23</button>    
+  <button class="season-tab" data-season="21/22" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">21/22</button>    
+  <button class="season-tab" data-season="20/21" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">20/21</button>    
+  <button class="season-tab" data-season="19/20" style="padding:5px 15px; cursor:pointer; border:none; background-color:#ccc; color:#333;">19/20</button>                             
+</div>
+
+<!-- SEASON TRANSFERS TABLES -->
+<div class="carousel-tables">
+
+  <!-- Season 25/26 -->
+  <div class="transfers-season" data-season="25/26" style="display:block;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 25/26
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/455661-1723707419.jpg?lm=1">
+                <div class="player-text">
+                  <span>Nick Woltemade</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Stuttgart</td>
+            <td>€75.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/nick-woltemade-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/583189-1700739021.jpg?lm=1">
+                <div class="player-text">
+                  <span>Anthony Elanga</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>€61.40m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/anthony-elanga-signs-for-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/388165-1740646948.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yoane Wissa</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Brentford</td>
+            <td>€57.70m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-complete-yoane-wissa-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/503749-1687975464.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jacob Ramsey</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Aston Villa</td>
+            <td>€45.15m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jacob-ramsey-signs-for-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/521964-1682063635.jpg?lm=1">
+                <div class="player-text">
+                  <span>Malick Thiaw</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>AC Milan</td>
+            <td>€35.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/malick-thiaw-signs" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/427568-1681828000.jpg?lm=1">
+                <div class="player-text">
+                  <span>Aaron Ramsdale</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Southampton</td>
+            <td>Loan Fee: €4.60m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/aaron-ramsdale-signs-for-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/1178393-1725885968.jpg?lm=1">
+                <div class="player-text">
+                  <span>Antoñito Cordero</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Málaga CF</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-to-sign-spanish-winger-antonio-cordero" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Leyton Orient</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/joe-white-joins-leyton-orient-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250478-1643653374.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Targett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Middlesbrough</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matt-targett-joins-middlesbrough-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/559130-1667548907.jpg?lm=1">
+                <div class="player-text">
+                  <span>Harrison Ashby</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/660768-1761077337.jpg?lm=1">
+                <div class="player-text">
+                  <span>Max Thompson</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/900601-1714056292.jpg?lm=1">
+                <div class="player-text">
+                  <span>Alex Murphy</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£245.39m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 25/26
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/349066-1680791339.jpg?lm=1">
+                <div class="player-text">
+                  <span>Alexander Isak</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Liverpool</td>
+            <td>€145.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sell-alexander-isak" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/480116-1739281396.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lloyd Kelly</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Juventus</td>
+            <td>€17.20m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lloyd-kelly-joins-juventus" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346707-1682341336.jpg?lm=1">
+                <div class="player-text">
+                  <span>Sean Longstaff</span>
+                  <span>Centre Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Leeds United</td>
+            <td>€13.80m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/sean-longstaff-joins-leeds-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/123682-1668090039.jpg?lm=1">
+                <div class="player-text">
+                  <span>Callum Wilson</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>West Ham</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/thank-you-for-everything-callum-wilsons-farewell-message" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Isaac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>QPR</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/isaac-hayden-departs-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Leyton Orient</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/joe-white-joins-leyton-orient-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/1178393-1725885968.jpg?lm=1">
+                <div class="player-text">
+                  <span>Antoñito Cordero</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>KVC Westerlo</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/antonio-cordero-joins-kvc-westerlo-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/74960-1700237195.jpg?lm=1">
+                <div class="player-text">
+                  <span>Martin Dúbravka</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Burnley</td>
+            <td>?</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/martin-dubravka-departs-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/124419-1706829687.jpg?lm=1">
+                <div class="player-text">
+                  <span>Odysseas Vlachodimos</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Sevilla</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/odysseas-vlachodimos-joins-sevilla-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250478-1643653374.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Targett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Middlesbrough</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matt-targett-joins-middlesbrough-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                                
+            </td>
+          </tr>                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£154.88m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Season 24/25 -->
+  <div class="transfers-season" data-season="24/25" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 24/25
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/670858-1699385942.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lewis Hall</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Chelsea</td>
+            <td>€33.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-complete-permanent-signing-of-lewis-hall" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/124419-1706829687.jpg?lm=1">
+                <div class="player-text">
+                  <span>Odysseas Vlachodimos</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>€23.60m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-odysseas-vlachodimos" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/609556-1693217416.jpg?lm=1">
+                <div class="player-text">
+                  <span>William Osula</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield United</td>
+            <td>€11.60m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-complete-osula-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/480116-1739281396.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lloyd Kelly</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Bournemouth</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-confirm-lloyd-kelly-to-join-magpies" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/29712-1736421115.jpg?lm=1">
+                <div class="player-text">
+                  <span>John Ruddy</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Birmingham </td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-goalkeeper-john-ruddy" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>MK Dons</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/joe-white-completes-mk-dons-loan-switch" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>São Paulo</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jamal-lewis-joins-sao-paulo-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£60.02m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 24/25
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/567576-1696453772.jpg?lm=1">
+                <div class="player-text">
+                  <span>Elliot Anderson</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>€41.20m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/elliot-anderson-joins-nottingham-forest" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/1012534-1694774813.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yankuba Minteh</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Brighton</td>
+            <td>€35.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/yankuba-minteh-joins-brighton" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/272999-1740822578.jpg?lm=1">
+                <div class="player-text">
+                  <span>Miguel Almirón</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Atlanta</td>
+            <td>€9.55m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/miguel-almiron-completes-move-to-atlanta-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/480116-1739281396.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lloyd Kelly</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Juventus</td>
+            <td>Loan Fee: €3.80m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lloyd-kelly-joins-juventus" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Cambridge United</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/watts-signs-permanent-deal-with-cambridge-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/92469-1688388791.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Ritchie</span>
+                  <span>Right Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Portsmouth</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/ritchie-returns-to-pompey" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/146795-1720190677.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ryan Fraser</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Southampton</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/ryan-fraser-joins-southampton-on-permanent-deal" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Isaac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Portsmouth</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/isaac-hayden-completes-portsmouth-loan-switch" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>MK Dons</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/joe-white-completes-mk-dons-loan-switch" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/85864-1753385892.jpg?lm=1">
+                <div class="player-text">
+                  <span>Loris Karius</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/170321-1700647955.jpg?lm=1">
+                <div class="player-text">
+                  <span>Paul Dummett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/dummett-and-ritchie-to-depart-as-five-players-reach-end-of-contract" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>São Paulo</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jamal-lewis-joins-sao-paulo-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                                
+            </td>
+          </tr>                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£78.80m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- Season 23/24 -->
+  <div class="transfers-season" data-season="23/24" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 23/24
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/397033-1688389270.jpg?lm=1">
+                <div class="player-text">
+                  <span>Sandro Tonali</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>AC Milan</td>
+            <td>€60.80m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-sandro-tonali" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/398065-1761079974.jpg?lm=1">
+                <div class="player-text">
+                  <span>Harvey Barnes</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Leicester</td>
+            <td>€44.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-harvey-barnes" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/503981-1699383321.jpg?lm=1">
+                <div class="player-text">
+                  <span>Tino Livramento</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Southampton</td>
+            <td>€37.20m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-valentino-livramento" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/1012534-1694774813.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yankuba Minteh</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Odense BK</td>
+            <td>€8.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/yankuba-minteh-joins-brighton" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/670858-1699385942.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lewis Hall</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Chelsea</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-complete-permanent-signing-of-lewis-hall" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Crewe Alexandra</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/white-returns-from-crewe-loan-spell" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Isaac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Standard Liège</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hayden-joins-standard-liege-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Watford</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lewis-joins-watford-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Wigan</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/wigan-sign-watts-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/146795-1720190677.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ryan Fraser</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Southampton</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/fraser-joins-southampton-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield Wednesday</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hendrick-joins-sheffield-wednesday-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/922769-1696453881.jpg?lm=1">
+                <div class="player-text">
+                  <span>Lewis Miley</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>                                                                                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£132.00m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 23/24
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/272642-1728392760.JPG?lm=1">
+                <div class="player-text">
+                  <span>Allan Saint-Maximin</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Al-Ahli</td>
+            <td>€27.20m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/allan-saint-maximin-joins-al-ahli-fc" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/108725-1740646786.jpg?lm=1">
+                <div class="player-text">
+                  <span>Chris Wood</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>€17.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/chris-wood-joins-nottingham-forest-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/99397-1724939153.jpg?lm=1">
+                <div class="player-text">
+                  <span>Karl Darlow</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Leeds United</td>
+            <td>€400k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/karl-darlow-joins-leeds-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/162029-1700647906.jpg?lm=1">
+                <div class="player-text">
+                  <span>Javier Manquillo</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Celta de Vigo</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/javier-manquillo-joins-spanish-side-celta-vigo" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Issac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>QPR</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/isaac-hayden-joins-qpr-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Watford</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lewis-joins-watford-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Wigan</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/wigan-sign-watts-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/146795-1720190677.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ryan Fraser</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Southampton</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/ryan-fraser-joins-southampton-on-permanent-deal" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/614811-1714056231.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe White</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Crewe Alexandra</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/white-returns-from-crewe-loan-spell" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield Wednesday</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hendrick-joins-sheffield-wednesday-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Isaac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Standard Liège</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hayden-joins-standard-liege-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/98240-1659355441.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ciaran Clark</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/clark-joins-potters" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/1012534-1694774813.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yankuba Minteh</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Feyenoord</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                                
+            </td>
+          </tr>                                                           
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£39.25m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <!-- Season 22/23 -->
+  <div class="transfers-season" data-season="22/23" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 22/23
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/349066-1680791339.jpg?lm=1">
+                <div class="player-text">
+                  <span>Alexander Isak</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Real Sociedad</td>
+            <td>€77.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-alexander-isak" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/503733-1761080304.jpg?lm=1">
+                <div class="player-text">
+                  <span>Anthony Gordon</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Everton</td>
+            <td>€45.60m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-anthony-gordon" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/361093-1683290679.jpg?lm=1">
+                <div class="player-text">
+                  <span>Sven Botman</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Lille</td>
+            <td>€37.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-confirm-sven-botman-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr> 
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250478-1643653374.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Targett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Aston Villa</td>
+            <td>€17.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-sign-targett-on-permanent-deal" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/192080-1663841362.jpg?lm=1">
+                <div class="player-text">
+                  <span>Nick Pope</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Burnley</td>
+            <td>€11.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/england-international-nick-pope-joins-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Colchester United</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-joins-colchester-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/74960-1700237195.jpg?lm=1">
+                <div class="player-text">
+                  <span>Martin Dúbravka</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Manchester United</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/martin-dubravka-joins-manchester-united-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Reading</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jeff-hendrick-joins-reading-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/98240-1659355441.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ciaran Clark</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield United</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Peterbrough</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/peterborough-sign-watts-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/99397-1724939153.jpg?lm=1">
+                <div class="player-text">
+                  <span>Karl Darlow</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Hull City</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/darlow-joins-hull-city-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/567576-1696453772.jpg?lm=1">
+                <div class="player-text">
+                  <span>Elliot Anderson</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>    
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U21</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/85864-1753385892.jpg?lm=1">
+                <div class="player-text">
+                  <span>Loris Karius</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/goalkeeper-karius-joins-united-on-short-term-contract" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>                                                                                                                           
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£166.41m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 22/23
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/71292-1730285512.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jonjo Shelvey</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>€6.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/shelvey-signs-for-nottingham-forest" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/108725-1740646786.jpg?lm=1">
+                <div class="player-text">
+                  <span>Chris Wood</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>Loan Fee: €4.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/chris-wood-joins-nottingham-forest-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/74960-1700237195.jpg?lm=1">
+                <div class="player-text">
+                  <span>Martin Dúbravka</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Manchester United</td>
+            <td>Loan Fee: €2.30m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/martin-dubravka-joins-manchester-united-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/206225-1680273024.jpg?lm=1">
+                <div class="player-text">
+                  <span>Isaac Hayden</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Norwich</td>
+            <td>Loan Fee: €600k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/isaac-hayden-joins-norwich-city-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/99397-1724939153.jpg?lm=1">
+                <div class="player-text">
+                  <span>Karl Darlow</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Hull City</td>
+            <td>Loan Fee: €157k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/darlow-joins-hull-city-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/196522-1491832035.jpg?lm=1">
+                <div class="player-text">
+                  <span>Dwight Gayle</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Stoke City</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/gayle-signs-permanent-deal-with-stoke-city" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484389-1755503982.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kell Watts</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Peterbrough</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/peterborough-sign-watts-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/85475-1520418021.jpg?lm=1">
+                <div class="player-text">
+                  <span>Federico Fernández</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Elche CF</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/federico-fernandez-joins-elche-cf" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Preston</td>
+            <td>?</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-joins-preston-on-permanent-deal" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Reading</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jeff-hendrick-joins-reading-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/98240-1659355441.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ciaran Clark</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield United</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Colchester United</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-joins-colchester-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£12.37m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+ 
+  <!-- Season 21/22 -->
+  <div class="transfers-season" data-season="21/22" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 21/22
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/520624-1668522672.jpg?lm=1">
+                <div class="player-text">
+                  <span>Bruno Guimarães</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Lyon</td>
+            <td>€42.10m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-brazil-international-bruno-guimaraes" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/108725-1740646786.jpg?lm=1">
+                <div class="player-text">
+                  <span>Chris Wood</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Burnley</td>
+            <td>€30.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-chris-wood-from-burnley" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/340329-1761077592.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe Willock</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Arsenal</td>
+            <td>€29.40m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-joe-willock-on-a-permanent-deal" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/134270-1682340860.jpg?lm=1">
+                <div class="player-text">
+                  <span>Dan Burn</span>
+                  <span>Centre-Back/span>
+                </div>
+              </div>
+            </td>
+            <td>Brighton</td>
+            <td>€15.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-dan-burn" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/95810-1696454076.jpg?lm=1">
+                <div class="player-text">
+                  <span>Kieran Trippier</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Atlético Madrid</td>
+            <td>€14.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-kieran-trippier" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250478-1643653374.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Targett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Aston Villa</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Bournemouth</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-signs-for-afc-bournemouth-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Mansfield Town</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-makes-deadline-day-loan-move" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>QPR</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hendrick-joins-qpr-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Aberdeen</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-leaves-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>                                                                                                                                                                                                                     
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£114.84m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 21/22
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/186997-1676706518.jpg?lm=1">
+                <div class="player-text">
+                  <span>Christian Atsu</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Al-Raed</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/230541-1673011620.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yoshinori Muto</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Vissel Kobe</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/muto-leaves-magpies-by-mutual-consent" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Bournemouth</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-signs-for-afc-bournemouth-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>QPR</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/hendrick-joins-qpr-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/127108-1496825998.jpg?lm=1">
+                <div class="player-text">
+                  <span>Florian Lejeune</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Alavés</td>
+            <td>?</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lejeune-makes-permanent-move-to-alaves" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Aberdeen</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-leaves-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Mansfield Town</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/matty-longstaff-makes-deadline-day-loan-move" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250478-1643653374.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matt Targett</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Aston Villa</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/48066-1488467838.jpg?lm=1">
+                <div class="player-text">
+                  <span>Andy Carroll</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/51540-1741190812.jpg?lm=1">
+                <div class="player-text">
+                  <span>Henri Saivet</span>
+                  <span>Attacking Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>                                                                                          
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£0</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Season 20/21 -->
+  <div class="transfers-season" data-season="20/21" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 20/21
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/123682-1668090039.jpg?lm=1">
+                <div class="player-text">
+                  <span>Callum Wilson</span>
+                  <span>Centre-Forward<span>
+                </div>
+              </div>
+            </td>
+            <td>Bournemouth</td>
+            <td>€22.25m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-sign-callum-wilson" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/346018-1737920239.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamal Lewis</span>
+                  <span>Left-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Norwich</td>
+            <td>€16.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/jamal-lewis-becomes-newcastle-uniteds-fifth-summer-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/142389-1746646196.jpg?lm=1">
+                <div class="player-text">
+                  <span>Mark Gillespire</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Motherwell</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-confirm-signing-of-goalkeeper-mark-gillespie" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/148262-1657635898.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jeff Hendrick</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Burnley</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-confirm-signing-of-republic-of-ireland-international-jeff-hendrick" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/146795-1720190677.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ryan Fraser</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Bournemouth</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/newcastle-united-complete-ryan-fraser-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/340329-1761077592.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe Willock</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Arsenal</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Swansea</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-signs-new-three-year-magpies-deal-and-rejoins-swansea-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>                                                                                                                                                                                                                                                                                 
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£34.10m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 20/21
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/256773-1649405467.jpg?lm=1">
+                <div class="player-text">
+                  <span>Dan Barlaser</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Rotherham</td>
+            <td>€780k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/barlaser-joins-rotherham-united-on-permanent-basis" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/258188-1414660612.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rolando Aarons</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Huddersfield</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/aarons-joins-huddersfield-town" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/255916-1757584220.jpg?lm=1">
+                <div class="player-text">
+                  <span>DeAndre Yedlin</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Galatasaray</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/yedlin-signs-for-galatasary" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/139173-1676842880.png?lm=1">
+                <div class="player-text">
+                  <span>Achraf Lazaar</span>
+                  <span>Left Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Watford</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lazaar-leaves-the-magpies" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/61644-1684239669.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jack Colback</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Nottingham Forest</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/colback-completes-forest-move" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Swansea</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-signs-new-three-year-magpies-deal-and-rejoins-swansea-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/127108-1496825998.jpg?lm=1">
+                <div class="player-text">
+                  <span>Florian Lejeune</span>
+                  <span>Centre-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Alavés</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/230541-1673011620.jpg?lm=1">
+                <div class="player-text">
+                  <span>Yoshinori Muto</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>SD Eibar</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/muto-loaned-to-eibar" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/340329-1761077592.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joe Willock</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Arsenal</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/39037-1518793959.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rob Elliot</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/250431-1723542644.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jamie Sterry</span>
+                  <span>Right-Back</span>
+                </div>
+              </div>
+            </td>
+            <td>Without Club</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>                                                                                                                                                                                              
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£686k</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Season 19/20 -->
+  <div class="transfers-season" data-season="19/20" style="display:none;">
+
+    <!-- ARRIVALS Table -->
+    <div class="table-container transfers-table">
+      <div class="table-header">
+        ARRIVALS 19/20
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/333241-1674210135.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joelinton</span>
+                  <span>Central Midfield<span>
+                </div>
+              </div>
+            </td>
+            <td>Hoffenheim</td>
+            <td>€43.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-confirm-club-record-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/272642-1728392760.JPG?lm=1">
+                <div class="player-text">
+                  <span>Allan Saint-Maximin</span>
+                  <span>Left Winger<span>
+                </div>
+              </div>
+            </td>
+            <td>Nice</td>
+            <td>€18.00m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/saint-maximin-signs-for-newcastle-united" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/184528-1674210829.jpg?lm=1">
+                <div class="player-text">
+                  <span>Emil Krafth</span>
+                  <span>Right-Back<span>
+                </div>
+              </div>
+            </td>
+            <td>Amiens SC</td>
+            <td>€5.40m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/emil-krafth-becomes-newcastle-uniteds-fourth-summer-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/50174-1518794758.jpg?lm=1">
+                <div class="player-text">
+                  <span>Danny Rose</span>
+                  <span>Left-Back<span>
+                </div>
+              </div>
+            </td>
+            <td>Tottenham</td>
+            <td>Loan Fee: €2.00m</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/186368-1692819728.jpg?lm=1">
+                <div class="player-text">
+                  <span>Valentino Lazaro</span>
+                  <span>Right-Back<span>
+                </div>
+              </div>
+            </td>
+            <td>Inter Milan</td>
+            <td>Loan Fee: €1.50m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/valentino-lazaro-joins-newcastle-united-on-loan-for-remainder-of-201920-campaign" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/245537-1672670443.jpg?lm=1">
+                <div class="player-text">
+                  <span>Nabil Bentaleb</span>
+                  <span>Defensive Midfield<span>
+                </div>
+              </div>
+            </td>
+            <td>Schalke</td>
+            <td>Loan Fee: €1000k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-sign-nabil-bentaleb-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/146258-1755697020.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jetro Willems</span>
+                  <span>Centre-Back<span>
+                </div>
+              </div>
+            </td>
+            <td>Eintracht Frankfurt</td>
+            <td>Loan Fee: €1000k</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-complete-willems-loan-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/48066-1488467838.jpg?lm=1">
+                <div class="player-text">
+                  <span>Andy Carroll</span>
+                  <span>Centre-Forward<span>
+                </div>
+              </div>
+            </td>
+            <td>West Ham</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-complete-carroll-signing" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/258188-1414660612.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rolando Aarons</span>
+                  <span>Left Winger<span>
+                </div>
+              </div>
+            </td>
+            <td>Wycombe</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/rolando-aarons-joins-chairboys-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/256773-1649405467.jpg?lm=1">
+                <div class="player-text">
+                  <span>Dan Barlaser</span>
+                  <span>Defensive Midfield<span>
+                </div>
+              </div>
+            </td>
+            <td>Rotherham</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/258188-1414660612.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rolando Aarons</span>
+                  <span>Left Winger<span>
+                </div>
+              </div>
+            </td>
+            <td>Motherwell</td>
+            <td>End of Loan</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/aarons-joins-motherwell-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/484387-1757775317.jpg?lm=1">
+                <div class="player-text">
+                  <span>Matty Longstaff</span>
+                  <span>Central Midfield<span>
+                </div>
+              </div>
+            </td>
+            <td>Newcastle U23</td>
+            <td>-</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>                                                                                                                                                                                                                                                                                                                                                       
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Spent: <span style="color: #b80718;">£63.71m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- DEPARTURES Table -->
+    <div class="table-container transfers-table" style="margin-top:10px;">
+      <div class="table-header">
+        DEPARTURES 19/20
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Player/Position</th>
+            <th>Club</th>
+            <th>Fee</th>
+            <th>Article</th>
+          </tr>
+        </thead>
+        <tbody class="player-stats-body">
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/246968-1716803546.jpg?lm=1">
+                <div class="player-text">
+                  <span>Ayoze Pérez</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Leicester</td>
+            <td>€33.40m</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/ayoze-perez-signs-for-leicester-city" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/81999-1738110796.jpg?lm=1">
+                <div class="player-text">
+                  <span>Joselu</span>
+                  <span>Centre-Forward</span>
+                </div>
+              </div>
+            </td>
+            <td>Alavés</td>
+            <td>€2.24m</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/81796-1628517587.jpg?lm=1">
+                <div class="player-text">
+                  <span>Sung-yueng Ki</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Mallorca</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/ki-sung-yueng-departs" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/70950-1547722322.jpg?lm=1">
+                <div class="player-text">
+                  <span>Mohamed Diamé</span>
+                  <span>Central Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Al-Ahli Saudi</td>
+            <td>Free Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/magpies-confirm-departing-players" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/199527-1674210561.jpg?lm=1">
+                <div class="player-text">
+                  <span>Jacob Murphy</span>
+                  <span>Right Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Sheffield Wednesday</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/258188-1414660612.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rolando Aarons</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Motherwell</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/aarons-joins-motherwell-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/256773-1649405467.jpg?lm=1">
+                <div class="player-text">
+                  <span>Dan Barlaser</span>
+                  <span>Defensive Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Rotherham</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="" target="_blank" style="color:#0070b8; text-decoration:none;">
+                
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/226049-1737883837.jpg?lm=1">
+                <div class="player-text">
+                  <span>Freddie Woodman</span>
+                  <span>Goalkeeper</span>
+                </div>
+              </div>
+            </td>
+            <td>Swansea</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/woodman-signs-new-three-year-magpies-deal-and-rejoins-swansea-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/258188-1414660612.jpg?lm=1">
+                <div class="player-text">
+                  <span>Rolando Aarons</span>
+                  <span>Left Winger</span>
+                </div>
+              </div>
+            </td>
+            <td>Wycombe</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/rolando-aarons-joins-chairboys-on-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="player-info">
+                <img src="https://img.a.transfermarkt.technology/portrait/header/139173-1676842880.png?lm=1">
+                <div class="player-text">
+                  <span>Achraf Lazaar</span>
+                  <span>Left Midfield</span>
+                </div>
+              </div>
+            </td>
+            <td>Cosenza</td>
+            <td>Loan Transfer</td>
+            <td>
+              <a href="https://www.newcastleunited.com/en/news/lazaar-heads-out-on-season-long-loan" target="_blank" style="color:#0070b8; text-decoration:none;">
+                Read Article
+              </a>                
+            </td>
+          </tr>                                                                                                                                                                                                                                                                                        
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="4" style="font-weight: bold; background: #e6f0ff; padding: 10px;">
+              Total Received: <span style="color: #749f18;">£31.36m</span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>  
+</div> 
+
+<script>
+document.addEventListener("DOMContentLoaded", async function () {
+    const seasonTabs = document.querySelectorAll('.season-tab');
+    const seasons = document.querySelectorAll('.transfers-season');
+    const currencyMenu = document.getElementById("currency-menu");
+
+    let currentCurrency = "GBP";
+
+    // Save original values for every table
+    seasons.forEach(season => {
+        season.querySelectorAll("td:nth-child(3)").forEach(cell => {
+            cell.dataset.original = cell.textContent.trim();
+        });
+    });
+
+    // Fetch exchange rates
+    let rates = { EUR: 1, GBP: 0.88, USD: 1.16 };
+    try {
+        const res = await fetch("https://api.exchangerate.host/latest?base=EUR&symbols=GBP,USD");
+        const data = await res.json();
+        rates.GBP = data.rates.GBP;
+        rates.USD = data.rates.USD;
+    } catch (e) {
+        console.warn("Using fallback exchange rates.");
+    }
+
+    function convertValues(toCurrency) {
+        seasons.forEach(season => {
+            season.querySelectorAll("td:nth-child(3)").forEach(cell => {
+                let text = cell.dataset.original;
+
+                // Match euro amount anywhere in string
+                const match = text.match(/€\s*([\d.,]+)\s*(m|k)?/i);
+                if (!match) {
+                    cell.textContent = text; // leave text as-is if no € amount
+                    return;
+                }
+
+                let num = parseFloat(match[1].replace(",", ""));
+                let suffix = match[2] || "";
+
+                // Convert
+                num = num * rates[toCurrency];
+
+                let converted = suffix === "m" ? num.toFixed(2) + "m" :
+                                suffix === "k" ? Math.round(num) + "k" :
+                                num.toFixed(2);
+
+                // Replace euro amount but keep rest of text intact
+                cell.textContent = text.replace(match[0], (toCurrency === "GBP" ? "£" : "$") + converted);
+            });
+        });
+        currentCurrency = toCurrency;
+    }
+
+    // Convert all tables to GBP on load
+    convertValues(currentCurrency);
+
+    // Season tab switching
+    seasonTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const season = tab.dataset.season;
+
+            // Show only the selected season
+            seasons.forEach(s => s.style.display = s.dataset.season === season ? 'block' : 'none');
+
+            // Highlight active tab
+            seasonTabs.forEach(t => {
+                t.classList.remove('active');
+                t.style.backgroundColor = '#ccc';
+                t.style.color = '#333';
+            });
+            tab.classList.add('active');
+            tab.style.backgroundColor = '#002147';
+            tab.style.color = 'white';
+
+            // Re-convert the visible season to current currency
+            convertValues(currentCurrency);
+        });
+    });
+
+    // Optional: currency menu dropdown
+    const mvHeader = document.querySelector("th.market-value-header");
+    if (mvHeader) {
+        mvHeader.addEventListener("click", () => {
+            const rect = mvHeader.getBoundingClientRect();
+            currencyMenu.style.left = rect.left + "px";
+            currencyMenu.style.top = rect.bottom + window.scrollY + "px";
+            currencyMenu.style.display = "block";
+        });
+    }
+
+    document.addEventListener("click", (e) => {
+        if (!currencyMenu.contains(e.target) && e.target !== mvHeader) {
+            currencyMenu.style.display = "none";
+        }
+    });
+
+    document.querySelectorAll(".currency-option").forEach(opt => {
+        opt.addEventListener("click", () => {
+            convertValues(opt.dataset.currency);
+            currencyMenu.style.display = "none";
+        });
+    });
+
+});
+</script>
+
+<div class="section-bar3"></div>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
 footer {
-  background: #111;
+  width: 100%;
+  height: 90px;
+  background-color: #00193f;
   color: #fff;
   text-align: center;
   padding: 1rem;
-  margin-top: 10px;  
+  margin-top: 0px;
 }
-
 .social-icons a img {
-  width: 24px;
+   width: 24px;
   height: 24px;
   margin-left: 1rem;
   transition: filter 0.3s;
-  filter: brightness(0) invert(1); /* makes the image white initially */
+  filter: brightness(0) invert(1);
 }
-
-.social-icons a img:hover {
+.social-icons a img:hover { 
   filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
 }
-
 </style>
 
+<div class="ad-footer">Advertise here! Contact for more info!</div>
+
+<div class="section-bar4"></div>
+
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
     <div class="social-icons">
-      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>    
-      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>    
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>
+      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>
     </div>
   </footer>
-
-  <script src="script.js"></script> 
-</body>
-</html>
-
-<!-- Add this in your <head> -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">

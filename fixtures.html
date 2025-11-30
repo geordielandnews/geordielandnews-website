@@ -1,0 +1,3284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="google-adsense-account" content="ca-pub-6068321329701529">
+  <meta name="viewport" content="width=1200, initial-scale=1.0, user-scalable=yes">
+  <title>Geordie Land News - Home</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* ------------------------------
+       SECTION BARS
+    ------------------------------ */
+    .section-bar1, .section-bar2, .section-bar3, .section-bar4 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-bar4 {
+    margin-top: 10px;
+    }
+
+    .section-bar3 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .section-bar2 {
+        margin-bottom: 10px;
+    }
+
+    .section-bar5 {
+      width: 100%;
+      height: 10px;
+      background-color: #cccccc;
+      margin: 0;
+      padding: 0;   
+      margin-bottom: 0px;
+      padding-bottom: 0px;
+    }
+
+    /* ------------------------------
+       PAGE LAYOUT
+    ------------------------------ */
+    .content-below-bar1 {
+      display: flex;
+      flex-direction: column; /* stack items vertically */
+      align-items: center;    /* center horizontally */
+    }
+
+    .page-layout {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 2080px;
+      margin: 0 auto;
+    }
+
+    .content-center {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 10px 0 10px;
+    }
+    
+
+
+  /* Carousel Box */
+  .fixtures-box {
+    max-width: 1017px;
+    margin: auto;
+    background: #fff;
+    border-radius: 0px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 0;
+  }
+
+  .fixtures-header { 
+    background-color: #002147;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px 15px;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  /* Scrollable carousel container */
+  .fixtures-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 15px;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+  }
+
+  .fixtures-list::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .fixtures-list::-webkit-scrollbar-thumb {
+    background-color: #002147;
+    border-radius: 4px;
+  }
+
+  .fixtures-list::-webkit-scrollbar-track {
+    background: #ddd;
+    border-radius: 4px;
+  }
+
+  .match-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-width: 293px;
+    max-width: 293px;
+    min-height: 350px;
+    font-size: 14px;
+    cursor: default;    
+  }
+
+  .match-card.expanded { max-width: 600px; }
+
+  .top-row { display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 6px; color: #444; }
+
+  .scoreboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 4px;
+  }
+
+  .club-logo { width: 30px; height: 30px; object-fit: contain; border: 1px solid #fff; }
+
+  .result { font-weight: bold; font-size: 14px; }
+
+  .fulltime-text { font-size: 14px; color: #666; display: flex; flex-direction: column; align-items: center; }
+
+  .names-dates, .goal-scorers { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 2px; }
+
+  .goal-scorers { font-style: italic; color: #666; }
+  .goal-scorers div { white-space: pre-line; }
+
+  .stats-content { display: block; margin-top: 10px; font-size: 12px; padding-bottom: 0; }
+  .stat-line { display: flex; justify-content: center; align-items: center; margin: 2px 0; }
+  .stat-number { width: 28px; text-align: center; color: #333; font-size: 13px; }
+  .stat-name { flex: 1; text-align: center; font-weight: bold; color: #555; min-width: 110px; font-size: 13px; line-height: 1.2; }
+
+  .lineup-toggle {
+    background: #002147;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.2s;
+    display: block;
+    width: 100%;
+  }
+
+  .lineup-toggle:hover { background: #003a7a; }
+  .lineups { display: none; margin-top: 10px; }
+
+  .lineup-teams {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #333;
+    gap: 10px;
+  }
+
+  .lineup-teams div {
+    width: 48%;
+    font-size: 9px;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.08);
+    line-height: 1.4;
+  }
+
+  .lineup-title, .bench-title, .manager-title {
+    margin-top: 12px;
+    display: inline-block;
+    font-weight: 700;
+    color: #002147;
+    font-size: 12px;
+  }
+
+  .sub-on { color: green; font-weight: 900; font-size: 9px; display: inline-block; transform: scale(1.1); text-shadow: 0 0 1px green; }
+  .sub-off { color: red; font-weight: 900; font-size: 9px; display: inline-block; transform: scale(1.1); text-shadow: 0 0 1px red; }
+
+  @media (max-width: 900px) { .match-card { min-width: 45%; } }
+  @media (max-width: 600px) { .match-card { min-width: 90%; } }
+
+/* LIVE indicator */
+.live-indicator {
+  color: red;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 0 0 4px rgba(255,0,0,0.5);
+}
+
+.live-indicator .dot {
+  width: 8px;
+  height: 8px;
+  background-color: red;
+  border-radius: 50%;
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <img src="pictures/newcastle-logo.png" alt="Newcastle Logo" class="logo" />
+    <h1 class="title">Geordie Land News</h1>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="home.html">HOME</a></li>
+      <li><a href="news.html">NEWS</a></li>
+      <li><a href="fixtures.html">FIXTURES</a></li>
+      <li><a href="squad.html">SQUAD</a></li>
+      <li><a href="transfers.html">TRANSFERS</a></li>
+      <li><a href="stats.html">STATS</a></li>
+      <li><a href="discussions.html">DISCUSSIONS</a></li>
+    </ul>
+  </nav>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
+     crossorigin="anonymous"></script>
+
+<!-- Left ad panel -->
+<div class="ad-panel-left">
+
+  <div class="ad-slot-1-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-left">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4420623902"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<!-- Right ad panel -->
+<div class="ad-panel-right">
+
+  <div class="ad-slot-1-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-2-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-3-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="ad-slot-4-right">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:430px;height:25%"
+         data-ad-client="ca-pub-6068321329701529"
+         data-ad-slot="4894416560"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+</div>
+
+<style>
+#adblock-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 9999;
+  color: #fff;
+  overflow: hidden;
+}
+
+#adblock-overlay .box {
+  background: #222;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  box-sizing: border-box;
+}
+
+#adblock-overlay button {
+  margin-top: 15px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #f44336;
+  color: #fff;
+}
+
+/* Hidden bait element to detect ad blockers */
+#ad-bait {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  left: -1000px;
+  top: -1000px;
+}
+</style>
+
+<!-- Bait element for ad blocker detection -->
+<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
+
+<!-- Overlay HTML -->
+<div id="adblock-overlay">
+  <div class="box">
+    <h2>Ad Blocker Detected 🚫</h2>
+    <p>We rely on advertising to keep this site free.<br>
+       Please disable your ad blocker to continue.</p>
+    <button id="refresh-btn">I’ve Disabled Adblock</button>
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  function checkAdblock() {
+    const bait = document.getElementById('ad-bait');
+    if (!bait) return true; // removed by ad blocker
+    const style = getComputedStyle(bait);
+    // blocked if hidden or removed
+    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
+  }
+
+  // Force overlay to show if ad blocker detected
+  const overlay = document.getElementById('adblock-overlay');
+  if (checkAdblock()) {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Button reloads the page
+  document.getElementById('refresh-btn').addEventListener('click', () => {
+    location.reload();
+  });
+});
+</script>  
+
+  <div class="section-bar1"></div>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>   
+
+<div class="section-bar2"></div>
+
+  <!-- Content below the section bar -->
+  <div class="content-below-bar1">  
+
+<!-- PREMIER LEAGUE CAROUSEL -->
+<div class="fixtures-box premier-league">
+  <div class="fixtures-header">PREMIER LEAGUE FIXTURES</div>
+  <div class="fixtures-list premier-list" id="fixtureContainer"></div>
+</div>
+
+<div class="section-bar3"></div>
+
+<!-- CHAMPIONS LEAGUE CAROUSEL -->
+<div class="fixtures-box champions-league">
+  <div class="fixtures-header">CHAMPIONS LEAGUE FIXTURES</div>
+  <div class="fixtures-list champions-list" id="uclFixtureContainer"></div>
+</div>
+
+<script>
+/* === HELPER FUNCTIONS === */
+function getMatchStatus(date, time) {
+  const matchDate = new Date(`${date}T${time}:00`);
+  const now = new Date();
+  const matchEnd = new Date(matchDate.getTime() + 110*60*1000);
+  if(now >= matchDate && now <= matchEnd) return '<span class="live-indicator"><span class="dot"></span>LIVE</span>';
+  if(now > matchEnd) return 'Full-time';
+  const dateStr = matchDate.toLocaleDateString(undefined,{day:'numeric',month:'short'});
+  const timeStr = matchDate.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});
+  return `${dateStr}<br>${timeStr}`;
+}
+
+function formatPlayerName(name){
+  if(name.includes("↑")) return `${name.replace("↑","").trim()} <span class="sub-on">↑</span>`;
+  if(name.includes("↓")) return `${name.replace("↓","").trim()} <span class="sub-off">↓</span>`;
+  return name;
+}
+
+    const matches = [
+      {
+        type: "Matchday 1 of 38",
+        venue: "Villa Park",
+        date: "2025-08-16",
+        time: "12:30",
+        fullTimeResult: "0 - 0",
+        homeTeam: {
+          name: "Aston Villa",
+          logo: "pictures/aston-villa-logo.png",
+          manager: "Unai Emery",
+          goals: [
+            "Ezri Konsa 66' 🟥",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "40. Marco Bizot",
+            "2. Matty Cash",
+            "4. Ezri Konsa",
+            "5. Tyrone Mings",
+            "12. Lucas Digne",
+            "44. Boubacar Kamara 🟨",
+            "24. Amadou Onana",
+            "7. John McGinn (C) ↓84'",
+            "8. Youri Tielemans",
+            "27. Morgan Rogers",
+            "11. Ollie Watkins"
+          ],
+          bench: [
+            "17 Donyell Malen ↑84'",
+            "Emi Buendia",
+            "Pau Torres",
+            "Samuel Iling-Junior",
+            "Jamaldeen Jimoh",
+            "Ian Maatsen",
+            "Lamare Bogarde",
+            "Evann Guessand",
+            "James Wright"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier",
+            "5. Fabian Schär",
+            "33. Dan Burn",
+            "21. Tino Livramento",
+            "39. Bruno Guimarães (C)",
+            "8. Sandro Tonali",
+            "7. Joelinton 🟨 ↓83'",
+            "20. Anthony Elanga ↓78'",
+            "10. Anthony Gordon",
+            "11. Harvey Barnes ↓90'"
+          ],
+          bench: [
+            "18. William Osula ↑90'",
+            "23. Jacob Murphy ↑78'",
+            "67. Lewis Miley ↑83'",
+            "3. Lewis Hall",
+            "4. Sven Botman",
+            "12. Malick Thiaw",
+            "17. Emil Krafth",
+            "32. Aaron Ramsdale",
+            "64. Park Seung-soo"
+          ]
+        },
+        stats: {
+          shots: "3 - 16",
+          shotsOnTarget: "3 - 3",
+          possession: "39% - 61%",
+          passes: "310 - 451",
+          passAccuracy: "73% - 83%",
+          fouls: "13 - 11",
+          yellowCards: "1 - 1",
+          redCards: "1 - 0",
+          offsides: "2 - 1",
+          corners: "3 - 6"
+        }
+      },
+      {
+        type: "Matchday 2 of 38",
+        venue: "St James' Park",
+        date: "2025-08-25",
+        time: "20:00",
+        fullTimeResult: "2 - 3",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Anthony Gordon 45+3' 🟥",  
+            "Bruno Guimarães 57'",
+            "William Osula 88'",
+            "",                                  
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier ↓76'",
+            "5. Fabian Schär ↓81'",
+            "33. Dan Burn 🟨",
+            "21. Tino Livramento",
+            "39. Bruno Guimarães (C) 🟨",
+            "8. Sandro Tonali ↓66'",
+            "7. Joelinton ↓76'",
+            "20. Anthony Elanga '",
+            "10. Anthony Gordon 🟥45+3'",
+            "11. Harvey Barnes ↓76'"        
+          ],
+          bench: [
+            "3. Lewis Hall ↑76'",
+            "12. Malick Thiaw ↑81'",
+            "18 WIlliam Osula ↑76'",
+            "41. Jacob Ramsey ↑76'",
+            "67. Lewis Miley ↑66'",
+            "4. Sven Botman",
+            "23. Jacob Murphy",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale"        
+          ]
+        },
+        awayTeam: {
+          name: "Liverpool",
+          logo: "pictures/liverpool-logo.png",
+          manager: "Arne Slot",
+          goals: [
+            "Ryan Gravenberch 35'",  
+            "Hugo Ekitike 46'",
+            "Rio Ngumoha 90+10'",
+            "",  
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Alisson",
+            "5. Ibrahima Konaté 🟨",
+            "4. Virgil van Dijk (C)",
+            "6. Milos Kerkez",
+            "8. Dominik Szoboszlai",
+            "38. Ryan Gravenberch 🟨",
+            "17. Curtis Jones ↓90+6'",
+            "11. Mohamed Salah ↓90+13'",
+            "7. Florian Wirtz ↓80'",
+            "18. Cody Gakpo ↓90+6'",
+            "22. Hugo Ekitiké ↓80'"
+          ],
+          bench: [
+            "3. Wataru Endō ↑90+13'",
+            "12. Conor Bradley ↑80'",
+            "14. Federico Chiesa ↑80'",
+            "19. Harvey Elliott ↑90+6'",
+            "73. Rio Ngumoha ↑90+6'",
+            "2. Joe Gomez",
+            "15. Giovanni Leoni",
+            "25. Giorgi Mamardashvili",
+            "26. Andrew Robertson"
+          ]
+        },
+        stats: {
+          shots: "10 - 5",
+          shotsOnTarget: "3 - 4",
+          possession: "37% - 63%",
+          passes: "241 - 435",
+          passAccuracy: "68% - 83%",
+          fouls: "17 - 15",
+          yellowCards: "2 - 3",
+          redCards: "1 - 0",
+          offsides: "0 - 0",
+          corners: "7 - 1"
+        }
+      },
+      {
+        type: "Matchday 3 of 38",
+        venue: "Elland Road",
+        date: "2025-08-30",
+        time: "17:30",
+        fullTimeResult: "0 - 0",
+        homeTeam: {
+          name: "Leeds United",
+          logo: "pictures/leeds-united-logo.png",
+          manager: "Daniel Farke",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Lucas Perri",
+            "2. Jayden Bogle",
+            "6. Joe Rodon",
+            "5. Pascal Struijk (C)",
+            "3. Gabriel Gudmundsson ↓81'",
+            "8. Sean Longstaff",
+            "44. Ilia Gruev",
+            "18. Anton Stach",
+            "7. Daniel James ↓59'",
+            "14. Lukas Nmecha ↓70'",
+            "29. Wilfried Gnonto 🟨 ↓60'"
+          ],
+          bench: [
+            "9. Dominic Calvert-Lewin ↑70'",
+            "11. Brenden Aaronson ↑59'",
+            "20. Jack Harrison ↑60'",
+            "24. James Justin ↑81'",
+            "10. Joël Piroe",
+            "15. Jaka Bijol",
+            "19. Noah Okafor",
+            "23. Sebastiaan Bornauw",
+            "26. Karl Darlow"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope 🟨",
+            "2. Kieran Trippier ↓62'",
+            "5. Fabian Schär",
+            "4. Sven Botman ↓69'",
+            "33. Dan Burn",
+            "39. Bruno Guimarães (C)",
+            "8. Sandro Tonali",
+            "41. Jacob Ramsey ↓46'",
+            "23. Jacob Murphy ↓62'",
+            "18. William Osula",
+            "21. Tino Livramento" 
+          ],
+          bench: [
+            "3. Lewis Hall ↑62'",
+            "11. Harvey Barnes ↑69'",
+            "20. Anthony Elanga ↑62'",
+            "67. Lewis Miley ↑46'",
+            "6. Jamaal Lascelles",
+            "12. Malick Thiaw",
+            "17. Emil Krafth",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale"
+          ]
+        },
+        stats: {
+          shots: "10 - 8",
+          shotsOnTarget: "1 - 2",
+          possession: "43% - 57%",
+          passes: "411 - 538",
+          passAccuracy: "79% - 84%",
+          fouls: "10 - 15",
+          yellowCards: "1 - 1",
+          redCards: "0 - 0",
+          offsides: "1 - 0",
+          corners: "5 - 5"
+        }
+      },
+      {
+        type: "Matchday 4 of 38",
+        venue: "St James' Park",
+        date: "2025-09-13",
+        time: "15:00",
+        fullTimeResult: "1 - 0",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Nick Woltemade 29'",
+            "",                      
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier",
+            "5. Fabian Schär",
+            "33. Dan Burn",
+            "21. Tino Livramento",
+            "39. Bruno Guimarães (C) 🟨",
+            "8. Sandro Tonali",
+            "7. Joelinton ↓65'",
+            "23. Jacob Murphy ↓90+4'",
+            "27. Nick Woltemade ↓65'",
+            "11. Harvey Barnes ↓80'"             
+          ],
+          bench: [
+            "4. Sven Botman ↑90+4'",
+            "18. William Osula ↑65'",
+            "20. Anthony Elanga ↑80'",
+            "28. Joe Willock ↑65'",
+            "3. Lewis Hall",
+            "12. Malick Thiaw",
+            "17. Emil Krafth",
+            "32. Aaron Ramsdale",
+            "67. Lewis Miley"           
+          ]
+        },
+        awayTeam: {
+          name: "Wolves",
+          logo: "pictures/wolves-logo.png",
+          manager: "Vítor Pereira",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "31. Sam Johnstone",
+            "12. Emmanuel Agbadou",
+            "15. Yerson Mosquera ↓66'",
+            "24. Toti Gomes (C)",
+            "3. Hugo Bueno",
+            "7. André 🟨 ↓65'",
+            "8. João Gomes 🟨",
+            "37. Lukas Krejčí 🟨",
+            "21. Rodrigo Gomes ↓77'",
+            "14. Tolu Arokodare ↓66'",
+            "11. Hwang Hee-chan ↓77'"
+          ],
+          bench: [
+            "5. Marshall Munetsi 🟨 ↑65'",
+            "10. Jhon Arias ↑66'",
+            "27. Jean-Ricner Bellegarde ↑66'",
+            "28. Fer López ↑77'",
+            "38. Jackson Tchatchoua ↑77'",
+            "2. Matt Doherty",
+            "4. Santiago Bueno",
+            "6. David Møller Wolfe",
+            "25. Dan Bentley" 
+          ]
+        },
+        stats: {
+          shots: "16 - 8",
+          shotsOnTarget: "4 - 3",
+          possession: "57% - 43%",
+          passes: "442 - 338",
+          passAccuracy: "80% - 75%",
+          fouls: "10 - 17",
+          yellowCards: "1 - 4",
+          redCards: "0 - 0",
+          offsides: "1 - 0",
+          corners: "9 - 4"
+        }
+      },
+      {
+        type: "Matchday 5 of 38",
+        venue: "Vitality Stadium",
+        date: "2025-09-20",
+        time: "15:00",
+        fullTimeResult: "0 - 0",
+        homeTeam: {
+          name: "Bournemouth",
+          logo: "pictures/bournemouth-logo.png",
+          manager: "Andoni Iraola",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Djordje Petrović",
+            "20. Alex Jiménez 🟨 ↓46'",
+            "18. Bafodé Diakité 🟨",
+            "5. Marcos Senesi",
+            "3. Adrien Truffert",
+            "12. Tyler Adams",
+            "8. Alex Scott ↓63'",
+            "24. Antoine Semenyo",
+            "16. Marcus Tavernier ↓75'",
+            "7. David Brooks (C) ↓63'",
+            "9. Evanilson"
+          ],
+          bench: [
+            "10. Ryan Christie ↑63'",
+            "19. Justin Kluivert ↑63'",
+            "21. Amine Adli ↑75'",
+            "23. James Hill ↑46'",
+            "6. Julio Soler",
+            "11. Ben Doak",
+            "22. Eli Junior Kroupi",
+            "40. Will Dennis",
+            "44. Veljko Milosavljević"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "12. Malick Thiaw 🟨 ↓84'",
+            "4. Sven Botman",
+            "33. Dan Burn (C)",
+            "21. Tino Livramento",
+            "28. Joe Willock ↓62'",
+            "67. Lewis Miley",
+            "8. Sandro Tonali",
+            "3. Lewis Hall",
+            "23. Jacob Murphy ↓62'",
+            "27. Nick Woltemade ↓84'"
+          ],
+          bench: [
+            "6. Jamaal Lascelles ↑84'",
+            "11. Harvey Barnes ↑62'",
+            "18. William Osula ↑84'",
+            "20. Anthony Elanga  ↑62'",
+            "2. Kieran Trippier",
+            "7. Joelinton",
+            "17. Emil Krafth",
+            "32. Aaron Ramsdale",
+            "39. Bruno Guimarães",
+          ]
+        },
+        stats: {
+          shots: "11 - 4",
+          shotsOnTarget: "2 - 1",
+          possession: "57% - 43%",
+          passes: "498 - 390",
+          passAccuracy: "82% - 76%",
+          fouls: "7 - 10",
+          yellowCards: "2 - 1",
+          redCards: "0 - 0",
+          offsides: "3 - 2",
+          corners: "5 - 2"
+        }
+      },      
+      {
+        type: "Matchday 6 of 38",
+        venue: "St James' Park",
+        date: "2025-09-28",
+        time: "16:30",
+        fullTimeResult: "1 - 2",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Nick Woltemade 34'",
+            "",           
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "21. Tino Livramento ↓77'",
+            "12. Malick Thiaw",
+            "4. Sven Botman",
+            "33. Dan Burn 🟨",
+            "39. Bruno Guimarães (C)",
+            "8. Sandro Tonali",
+            "7. Joelinton 🟨 ↓90+4'",
+            "23. Jacob Murphy ↓66'",
+            "27. Nick Woltemade ↓67'", 
+            "10.Anthony Gordon ↓66'"           
+          ],
+          bench: [
+            "2. Kieran Trippier ↑66'",
+            "6. Jamaal Lascelles ↑77'",
+            "11. Harvey Barnes ↑90+4'",
+            "18. William Osula ↑67'",
+            "20. Anthony Elanga ↑66'",
+            "17. Emil Krafth",
+            "28 Joe Willock",
+            "32. Aaron Ramsdale",
+            "67. Lewis Miley"
+          ]
+        },
+        awayTeam: {
+          name: "Arsenal",
+          logo: "pictures/Arsenal-logo.png",
+          manager: "Mikel Arteta",
+          goals: [
+            "Mikel Merino 84'",
+            "Gabriel Magalhães 90+6'",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. David Raya",
+            "12. Jurrien Timber",
+            "3. Cristhian Mosquera ↓46'",
+            "6. Gabriel",
+            "33. Riccardo Calafiori 🟨 ↓70'",
+            "36. Martín Zubimendi ↓82'",
+            "41. Declan Rice",
+            "7. Bukayo Saka (C) ↓70'",
+            "10. Eberechi Eze",
+            "19. Leandro Trossard ↓88'",
+            "14. Viktor Gyökeres"
+          ],
+          bench: [
+            "2. William Saliba ↑46'",
+            "8. Martin Ødegaard ↑82'",
+            "11. Gabriel Martinelli ↑70'",
+            "23. Mikel Merino ↑70'",
+            "49. Myles Lewis-Skelly ↑88'",
+            "4. Ben White",
+            "13. Kepa Arrizabalaga",
+            "16. Christian Nørgaard",
+            "56. Max Dowman"
+          ]
+        },
+        stats: {
+          shots: "8 - 20",
+          shotsOnTarget: "3 - 7",
+          possession: "36% - 64%",
+          passes: "279 - 495",
+          passAccuracy:  "69% - 81%",
+          fouls: "8 - 9",
+          yellowCards: "2 - 1",
+          redCards: "0 - 0",
+          offsides: "1 - 0",
+          corners: "7 - 12"
+        }
+      },      
+      {
+        type: "Matchday 7 of 38",
+        venue: "St James' Park",
+        date: "2025-10-04",
+        time: "15:00",
+        fullTimeResult: "2 - 0",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [
+            "Bruno Guimarães 58'",
+            "Nick Woltemade 84' (P)",
+            "",      
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier",
+            "12. Malick Thiaw",
+            "4. Sven Botman",
+            "33. Dan Burn",
+            "39. Bruno Guimarães (C)",
+            "8. Sandro Tonali",
+            "7. Joelinton ↓90+1'",
+            "20. Anthony Elanga ↓70'",
+            "27. Nick Woltemade ↓90+2'", 
+            "10.Anthony Gordon ↓69'"  
+          ],
+          bench: [
+            "11. Harvey Barnes ↑69'",
+            "18. William Osula ↑90+2'",
+            "23. Jacob Murphy ↑70'",
+            "67. Lewis Miley ↑90+1'",
+            "5. Fabian Schär",
+            "6. Jamaal Lascelles",
+            "17. Emil Krafth",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale"
+          ]
+        },
+        awayTeam: {
+          name: "Nottm Forest",
+          logo: "pictures/nottm-forest-logo.png",
+          manager: "",
+          goals: [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "26. Matz Sels",
+            "31. Nikola Milenković",
+            "23. Jair Cunha",
+            "4. Morato 🟨 ↓77'",
+            "37. Nicolò Savona",
+            "8. Elliot Anderson 🟨",
+            "22. Ryan Yates (C) 🟨 ↓65'",
+            "3. Neco Williams 🟨",
+            "14. Dan Ndoye ↓65'",
+            "11. Chris Wood ↓64'",
+            "10. Morgan Gibbs-White"
+          ],
+          bench: [
+            "7. Callum Hudson-Odoi ↑65'",
+            "19. Igor Jesus ↑64'",
+            "21. Omari Hutchinson ↑65'",
+            "29. Dilane Bakwa ↑77'",
+            "5. Murillo",
+            "6. Ibrahim Sangaré",
+            "13. John Victor",
+            "16. Nicolás Domínguez",
+            "24. James McAtee"
+          ]  
+        },
+        stats: {
+          shots: "15 - 6",
+          shotsOnTarget: "8 - 4",
+          possession: "53% - 47%",
+          passes: "345 - 348",
+          passAccuracy: "92% - 91%",
+          fouls: "16 - 14",
+          yellowCards: "0 - 4",
+          redCards: "0 - 0",
+          offsides: "0 - 2",
+          corners: "8 - 1"
+        }
+      },         
+      {
+        type: "Matchday 8 of 38",
+        venue: "Falmer Stadium",
+        date: "2025-10-18",
+        time: "15:00",
+        fullTimeResult: "2 - 1",
+        homeTeam: {
+          name: "Brighton",
+          logo: "pictures/brighton-logo.png",
+          manager: "Fabian Hürzeler",
+          goals: [
+            "Danny Welbeck 41'",
+            "Danny Welbeck 84'",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Bart Verbruggen",
+            "27. Mats Wieffer",
+            "5. Lewis Dunk (C)",
+            "6. Jan Paul van Hecke",
+            "24. Ferdi Kadıoğlu",
+            "17. Carlos Baleba ↓71'",
+            "26. Yasin Ayari",
+            "11. Yankuba Minteh ↓90'",
+            "10. Georginio Rutter ↓71'",
+            "25. Diego Gómez ↓'",
+            "18. Danny Welbeck ↓90'"
+          ],
+          bench: [
+            "9. Stefanos Tzimas ↑71'",
+            "19. Charalampos Kostoulas ↑90'",
+            "20. James Milner ↑71'",
+            "29. Maxim De Cuyper ↑'",
+            "42. Diego Coppola ↑90'",
+            "14. Tom Watson",
+            "21. Olivier Boscagli",
+            "23. Jason Steele",
+            "58. Nehemiah Oriola"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe ",
+          goals: [
+            "Nick Woltemade 76'",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier",
+            "12. Malick Thiaw",
+            "4. Sven Botman",
+            "33. Dan Burn 🟨",
+            "39. Bruno Guimarães (C) ↓86'",
+            "8. Sandro Tonali ↓70'",
+            "7. Joelinton ↓46'",
+            "20. Anthony Elanga ↓46'",
+            "27. Nick Woltemade", 
+            "10.Anthony Gordon ↓70'"             
+          ],
+          bench: [
+            "11. Harvey Barnes ↑70'",
+            "18. William Osula ↑86'",
+            "23. Jacob Murphy ↑46'",
+            "41. Jacob Ramsey ↑70'",
+            "67. Lewis Miley ↑46'",
+            "5. Fabian Schär",
+            "17. Emil Krafth",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale"            
+          ]
+        },
+        stats: {
+          shots: "9 - 15",
+          shotsOnTarget: "5 - 4",
+          possession: "46% - 54%",
+          passes: "340 - 408",
+          passAccuracy: "90% - 90%",
+          fouls: "9 - 8",
+          yellowCards: "0 - 1",
+          redCards: "0 - 0",
+          offsides: "3 - 1",
+          corners: "8 - 4"
+        }
+      },          
+      {
+        type: "Matchday 9 of 38",
+        venue: "St James' Park",
+        date: "2025-10-25",
+        time: "15:00",
+        fullTimeResult: "2 - 1",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Jacob Murphy 18'",
+            "Bruno Guimarães 90'",
+            "", 
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "2. Kieran Trippier",
+            "12. Malick Thiaw",
+            "4. Sven Botman ↓61'",
+            "33. Dan Burn",
+            "7. Joelinton",
+            "39. Bruno Guimarães (C)",
+            "67. Lewis Miley ↓61'",
+            "23. Jacob Murphy ↓61'",
+            "27. Nick Woltemade ↓86'", 
+            "10.Anthony Gordon ↓76'"    
+          ],
+          bench: [
+            "6. Fabian Schär ↑61'",
+            "8. Sandro Tonali ↑61'",
+            "11. Harvey Barnes ↑61'",
+            "18. William Osula ↑86'",
+            "20. Anthony Elanga ↑76'",
+            "17. Emil Krafth",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale",
+            "41. Jacob Ramsey"
+          ]
+        },
+        awayTeam: {
+          name: "Fulham",
+          logo: "pictures/fulham-logo.png",
+          manager: "Marco Silva",
+          goals: [
+            "Saša Lukić 56'",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Bernd Leno (C)",
+            "2. Kenny Tete 🟨 ↓90+2'",
+            "31. Issa Diop",
+            "3. Calvin Bassey",
+            "30. Ryan Sessegnon",
+            "20. Saša Lukić ↓85'",
+            "16. Sander Berge",
+            "11. Adama ↓76'",
+            "32. Emile Smith Rowe ↓'",
+            "17. Alex Iwobi 🟨 ↓90+2'",
+            "7. Raúl Jiménez"
+          ],
+          bench: [
+            "10. Tom Cairney ↑85'",
+            "18. Jonah Kusi-Asare ↑90+2'",
+            "21. Timothy Castagne ↑90+2'",
+            "22. Kevin ↑'",
+            "24. Josh King ↑76'",
+            "6. Harrison Reed",
+            "15. Jorge Cuenca",
+            "23. Benjamin Lecomte",
+            "35. Sam Amissah"
+          ]
+        },
+        stats: {
+          shots: "17 - 12",
+          shotsOnTarget: "6 - 4",
+          possession: "51% - 49%",
+          passes: "419 - 375",
+          passAccuracy: "88% - 85%",
+          fouls: "11 - 17",
+          yellowCards: "0 - 2",
+          redCards: "0 - 0",
+          offsides: "0 - 1",
+          corners: "4 - 3"
+        }
+      },
+      {
+        type: "Matchday 10 of 38",
+        venue: "London Stadium",
+        date: "2025-11-02",
+        time: "14:00",
+        fullTimeResult: "3 - 1",
+        homeTeam: {
+          name: "West Ham",
+          logo: "pictures/west-ham-logo.png",
+          manager: "",
+          goals: [
+            "Lucas Paquetá 35'",
+            "Sven Botman 45+5' (OG)",
+            "Tomáš Souček 90+8'",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "23. Alphonse Areola",
+            "29. Aaron Wan-Bissaka",
+            "25. Jean-Clair Todibo",
+            "3. Maximilian Kilman",
+            "12. El Hadji Malick Diouf",
+            "32. Freddie Potts",
+            "10. Lucas Paquetá 🟨",
+            "20. Jarrod Bowen (C)",
+            "18. Mateus Fernandes ↓85'",
+            "7. Crysencio Summerville ↓79'",
+            "9. Callum Wilson ↓61'"
+          ],
+          bench: [
+            "2. Kyle Walker-Peters ↑79'",
+            "5. Igor Julio ↑85'",
+            "28. Tomáš Souček ↑61'",
+            "1. Mads Hermansen",
+            "17. Luis Guilherme",
+            "24. Guido Rodríguez",
+            "27. Soungoutou Magassa",
+            "39. Andy Irving",
+            "63. Ezra Mayers"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [
+            "Jacob Murphy 4'",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "17. Emil Krafth ↓46'",
+            "12. Malick Thiaw",
+            "4. Sven Botman ↓65'",
+            "33. Dan Burn",
+            "39. Bruno Guimarães 🟨 (C)",   
+            "8. Sandro Tonali",         
+            "7. Joelinton",
+            "23. Jacob Murphy ↓77'",
+            "27. Nick Woltemade ↓46'", 
+            "10. Anthony Gordon ↓46'"                
+          ],
+          bench: [
+            "5. Fabian Schär ↑46'",
+            "11. Harvey Barnes ↑65'",
+            "18. William Osula ↑46'",
+            "20. Anthony Elanga ↑77'",
+            "41. Jacob Ramsey 🟨 ↑46'",
+            "3. Lewis Hall",
+            "28. Joe Willock",
+            "32. Aaron Ramsdale",
+            "67. Lewis Miley"
+          ]
+        },
+        stats: {
+          shots: "15 - 12",
+          shotsOnTarget: "10 - 5",
+          possession: "38% - 62%",
+          passes: "231 - 464",
+          passAccuracy: "88% - 93%",
+          fouls: "5 - 10",
+          yellowCards: "1 - 2",
+          redCards: "0 - 0",
+          offsides: "4 - 0",
+          corners: "7 - 6"
+        }
+      },      
+      {
+        type: "Matchday 11 of 38",
+        venue: "Gtech Community Stad",
+        date: "2025-11-08",
+        time: "15:00",
+        fullTimeResult: "3 - 1",
+        homeTeam: {
+          name: "Brentford",
+          logo: "pictures/brentford-logo.png",
+          manager: "Keith Andrews",
+          goals: [
+            "Kevin Schade 56'",
+            "Igor Thiago 78'",
+            "Igor Thiago 90+6'",
+            "",           
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Caoimhin Kelleher",
+            "33. Michael Kayode 🟨",
+            "22. Nathan Collins (C)",
+            "4. Sepp van den Berg",
+            "2. Aaron Hickey ↓70'",
+            "18. Yehor Yarmolyuk ↓84'",
+            "6. Jordan Henderson",
+            "19. Dango Ouattara 🟨 ↓90+1'",
+            "24. Mikkel Damsgaard ↓84'",
+            "7. Kevin Schade",
+            "9. Thiago"
+          ],
+          bench: [
+            "3. Rico Henry ↑70'",
+            "8. Mathias Jensen ↑84'",
+            "11. Reiss Nelson ↑90+1'",
+            "27. Vitaly Janelt ↑84'",
+            "5. Ethan Pinnock",
+            "12. Hákon Valdimarsson",
+            "14. Fábio Carvalho",
+            "15. Frank Onyeka",
+            "23. Keane Lewis-Potter"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Harvey Barnes 27'",
+            "Dan Burn 66' 🟥",
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope ↓76'",
+            "2. Kieran Trippier 🟨",
+            "12. Malick Thiaw",
+            "4. Sven Botman",
+            "33. Dan Burn 🟥",
+            "39. Bruno Guimarães (C) ↓90+8'",   
+            "8. Sandro Tonali ↓78'",         
+            "7. Joelinton ↓24'",
+            "23. Jacob Murphy ↓77'",
+            "27. Nick Woltemade", 
+            "11. Harvey Barnes ↓77'"             
+          ],
+          bench: [
+            "3. Lewis Hall ↑77'",
+            "20. Anthony Elanga ↑77'",
+            "28. Joe Willock ↑78'",            
+            "32. Aaron Ramsdale ↑76'",            
+            "41. Jacob Ramsey ↑24'",            
+            "67. Lewis Miley ↑90+8'",                  
+            "5. Fabian Schär",
+            "6. Jamaal Lascelles",
+            "17. Emil Krafth"            
+          ]
+        },
+        stats: {
+          shots: "14 - 4",
+          shotsOnTarget: "8 - 1",
+          possession: "49% - 51%",
+          passes: "368 - 414",
+          passAccuracy: "80% - 88%",
+          fouls: "11 - 12",
+          yellowCards: "2 - 2",
+          redCards: "0 - 1",
+          offsides: "2 - 0",
+          corners: "6 - 2"
+        }
+      },      
+      {
+        type: "Matchday 12 of 38",
+        venue: "St James' Park",
+        date: "2025-11-22",
+        time: "17:30",
+        fullTimeResult: "2 - 1",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Harvey Barnes 64'",
+            "Harvey Barnes 70'",
+            "",                      
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Nick Pope",
+            "21. Tino Livramento",
+            "12. Malick Thiaw",
+            "5. Fabian Schär",
+            "3. Lewis Hall ↓77'",
+            "39. Bruno Guimarães (C)",   
+            "8. Sandro Tonali",         
+            "7. Joelinton 🟨",
+            "23. Jacob Murphy",
+            "27. Nick Woltemade ↓85'", 
+            "11. Harvey Barnes ↓85'"                    
+          ],
+          bench: [
+            "4. Sven Botman ↑77'",
+            "20. Anthony Elanga ↑85'",
+            "28. Joe Willock ↑85'",            
+            "26. John Ruddy",
+            "32. Aaron Ramsdale",
+            "37. Alex Murphy",
+            "41. Jacob Ramsey",
+            "62. Sean Neave",
+            "67. lewis Miley"
+          ]
+        },
+        awayTeam: {
+          name: "Man City",
+          logo: "pictures/man-city-logo.png",
+          manager: "Pep Guardiola",
+          goals: [
+            "Rúben Dias 68'",
+            "",            
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "25. Gianluigi Donnarumma 🟨",
+            "27. Matheus Nunes",
+            "3. Rúben Dias",
+            "24. Joško Gvardiol",
+            "33. Nico O'Reilly",
+            "20. Bernardo Silva (C) ↓77'",
+            "14. Nico González",
+            "47. Phil Foden ↓87'",
+            "10. Rayan Cherki ↓77'",
+            "9. Erling Haaland",
+            "11. Jérémy Doku ↓76'"
+          ],
+          bench: [
+            "4. Tijjani Reijnders ↑77'",
+            "7. Omar Marmoush ↑87'",            
+            "26. Savinho ↑76'",            
+            "52. Oscar Bobb 🟨 ↑77'",
+            "1. James Trafford",
+            "5. John Stones",
+            "6. Nathan Aké",
+            "21. Rayan Aït-Nouri",
+            "45. Abdukodir Khusanov"
+          ]
+        },
+        stats: {
+          shots: "7 - 17",
+          shotsOnTarget: "5 - 4",
+          possession: "33% - 67%",
+          passes: "220 - 531",
+          passAccuracy: "86% - 92%",
+          fouls: "12 - 8",
+          yellowCards: "1 - 2",
+          redCards: "0 - 0",
+          offsides: "3 - 2",
+          corners: "5 - 9"
+        }
+      },
+      {
+        type: "Matchday 13 of 38",
+        venue: "Hill Dickinson Stadium",
+        date: "2025-11-29",
+        time: "17:30",
+        fullTimeResult: "1 - 4",
+        homeTeam: {
+          name: "Everton",
+          logo: "pictures/everton-logo.png",
+          manager: "David Moyes",
+          goals: [
+            "Kiernan Dewsbury-Hall 70'",
+            "",  
+            "",
+            "",
+            "",
+            ""
+          ],
+          lineup: [
+            "1. Jordan Pickford",
+            "15. Jake O'Brien",
+            "6. James Tarkowski (C)",
+            "5. Michael Keane",
+            "16. Vitalii Mykolenko",
+            "37. James Garner",
+            "42. Tim Iroegbunam ↓46'",
+            "10. Iliman Ndiaye ↓80'",
+            "22. Kiernan Dewsbury-Hall",
+            "18. Jack Grealish ↓80'",
+            "11. Thierno Barry ↓87'",
+          ],
+          bench: [
+            "7. Dwight McNeil ↑80'",
+            "9. Beto ↑87'",
+            "20. Tyler Dibling ↑80'",
+            "24. Carlos Alcaraz ↑46'",
+            "12. Mark Travers",
+            "31. Tom King",
+            "39. Adam Aznou",
+            "64. Reece Welch",
+            "73. Elijah Campbell"
+          ]
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "Eddie Howe",
+          goals: [
+            "Malick Thiaw 1'",
+            "Lewis Miley 25'",
+            "Nick Woltemade 45'",  
+            "Malick Thiaw 58'",
+            "",            
+            ""
+          ],
+          lineup: [
+            "32. Aaron Ramsdale",
+            "21. Tino Livramento",
+            "12. Malick Thiaw",
+            "33. Dan Burn",
+            "3. Lewis Hall ↓90'",
+            "67. Lewis Miley",
+            "39. Bruno Guimarães (C) ↓90'",   
+            "7. Joelinton",         
+            "20. Anthony Elanga ↓71'",
+            "27. Nick Woltemade ↓90'",
+            "11. Harvey Barnes ↓71'" 
+          ],
+          bench: [
+            "5. Fabian Schär ↑90'",
+            "8. Sandro Tonali ↑90'",
+            "10. Anthony Gordon ↑90'",
+            "28. Joe Willock ↑71'",
+            "41. Jacob Ramsey ↑71'",
+            "23. Jacob Murphy",
+            "26. John Ruddy",
+            "37. Alex Murphy",
+            "62. Sean Neave"
+          ]
+        },
+        stats: {
+          shots: "9 - 11",
+          shotsOnTarget: "2 - 8",
+          possession: "47% - 53%",
+          passes: "428 - 476",
+          passAccuracy: "93% - 90%",
+          fouls: "4 - 6",
+          yellowCards: "0 - 0",
+          redCards: "0 - 0",
+          offsides: "0 - 0",
+          corners: "8 - 7"
+        }
+      },          
+      {
+        type: "Matchday 14 of 38",
+        venue: "St James' Park",
+        date: "2025-12-03",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Tottenham",
+          logo: "pictures/tottenham-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },          
+      {
+        type: "Matchday 15 of 38",
+        venue: "St James' Park",
+        date: "2025-12-06",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Burnley",
+          logo: "pictures/burnley-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },          
+      {
+        type: "Matchday 16 of 38",
+        venue: "Stadium of Light",
+        date: "2025-12-13",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Sunderland",
+          logo: "pictures/sunderland-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },          
+      {
+        type: "Matchday 17 of 38",
+        venue: "St James' Park",
+        date: "2025-12-20",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Chelsea",
+          logo: "pictures/chelsea-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },          
+      {
+        type: "Matchday 18 of 38",
+        venue: "Old Trafford",
+        date: "2025-12-27",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Man United",
+          logo: "pictures/man-united-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },          
+      {
+        type: "Matchday 19 of 38",
+        venue: "Turf Moor",
+        date: "2025-92-30",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Burnley",
+          logo: "pictures/burnley-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },              
+      {
+        type: "Matchday 20 of 38",
+        venue: "St James' Park",
+        date: "2026-01-03",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Crystal Palace",
+          logo: "pictures/crystal-palace-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },              
+      {
+        type: "Matchday 21 of 38",
+        venue: "St James' Park",
+        date: "2026-01-07",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Leeds United",
+          logo: "pictures/leeds-united-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "Matchday 22 of 38",
+        venue: "Molineux Stadium",
+        date: "2026-01-17",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Wolves",
+          logo: "pictures/wolves-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },         
+      {
+        type: "Matchday 23 of 38",
+        venue: "St James' Park",
+        date: "2026-01-24",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Aston Villa",
+          logo: "pictures/aston-villa-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },    
+      {
+        type: "Matchday 24 of 38",
+        venue: "Anfield",
+        date: "2026-01-31",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Liverpool",
+          logo: "pictures/Liverpool-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },            
+      {
+        type: "Matchday 25 of 38",
+        venue: "St James' Park",
+        date: "2026-02-07",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Brentford",
+          logo: "pictures/brentford-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },            
+      {
+        type: "Matchday 26 of 38",
+        venue: "Tottenham Hotspur Stad",
+        date: "2026-02-11",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Tottenham",
+          logo: "pictures/tottenham-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },       
+      {
+        type: "Matchday 27 of 38",
+        venue: "Etihad Stadium",
+        date: "2026-02-21",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Man City",
+          logo: "pictures/man-city-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },           
+      {
+        type: "Matchday 28 of 38",
+        venue: "St James' Park",
+        date: "2026-02-28",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Everton",
+          logo: "pictures/everton-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },        
+      {
+        type: "Matchday 29 of 38",
+        venue: "St James' Park",
+        date: "2026-03-04",
+        time: "20:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Man United",
+          logo: "pictures/man-united-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },     
+      {
+        type: "Matchday 30 of 38",
+        venue: "Stamford Bridge ",
+        date: "2026-03-14",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Chelsea",
+          logo: "pictures/chelsea-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },                 
+      {
+        type: "Matchday 31 of 38",
+        venue: "St James' Park",
+        date: "2026-03-21",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Sunderland",
+          logo: "pictures/sunderland-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },     
+      {
+        type: "Matchday 32 of 38",
+        venue: "Selhurst Park",
+        date: "2026-04-11",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Crystal Palace",
+          logo: "pictures/crystal-palace-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },  
+      {
+        type: "Matchday 33 of 38",
+        venue: "St James' Park",
+        date: "2026-04-18",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Bournemouth",
+          logo: "pictures/bournemouth-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },             
+      {
+        type: "Matchday 34 of 38",
+        venue: "Emirates Stadium",
+        date: "2026-04-25",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Arsenal",
+          logo: "pictures/arsenal-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },    
+      {
+        type: "Matchday 35 of 38",
+        venue: "St James' Park",
+        date: "2026-05-02",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Brighton",
+          logo: "pictures/brighton-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },  
+      {
+        type: "Matchday 36 of 38",
+        venue: "City Ground",
+        date: "2026-05-09",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Nottm Forest",
+          logo: "pictures/Nottm-Forest-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },     
+      {
+        type: "Matchday 37 of 38",
+        venue: "St James' Park",
+        date: "2026-05-17",
+        time: "15:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Newcastle",
+          logo: "pictures/Newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "West Ham",
+          logo: "pictures/west-ham-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      }, 
+      {
+        type: "Matchday 38 of 38",
+        venue: "Craven Cottage",
+        date: "2026-05-24",
+        time: "16:00",
+        fullTimeResult: " - ",
+        homeTeam: {
+          name: "Fulham",
+          logo: "pictures/fulham-logo.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        awayTeam: {
+          name: "Newcastle",
+          logo: "pictures/newcastle-logo2.png",
+          manager: "",
+          goals: [],
+          lineup: [],
+          bench: []
+        },
+        stats: {
+          shots: " - ",
+          shotsOnTarget: " - ",
+          possession: " - ",
+          passes: " - ",
+          passAccuracy: " - ",
+          fouls: " - ",
+          yellowCards: " - ",
+          redCards: " - ",
+          offsides: " - ",
+          corners: " - "
+        }
+      },                  
+    ];
+
+/* === CHAMPIONS LEAGUE MATCHES === */
+const uclMatches = [
+  {
+    type: "Matchday 1 of 8",
+    venue: "St James' Park",
+    date: "2025-09-18",
+    time: "20:00",
+    fullTimeResult: "1 - 2",
+    homeTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "Eddie Howe",
+      goals: [
+        "Anthony Gordon 90'",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Nick Pope",
+        "2. Kieran Trippier ↓76'",
+        "5. Fabian Schär ↓63'",
+        "33. Dan Burn 🟨",
+        "21. Tino Livramento",
+        "39. Bruno Guimarães (C)",
+        "8. Sandro Tonali",
+        "7. Joelinton 🟨 ↓63'",
+        "20. Anthony Elanga ↓63'",
+        "10. Anthony Gordon",
+        "11. Harvey Barnes ↓62'"
+      ],
+      bench: [
+        "4. Sven Botman ↑76'",
+        "12. Malick Thiaw ↑63'",
+        "23. Jacob Murphy ↑63'",
+        "27. Nick Woltemade ↑62'",
+        "28. Joe Willock ↑63'",
+        "3. Lewis Miley",
+        "17. Emil Krafth",
+        "18. William Osula",
+        "31. Max Thompson",
+        "32. Aaron Ramsdale",
+        "37. Alex Murphy",
+        "67. Lewis Miley"
+      ]
+    },
+    awayTeam: {
+      name: "Barcelona",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/paYnEE8hcrP96neHRNofhQ_96x96.png",
+      manager: "Hansi Flick",
+      goals: [
+        "Marcus Rashford 58'",
+        "Marcus Rashford 67'",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "13. Joan García",
+        "23. Jules Koundé",
+        "4. Ronald Araújo (C)",
+        "5. Pau Cubarsí ↓70'",
+        "18. Gerard Martín ↓82'",
+        "21. Frenkie de Jong 🟨",
+        "8. Pedri",
+        "11. Raphinha",
+        "16. Fermín López 🟨 ↓90+3'",
+        "14. Marcus Rashford ↓82'",
+        "9. Robert Lewandowski ↓69'"
+      ],
+      bench: [
+        "7. Ferran Torres ↑69'",
+        "15. Andreas Christensen ↑70'",
+        "17. Marc Casadó 🟨 ↓90+3'",
+        "20. Dani Olmo ↓82'",
+        "24. Eric García ↓82'",
+        "22. Marc Bernal",
+        "25. Wojciech Szczęsny",
+        "26. Jofre Torrents",
+        "28. Roony Bardghji",
+        "29. Toni Fernández",
+        "31. Diego Kochen"
+      ]
+    },
+    stats: {
+      shots: "8 - 18", 
+      shotsOnTarget: "6 - 4", 
+      possession: "39% - 61%", 
+      passes: "237 - 487", 
+      passAccuracy: "83% - 91%", 
+      fouls: "10 - 12", 
+      yellowCards: "2 - 4", 
+      redCards: "0 - 0", 
+      offsides: "3 - 0", 
+      corners: "6 - 4"
+    }
+  },
+  {
+    type: "Matchday 2 of 8",
+    venue: "Lotto Park",
+    date: "2025-10-01",
+    time: "20:00",
+    fullTimeResult: "0 - 4",
+    homeTeam: {
+      name: "Union Saint-Gilloise",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/6X2ZgFpkGODBF70ZiTGKrw_96x96.png",
+      manager: "David Hubert",
+      goals: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "37. Kjell Scherpen",
+        "5. Kevin Mac Allister 🟨 ↓67'",
+        "16. Christian Burgess (C) 🟨",
+        "48. Fedde Leysen",
+        "25. Anan Khalaili ↓78'",
+        "6. Kamiel Van de Perre 🟨 ↓67'",
+        "8. Adem Zorgane",
+        "22. Ousseynou Niang",
+        "10. Anouar Ait El Hadj",
+        "12. Promise Akinpelu ↓46'",
+        "13. Kevin Rodriguez ↓73'"
+      ],
+      bench: [
+        "4. Mathias Rasmussen ↑67'",
+        "20. Marc Giger 🟨 ↑46'",
+        "23. Sofiane Boufal ↑73'",
+        "26. Ross Sykes ↑67'",
+        "27. Louis Patris ↑78'",
+        "1. Vic Chambaere",
+        "3. Mamadou Thierno Barry",
+        "11. Guilherme Smith",
+        "17. Rob Schoofs",
+        "33. Soulaimane Berradi"
+      ]
+    },
+    awayTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "Eddie Howe",
+      goals: [
+        "Nick Woltemade 17'",
+        "Anthony Gordon 43' (P)",
+        "Anthony Gordon 64' (P)",
+        "Harvey Barnes 80'",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Nick Pope",
+        "2. Kieran Trippier ↓83'",
+        "12. Malick Thiaw",
+        "4. Sven Botman",
+        "33. Dan Burn",
+        "39. Bruno Guimarães (C) ↓73'",
+        "8. Sandro Tonali",
+        "7. Joelinton 🟨 ↓59'",
+        "20. Anthony Elanga ↓73'",
+        "27. Nick Woltemade ↓73'",
+        "10. Anthony Gordon"
+      ],
+      bench: [
+        "3. Lewis Hall ↑73'",
+        "5. Fabian Schär ↑83'",
+        "11. Harvey Barnes ↓73'",
+        "18. William Osula ↓73'",
+        "67. Lewis Miley ↓59'",
+        "17. Emil Krafth",
+        "23. Jacob Murphy",
+        "28. Joe Willock",
+        "31. Max Thompson",
+        "32. Aaron Ramsdale",
+        "37. Alex Murphy"
+      ]
+    },
+    stats: {
+      shots: "12 - 13", 
+      shotsOnTarget: "6 - 6", 
+      possession: "47% - 53%", 
+      passes: "348 - 491", 
+      passAccuracy: "88% - 90%", 
+      fouls: "12 - 8", 
+      yellowCards: "4 - 1", 
+      redCards: "0 - 0", 
+      offsides: "1 - 0", 
+      corners: "7 - 5"
+    }
+  },
+  {
+    type: "Matchday 3 of 8",
+    venue: "St James' Park",
+    date: "2025-10-21",
+    time: "20:00",
+    fullTimeResult: "3 - 0",
+    homeTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "Eddie Howe",
+      goals: [
+        "Anthony Gordon 32'",
+        "Harvey Barnes 70'",
+        "Harvey Barnes 83'",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Nick Pope",
+        "2. Kieran Trippier",
+        "12. Malick Thiaw 🟨",
+        "4. Sven Botman",
+        "33. Dan Burn",
+        "39. Bruno Guimarães (C) ↓90'",
+        "67. Lewis Miley",
+        "41. Jacob Ramsey ↓63'",
+        "23. Jacob Murphy ↓63'",
+        "27. Nick Woltemade ↓86'",
+        "10. Anthony Gordon ↓85'"
+      ],
+      bench: [
+        "7. Joelinton ↑63'",
+        "11. Harvey Barnes ↑63'",
+        "18. William Osula ↑86'",
+        "20. Anthony Elanga ↑85'",
+        "28. Joe Willock ↑90'",
+        "5. Fabian Schär",
+        "8. Sandro Tonali",
+        "17. Emil Krafth",
+        "31. Max Thompson",
+        "32. Aaron Ramsdale",
+        "37. Alex Murphy"
+      ]
+    },
+    awayTeam: {
+      name: "Benfica",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/nFwABZ-4n_A3BGXT9A7Adg_96x96.png",
+      manager: "José Mourinho",
+      goals: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Anatoliy Trubin",
+        "17. Amar Dedić ↓63'",
+        "4. António Silva",
+        "30. Nicolás Otamendi (C)",
+        "44. Tomás Araújo",
+        "20. Richard Ríos",
+        "5. Enzo Barrenechea",
+        "8. Fredrik Aursnes",
+        "11. Dodi Lukébakio 🟨",
+        "14. Vangelis Pavlidis",
+        "10. Heorhiy Sudakov"
+      ],
+      bench: [
+        "9. Franjo Ivanović ↑63'",
+        "3. Rafael Obrador",
+        "18. Leandro Barreiro",
+        "21. Andreas Schjelderup",
+        "24. Samuel Soares",
+        "26. Samuel Dahl",
+        "39. Henrique Araújo",
+        "66. Joshua Wynder",
+        "68. João Veloso",
+        "84. João Rego",
+        "86. Diogo Prioste",
+        "90. Ivan Lima"
+      ]
+    },
+    stats: {
+      shots: "18 - 8", 
+      shotsOnTarget: "10 - 2", 
+      possession: "52% - 48%", 
+      passes: "371 - 296", 
+      passAccuracy: "91% - 88%", 
+      fouls: "16 - 8", 
+      yellowCards: "1 - 1", 
+      redCards: "0 - 0", 
+      offsides: "2 - 1", 
+      corners: "12 - 8"
+    }
+  },    
+  {
+    type: "Matchday 4 of 8",
+    venue: "St James' Park",
+    date: "2025-11-05",
+    time: "20:00",
+    fullTimeResult: "2 - 0",
+    homeTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "Eddie Howe",
+      goals: [
+        "Dan Burn 11'",
+        "Joelinton 49'",
+        "",
+        "",
+        "",
+        "" 
+      ],
+      lineup: [
+        "1. Nick Pope",
+        "2. Kieran Trippier",
+        "12. Malick Thiaw",
+        "4. Sven Botman",
+        "33. Dan Burn ↓66'",
+        "39. Bruno Guimarães (C) ↓66'",
+        "8. Sandro Tonali",
+        "7. Joelinton",
+        "11. Harvey Barnes ↓66'",
+        "27. Nick Woltemade ↓83'",
+        "10. Anthony Gordon ↓41'"
+      ],
+      bench: [
+        "3. Lewis Hall ↑66'",
+        "20. Anthony Elanga ↑66'",
+        "23. Jacob Murphy ↑41'",
+        "41. Jacob Ramsey ↑83'",
+        "67. Lewis Miley ↑66'",
+        "5. Fabian Schär",
+        "17. Emil Krafth", 
+        "28. Joe Willock",       
+        "31. Max Thompson",        
+        "32. Aaron Ramsdale",
+        "37. Alex Murphy"
+      ]
+    },
+    awayTeam: {
+      name: "Athletic Club",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/OSL_5Zm6kYPP1J17Bo5uDA_96x96.png",
+      manager: "José Mourinho",
+      goals: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Unai Simón (C)",
+        "12. Jesús Areso 🟨 ↓78'",
+        "3. Dani Vivian",
+        "4. Aitor Paredes 🟨",
+        "19. Adama Boiro",
+        "18. Mikel Jauregizar ↓70'",
+        "30. Alejandro Rego ↓80'",
+        "7. Alejandro Berenguer Remiro",
+        "6. Mikel Vesga",
+        "23. Robert Navarro ↓70'",
+        "20. Unai Gómez ↓78'"
+      ],
+      bench: [
+        "2. Andoni Gorosabel ↑78'",
+        "16. Íñigo Ruiz de Galarreta ↑80'",
+        "22. Nico Serrano ↑70'",
+        "31. Asier Hierro ↑78'",
+        "44. Selton Sanchez ↑70'",
+        "14. Aymeric Laporte",
+        "15. Iñigo Lekue",
+        "26. Mikel Santos",
+        "27. Alex Padilla",
+        "35. Ibon Sánchez",
+        "38. Ander Izagirre"
+      ]
+    },
+    stats: {
+      shots: "8 - 12", 
+      shotsOnTarget: "4 - 7", 
+      possession: "56% - 44%", 
+      passes: "402 - 334", 
+      passAccuracy: "87% - 84%", 
+      fouls: "11 - 13", 
+      yellowCards: "0 - 2", 
+      redCards: "0 - 0", 
+      offsides: "3 - 0", 
+      corners: "2 - 5"
+    }
+  },
+  {
+    type: "Matchday 5 of 8",
+    venue: "Stade Vélodrome",
+    date: "2025-11-25",
+    time: "20:00",
+    fullTimeResult: "2 - 1",
+    homeTeam: {
+      name: "Marseille",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/KfBX1kHNj26r9NxpqNaTkA_96x96.png",
+      manager: "Roberto De Zerbi",
+      goals: [
+        "Pierre-Emerick Aubameyang 46'",
+        "Pierre-Emerick Aubameyang 50'",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "Gerónimo Rulli",
+        "Benjamin Pavard",
+        "Leonardo Balerdi 🟨",
+        "Emerson 🟨",
+        "Timothy Weah",
+        "Arthur Vermeeren 🟨",
+        "Pierre-Emile Højbjerg",
+        "Darryl Bakola 🟨 ↓62'",
+        "Igor Paixão",
+        "Pierre-Emerick Aubameyang ↓90+2'",
+        "Mason Greenwood 🟨 ↓88'"
+      ],
+      bench: [
+        "8. Angel Gomes ↑88'",
+        "17. Matt O'Riley ↑62'",
+        "34. Robinio Vaz ↑90+2'",
+        "CJ Egan-Riley",
+        "Ulisses Garcia",
+        "Jeffrey de Lange",
+        "Geoffrey Kondogbia",
+        "Bilal Nadir",
+        "Jelle Van Neck",
+        "Tadjidine Mmadi"
+      ]
+    },
+    awayTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "Eddie Howe",
+      goals: [
+        "Harvey Barnes 6'",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      lineup: [
+        "1. Nick Pope",
+        "21. Tino Livramento ↓64'",
+        "12. Malick Thiaw",
+        "5. Fabian Schär ↓61'",
+        "33. Dan Burn 🟨",
+        "39. Bruno Guimarães (C)",
+        "8. Sandro Tonali",
+        "28. Joe Willock 🟨 ↓72'",
+        "23. Jacob Murphy ↓61'",
+        "10. Anthony Gordon 🟨 ↓72'",
+        "11. Harvey Barnes"        
+      ],
+      bench: [
+        "3. Lewis Hall ↑64'",
+        "20. Anthony Elanga ↑61'",
+        "27. Nick Woltemade ↑72'",
+        "41. Jacob Ramsey ↑72'",
+        "67. Lewis Miley ↑61'",
+        "4. Sven Botman", 
+        "7. Joelinton",       
+        "31. Max Thompson",        
+        "32. Aaron Ramsdale",
+        "37. Alex Murphy",
+        "85. Adedamola Samuel Alabi"
+      ]
+    },
+    stats: {
+      shots: "16 - 16", 
+      shotsOnTarget: "7 - 8", 
+      possession: "62% - 38%", 
+      passes: "458 - 360", 
+      passAccuracy: "91% - 89%", 
+      fouls: "10 - 8", 
+      yellowCards: "5 - 3", 
+      redCards: "0 - 0", 
+      offsides: "1 - 1", 
+      corners: "11 - 5"
+    }
+  },
+  {
+    type: "Matchday 6 of 8",
+    venue: "BayArena",
+    date: "2025-12-10",
+    time: "20:00",
+    fullTimeResult: " - ",
+    homeTeam: {
+      name: "Leverkusen",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/0zIcXiwD_JGY482DFC28Lw_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    awayTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    stats: {
+      shots: " - ", 
+      shotsOnTarget: " - ", 
+      possession: " - ", 
+      passes: " - ", 
+      passAccuracy: " - ", 
+      fouls: " - ", 
+      yellowCards: " - ", 
+      redCards: " - ", 
+      offsides: " - ", 
+      corners: " - "
+    }
+  },
+  {
+    type: "Matchday 7 of 8",
+    venue: "St James' Park",
+    date: "2026-01-21",
+    time: "20:00",
+    fullTimeResult: " - ",
+    homeTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    awayTeam: {
+      name: "PSV",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/FylTPR72JXIGFzqwQocSAQ_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    stats: {
+      shots: " - ", 
+      shotsOnTarget: " - ", 
+      possession: " - ", 
+      passes: " - ", 
+      passAccuracy: " - ", 
+      fouls: " - ", 
+      yellowCards: " - ", 
+      redCards: " - ", 
+      offsides: " - ", 
+      corners: " - "
+    }
+  },
+  {
+    type: "Matchday 8 of 8",
+    venue: "Parc des Princes",
+    date: "2026-01-28",
+    time: "20:00",
+    fullTimeResult: " - ",
+    homeTeam: {
+      name: "PSG",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/mcpMspef1hwHwi9qrfp4YQ_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    awayTeam: {
+      name: "Newcastle",
+      logo: "https://ssl.gstatic.com/onebox/media/sports/logos/96CcNNQ0AYDAbssP0V9LuQ_96x96.png",
+      manager: "",
+      goals: [],
+      lineup: [],
+      bench: []
+    },
+    stats: {
+      shots: " - ", 
+      shotsOnTarget: " - ", 
+      possession: " - ", 
+      passes: " - ", 
+      passAccuracy: " - ", 
+      fouls: " - ", 
+      yellowCards: " - ", 
+      redCards: " - ", 
+      offsides: " - ", 
+      corners: " - "
+    }
+  },          
+];
+
+/* === RENDER FUNCTION === */
+function renderFixtures(matches, containerId){
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  matches.forEach(match=>{
+    const card = document.createElement("div");
+    card.className="match-card";
+    card.innerHTML=`
+      <div class="top-row">
+        <div>${match.type}</div>
+        <div>Venue: ${match.venue}</div>
+      </div>
+      <div class="scoreboard">
+        <img src="${match.homeTeam.logo}" class="club-logo" />
+        <div class="result">${match.fullTimeResult.split(" - ")[0]}</div>
+        <div class="fulltime-text">${getMatchStatus(match.date, match.time)}</div>
+        <div class="result">${match.fullTimeResult.split(" - ")[1]}</div>
+        <img src="${match.awayTeam.logo}" class="club-logo" />
+      </div>
+      <div class="names-dates"><div>${match.homeTeam.name}</div><div></div><div>${match.awayTeam.name}</div></div>
+      <div class="goal-scorers"><div>${match.homeTeam.goals.join("<br>")}</div><div></div><div>${match.awayTeam.goals.join("<br>")}</div></div>
+      <div class="stats-content">
+        ${Object.entries(match.stats).map(([k,v])=>{
+          const [l,r]=v.split(" - ");
+          return `<div class="stat-line"><span class="stat-number">${l}</span><span class="stat-name">${k}</span><span class="stat-number">${r}</span></div>`;
+        }).join("")}
+      </div>
+      <button class="lineup-toggle">Show Lineups</button>
+      <div class="lineups">
+        <div class="lineup-teams">
+          <div>
+            <strong>${match.homeTeam.name}</strong><br>${match.homeTeam.lineup.map(formatPlayerName).join("<br>")}
+            <br><span class="bench-title">Bench:</span><br>${match.homeTeam.bench.map(formatPlayerName).join("<br>")}
+            <br><span class="manager-title">Manager:</span><br>${match.homeTeam.manager}
+          </div>
+          <div>
+            <strong>${match.awayTeam.name}</strong><br>${match.awayTeam.lineup.map(formatPlayerName).join("<br>")}
+            <br><span class="bench-title">Bench:</span><br>${match.awayTeam.bench.map(formatPlayerName).join("<br>")}
+            <br><span class="manager-title">Manager:</span><br>${match.awayTeam.manager}
+          </div>
+        </div>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+/* === INITIAL RENDER & REFRESH EVERY 60s === */
+renderFixtures(matches,"fixtureContainer");
+renderFixtures(uclMatches,"uclFixtureContainer");
+setInterval(()=>renderFixtures(matches,"fixtureContainer"),60000);
+setInterval(()=>renderFixtures(uclMatches,"uclFixtureContainer"),60000);
+
+/* === LINEUP TOGGLE === */
+document.addEventListener("click", e=>{
+  if(e.target.classList.contains("lineup-toggle")){
+    const btn=e.target;
+    const card=btn.closest(".match-card");
+    const lineupDiv=btn.nextElementSibling;
+    const isVisible=lineupDiv.style.display==="block";
+    document.querySelectorAll(".match-card").forEach(c=>{
+      c.querySelector(".lineups").style.display="none";
+      c.querySelector(".lineup-toggle").textContent="Show Lineups";
+      c.classList.remove("expanded");
+    });
+    lineupDiv.style.display=isVisible?"none":"block";
+    btn.textContent=isVisible?"Show Lineups":"Hide Lineups";
+    card.classList.toggle("expanded",!isVisible);
+  }
+});
+</script>
+
+  <div class="section-bar4"></div>
+
+<style>
+  .ad-footer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 150px;
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
+    background-color: #fff; 
+    cursor: pointer;
+    transition: border-color 0.3s;
+  }
+
+footer {
+  width: 100%;
+  height: 90px;
+  background-color: #00193f;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 0px;
+}
+.social-icons a img {
+   width: 24px;
+  height: 24px;
+  margin-left: 1rem;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1);
+}
+.social-icons a img:hover { 
+  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
+}
+</style>
+
+<div class="ad-footer">Advertise here! Contact for more info!</div>
+
+<div class="section-bar5"></div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Geordie Land News. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/geordielandnews/" target="_blank"><img src="pictures/Instagram.png" alt="Instagram Logo"></a>
+      <a href="https://x.com/GeordieLandNews" target="_blank"><img src="pictures/X.png" alt="X Logo"></a>
+    </div>
+  </footer>

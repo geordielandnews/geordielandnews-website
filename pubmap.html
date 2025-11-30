@@ -394,166 +394,21 @@ th.market-value-header {
     </ul>
   </nav>
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
-     crossorigin="anonymous"></script>
-
 <!-- Left ad panel -->
 <div class="ad-panel-left">
-
-  <div class="ad-slot-1-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4420623902"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-2-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4420623902"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-3-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4420623902"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-4-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4420623902"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
+  <div class="ad-slot-1-left">GOOGLE AD #1</div>
+  <div class="ad-slot-2-left">GOOGLE AD #2</div>
+  <div class="ad-slot-3-left">GOOGLE AD #3</div>
+  <div class="ad-slot-4-left">GOOGLE AD #4</div>      
 </div>
 
 <!-- Right ad panel -->
 <div class="ad-panel-right">
-
-  <div class="ad-slot-1-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4894416560"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-2-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4894416560"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-3-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4894416560"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-4-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4894416560"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
+  <div class="ad-slot-1-right">GOOGLE AD #5</div>
+  <div class="ad-slot-2-right">GOOGLE AD #6</div>
+  <div class="ad-slot-3-right">GOOGLE AD #7</div>
+  <div class="ad-slot-4-right">GOOGLE AD #8</div>      
 </div>
-
-<style>
-#adblock-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.95);
-  display: none; /* hidden by default */
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 9999;
-  color: #fff;
-  overflow: hidden;
-}
-
-#adblock-overlay .box {
-  background: #222;
-  padding: 30px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  box-sizing: border-box;
-}
-
-#adblock-overlay button {
-  margin-top: 15px;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  background: #f44336;
-  color: #fff;
-}
-
-/* Hidden bait element to detect ad blockers */
-#ad-bait {
-  width: 1px;
-  height: 1px;
-  position: absolute;
-  left: -1000px;
-  top: -1000px;
-}
-</style>
-
-<!-- Bait element for ad blocker detection -->
-<div id="ad-bait" class="ads adsbygoogle ad-banner ad-container"></div>
-
-<!-- Overlay HTML -->
-<div id="adblock-overlay">
-  <div class="box">
-    <h2>Ad Blocker Detected 🚫</h2>
-    <p>We rely on advertising to keep this site free.<br>
-       Please disable your ad blocker to continue.</p>
-    <button id="refresh-btn">I’ve Disabled Adblock</button>
-  </div>
-</div>
-
-<script>
-window.addEventListener('load', () => {
-  function checkAdblock() {
-    const bait = document.getElementById('ad-bait');
-    if (!bait) return true; // removed by ad blocker
-    const style = getComputedStyle(bait);
-    // blocked if hidden or removed
-    return style.display === 'none' || style.visibility === 'hidden' || bait.offsetParent === null;
-  }
-
-  // Force overlay to show if ad blocker detected
-  const overlay = document.getElementById('adblock-overlay');
-  if (checkAdblock()) {
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Button reloads the page
-  document.getElementById('refresh-btn').addEventListener('click', () => {
-    location.reload();
-  });
-});
-</script>
 
   <div class="section-bar1"></div>
 
