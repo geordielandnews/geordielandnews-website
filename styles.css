@@ -363,23 +363,3 @@ html, body {
   transition: border-color 0.3s;
 }
 
-footer {
-  height: 90px;
-  margin: 0;
-  width: 100%;
-  background-color: #00193f;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 0px;
-}
-.social-icons a img {
-   width: 24px;
-  height: 24px;
-  margin-left: 1rem;
-  transition: filter 0.3s;
-  filter: brightness(0) invert(1);
-}
-.social-icons a img:hover { 
-  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
-}
