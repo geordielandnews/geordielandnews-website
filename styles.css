@@ -96,7 +96,7 @@ html, body {
 }
 
 /* Shared styles for all ad boxes */
-.ad-panel-left > div {
+-ad-panel-left > div {
   position: absolute;
   left: 0;
   width: 430px;
@@ -112,10 +112,10 @@ html, body {
 }
 
 /* Position each one */
-.ad-slot-1-left { top: 0; }
-.ad-slot-2-left { top: 25%; }
-.ad-slot-3-left { top: 50%; }
-.ad-slot-4-left { top: 75%; }
+-ad-slot-1-left { top: 0; }
+-ad-slot-2-left { top: 25%; }
+-ad-slot-3-left { top: 50%; }
+-ad-slot-4-left { top: 75%; }
 
 
 
@@ -131,7 +131,7 @@ html, body {
 }
 
 /* Shared styles for all ad boxes */
-.ad-panel-right > div {
+-ad-panel-right > div {
   position: absolute;
   right: 0;
   width: 430px;
@@ -147,10 +147,10 @@ html, body {
 }
 
 /* Position each one */
-.ad-slot-1-right { top: 0; }
-.ad-slot-2-right { top: 25%; }
-.ad-slot-3-right { top: 50%; }
-.ad-slot-4-right { top: 75%; }
+-ad-slot-1-right { top: 0; }
+-ad-slot-2-right { top: 25%; }
+-ad-slot-3-right { top: 50%; }
+-ad-slot-4-right { top: 75%; }
 
 
 
