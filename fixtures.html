@@ -1376,7 +1376,7 @@ function formatPlayerName(name){
             "12. Malick Thiaw",
             "4. Sven Botman ↓65'",
             "33. Dan Burn",
-            "39. Bruno Guimarães 🟨 (C)",   
+            "39. Bruno Guimarães (C) 🟨",   
             "8. Sandro Tonali",         
             "7. Joelinton",
             "23. Jacob Murphy ↓77'",
@@ -1696,18 +1696,62 @@ function formatPlayerName(name){
         homeTeam: {
           name: "Newcastle",
           logo: "pictures/Newcastle-logo2.png",
-          manager: "",
+          manager: "Eddie Howe",
           goals: [],
-          lineup: [],
-          bench: []
+          lineup: [
+            "32. Aaron Ramsdale",
+            "21. Tino Livramento",
+            "12. Malick Thiaw",
+            "33. Dan Burn (C)",
+            "3. Lewis Hall",
+            "67. Lewis Miley",
+            "8. Sandro Tonali ↑46'",   
+            "7. Joelinton",         
+            "23. Jacob Murphy",
+            "27. Nick Woltemade",
+            "11. Harvey Barnes"             
+          ],
+          bench: [
+            "39. Bruno Guimarães ↑46'",
+            "5. Fabian Schär ↑'",
+            "10. Anthony Gordon ↑'",
+            "20. Anthony Elanga ↑'",
+            "26. John Ruddy",
+            "28. Joe Willock ↑'",
+            "37. Alex Murphy",
+            "41. Jacob Ramsey ↑'",
+            "62. Sean Neave"            
+          ]
         },
         awayTeam: {
           name: "Tottenham",
           logo: "pictures/tottenham-logo.png",
-          manager: "",
+          manager: "Thomas Frank",
           goals: [],
-          lineup: [],
-          bench: []
+          lineup: [
+            "1. Guglielmo Vicario",
+            "23. Pedro Porro",
+            "17. Cristian Romero (C) 🟨",
+            "4. Kevin Danso",
+            "13. Destiny Udogie",
+            "29. Pape Matar Sarr",
+            "30. Rodrigo Bentancur 🟨",
+            "15. Lucas Bergvall",
+            "20. Mohammed Kudus",
+            "39. Randal Kolo Muani",
+            "22. Brennan Johnson"
+          ],
+          bench: [
+            "6. João Palhinha",
+            "7. Xavi Simons",
+            "9. Richarlison",
+            "11. Mathys Tel",
+            "14. Archie Gray",
+            "24. Djed Spence",
+            "28. Wilson Odobert",
+            "31. Antonín Kinský",
+            "37. Micky van de Ven"
+          ]
         },
         stats: {
           shots: " - ",
@@ -3235,7 +3279,9 @@ document.addEventListener("click", e=>{
 
 <div class="section-bar5"></div>
 
+<!-- ------------------ STYLES ------------------ -->
 <style>
+/* ---------- FOOTER ---------- */
 footer {
   width: 100%;
   background-color: #00193f;
@@ -3250,12 +3296,10 @@ footer {
   align-items: center;
 }
 
-/* Each row spaced evenly */
 .footer-row {
   margin: 12px 0;
 }
 
-/* Social icons (your original styling) */
 .social-icons a img {
   width: 24px;
   height: 24px;
@@ -3269,15 +3313,14 @@ footer {
           saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
 }
 
-/* Centered links with equal spacing */
 .links-row a {
   color: #fff;
   text-decoration: none;
   margin: 0 1.5rem;
   font-size: 1rem;
-  display: inline-block;      /* needed for filter to work */
-  transition: filter 0.3s;    /* smooth hover effect */
-  filter: brightness(0) invert(1); /* default state */
+  display: inline-block;
+  transition: filter 0.3s;
+  filter: brightness(0) invert(1);
 }
 
 .links-row a:hover {
@@ -3285,8 +3328,7 @@ footer {
           saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
 }
 
-/* ---------- PRIVACY POP-UP STYLES ---------- */
-
+/* ---------- MODALS ---------- */
 .modal {
   display: none;
   position: fixed;
@@ -3298,33 +3340,29 @@ footer {
   background: rgba(0,0,0,0.6);
   justify-content: center;
   align-items: center;
+  padding: 1rem;
 }
 
 .modal-content {
   background: white;
-  padding: 20px;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 8px;
+  padding: 25px 20px;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
   color: black;
   animation: fadeIn 0.3s ease;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  position: relative;
 }
 
-#contactModal a {
-  color: black;
-  text-decoration: underline; /* makes it look like a link */
-  cursor: pointer;            /* shows pointer on hover */
-  transition: filter 0.3s;
-  filter: none;
+.modal-content h2 {
+  margin-top: 0;
 }
 
-#contactModal a:hover {
-  filter: brightness(0) saturate(100%) invert(38%) sepia(89%) 
-          saturate(5634%) hue-rotate(186deg) brightness(95%) contrast(100%);
-}
-
-.close {
-  float: right;
+.modal-content .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
   font-size: 28px;
   cursor: pointer;
   color: black;
@@ -3335,17 +3373,66 @@ button {
   background: #00193f;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #003366;
+}
+
+/* ---------- COOKIE BANNER ---------- */
+#cookieBanner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #00193f;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  font-family: sans-serif;
+  flex-wrap: wrap;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#cookieBanner div a {
+  color: #00d1ff;
+  text-decoration: underline;
   cursor: pointer;
 }
 
+#cookieBanner button {
+  margin: 5px 0;
+}
+
 @keyframes fadeIn {
-  from {opacity: 0; transform: scale(0.9);}
+  from {opacity: 0; transform: scale(0.95);}
   to {opacity: 1; transform: scale(1);}
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 480px) {
+  .links-row a {
+    margin: 0.5rem;
+  }
+  #cookieBanner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  #cookieBanner div {
+    margin-bottom: 10px;
+  }
 }
 </style>
 
-<!-- Footer -->
+<!-- ------------------ FOOTER ------------------ -->
 <footer>
   <div class="footer-container">
 
@@ -3377,7 +3464,33 @@ button {
   </div>
 </footer>
 
-<!-- Privacy Policy Modal -->
+<!-- ------------------ COOKIE BANNER ------------------ -->
+<div id="cookieBanner" style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #00193f;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  font-family: sans-serif;
+  flex-wrap: wrap;
+">
+  <div style="flex:1; min-width:200px; margin-bottom:8px;">
+    We use cookies to improve your experience. By continuing, you accept our use of cookies. 
+    <a href="#" id="bannerPrivacyLink" style="color:#00d1ff; text-decoration:underline;">Privacy Preferences</a>
+  </div>
+  <div style="display:flex; gap:10px; flex-wrap: wrap;">
+    <button onclick="acceptAll()" style="background:#00d1ff; color:#00193f; border:none; padding:8px 12px; border-radius:4px; cursor:pointer;">Accept All</button>
+    <button onclick="rejectAll()" style="background:#ff4c4c; color:white; border:none; padding:8px 12px; border-radius:4px; cursor:pointer;">Reject All</button>
+  </div>
+</div>
+
+<!-- ------------------ PRIVACY MODAL ------------------ -->
 <div id="privacyModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -3389,107 +3502,139 @@ button {
     <label><input type="checkbox" id="social" checked> Social media tracking</label><br><br>
 
     <button id="saveBtn">Save Choices</button>
+    <button onclick="acceptAll()">Accept All</button>
+    <button onclick="rejectAll()">Reject All</button>
   </div>
 </div>
 
-<!-- Legal / Copyright Modal -->
+<!-- ------------------ LEGAL MODAL ------------------ -->
 <div id="legalModal" class="modal">
   <div class="modal-content">
     <span class="close" id="legalClose">&times;</span>
     <h2>Legal Notice & Copyright</h2>
     <p>© 2025 Geordie Land News</p>
     <p>All rights reserved.</p>
-    <p>
-      The content of this website is protected by copyright. Reproduction, distribution, inclusion in online services, or duplication on any media, in whole or in part, is only permitted with prior written consent from Geordie Land News. Commercial resale of the content is strictly prohibited.
-    </p>
-    <p>
-      Geordie Land News accepts no responsibility for unsolicited content, manuscripts, or photographs. We assume no liability for the content of external links or third-party material.
-    </p>
-    <p>
-      For information regarding dispute resolution: Geordie Land News does not participate in any voluntary dispute resolution schemes. There is currently no legal obligation in the UK for participation in such schemes.
-    </p>
+    <p>The content of this website is protected by copyright. Reproduction, distribution, inclusion in online services, or duplication on any media, in whole or in part, is only permitted with prior written consent from Geordie Land News. Commercial resale of the content is strictly prohibited.</p>
+    <p>Geordie Land News accepts no responsibility for unsolicited content, manuscripts, or photographs. We assume no liability for the content of external links or third-party material.</p>
+    <p>For information regarding dispute resolution: Geordie Land News does not participate in any voluntary dispute resolution schemes. There is currently no legal obligation in the UK for participation in such schemes.</p>
   </div>
 </div>
 
-<!-- Contact Modal -->
+<!-- ------------------ CONTACT MODAL ------------------ -->
 <div id="contactModal" class="modal">
   <div class="modal-content">
     <span class="close" id="contactClose">&times;</span>
     <h2>Contact Geordie Land News</h2>
     <p>If you have any questions, feedback, or enquiries regarding our website, content, or policies, please get in touch with us:</p>
-
     <p><strong>Email:</strong> <a href="mailto:contact@geordielandnews.co.uk">contact@geordielandnews.co.uk</a></p>
-
     <p>We aim to respond to all queries within 5 business days.</p>
   </div>
 </div>
 
-<!-- Script for all modals -->
+<!-- ------------------ ADS / SOCIAL PLACEHOLDERS (HIDDEN) ------------------ -->
+<div class="ad-banner" data-category="ads" style="display:none;"></div>
+<div class="social-embed" data-category="social" style="display:none;"></div>
+
+<!-- ------------------ MODAL & PRIVACY SCRIPT ------------------ -->
 <script>
-const privacyModal = document.getElementById("privacyModal");
-const privacyBtn = document.getElementById("privacyBtn");
-const privacyClose = privacyModal.querySelector(".close");
-const saveBtn = document.getElementById("saveBtn");
+// ------------------- MODAL VARIABLES -------------------
+const modals = {
+  privacy: document.getElementById("privacyModal"),
+  legal: document.getElementById("legalModal"),
+  contact: document.getElementById("contactModal")
+};
 
-const legalModal = document.getElementById("legalModal");
-const legalBtn = document.getElementById("legalBtn");
-const legalClose = document.getElementById("legalClose");
+const modalBtns = {
+  privacy: document.getElementById("privacyBtn"),
+  legal: document.getElementById("legalBtn"),
+  contact: document.getElementById("contactBtn")
+};
 
-const contactModal = document.getElementById("contactModal");
-const contactBtn = document.getElementById("contactBtn");
-const contactClose = document.getElementById("contactClose");
+const cookieBanner = document.getElementById("cookieBanner");
+const bannerPrivacyLink = document.getElementById("bannerPrivacyLink");
 
-// -------------------
-// Check saved privacy choices on load
-// -------------------
-window.onload = () => {
+// ------------------- OPEN MODALS -------------------
+modalBtns.privacy.onclick = e => { e.preventDefault(); modals.privacy.style.display = "flex"; }
+modalBtns.legal.onclick = e => { e.preventDefault(); modals.legal.style.display = "flex"; }
+modalBtns.contact.onclick = e => { e.preventDefault(); modals.contact.style.display = "flex"; }
+bannerPrivacyLink.onclick = e => { e.preventDefault(); modals.privacy.style.display = "flex"; }
+
+// ------------------- CLOSE MODALS -------------------
+// Attach close to all spans with class 'close' inside modals
+document.querySelectorAll('.modal .close').forEach(closeBtn => {
+  closeBtn.onclick = () => {
+    closeBtn.closest('.modal').style.display = 'none';
+  }
+});
+
+// Close modal when clicking outside modal content
+window.onclick = e => {
+  Object.values(modals).forEach(modal => {
+    if (e.target === modal) modal.style.display = "none";
+  });
+};
+
+// ------------------- PRIVACY CHOICES -------------------
+function applyPrivacyChoices() {
+  const saved = localStorage.getItem("privacyChoices");
+  if (!saved) return;
+  const choices = JSON.parse(saved);
+
+  // Analytics scripts
+  document.querySelectorAll('script[data-category="analytics"]').forEach(script => {
+    if (choices.analytics) {
+      const newScript = document.createElement("script");
+      newScript.innerHTML = script.innerHTML;
+      document.body.appendChild(newScript);
+    }
+  });
+
+  // Ads
+  const adDiv = document.querySelector('[data-category="ads"]');
+  adDiv.style.display = choices.ads ? "block" : "none";
+
+  // Social
+  const socialDiv = document.querySelector('[data-category="social"]');
+  socialDiv.style.display = choices.social ? "block" : "none";
+}
+
+// ------------------- LOAD SAVED CHOICES -------------------
+window.addEventListener("load", () => {
   const savedChoices = localStorage.getItem("privacyChoices");
   if (!savedChoices) {
-    // No saved choices → show modal
-    privacyModal.style.display = "flex";
+    cookieBanner.style.display = "flex";
   } else {
-    // Restore saved choices in the modal
     const choices = JSON.parse(savedChoices);
     document.getElementById("analytics").checked = choices.analytics;
     document.getElementById("ads").checked = choices.ads;
     document.getElementById("social").checked = choices.social;
+    cookieBanner.style.display = "none";
   }
-}
+  applyPrivacyChoices();
+});
 
-// -------------------
-// Privacy modal
-// -------------------
-privacyBtn.onclick = () => { privacyModal.style.display = "flex"; }
-privacyClose.onclick = () => { privacyModal.style.display = "none"; }
-
-saveBtn.onclick = () => {
-  const choices = {
-    analytics: document.getElementById("analytics").checked,
-    ads: document.getElementById("ads").checked,
-    social: document.getElementById("social").checked
-  };
+// ------------------- SAVE & ACCEPT/REJECT -------------------
+function saveChoices(analytics, ads, social) {
+  const choices = { analytics, ads, social };
   localStorage.setItem("privacyChoices", JSON.stringify(choices));
-  privacyModal.style.display = "none";
+  modals.privacy.style.display = "none";
+  cookieBanner.style.display = "none";
+  applyPrivacyChoices();
 }
 
-// -------------------
-// Legal modal
-// -------------------
-legalBtn.onclick = () => { legalModal.style.display = "flex"; }
-legalClose.onclick = () => { legalModal.style.display = "none"; }
+document.getElementById("saveBtn").onclick = () => {
+  saveChoices(
+    document.getElementById("analytics").checked,
+    document.getElementById("ads").checked,
+    document.getElementById("social").checked
+  );
+};
 
-// -------------------
-// Contact modal
-// -------------------
-contactBtn.onclick = () => { contactModal.style.display = "flex"; }
-contactClose.onclick = () => { contactModal.style.display = "none"; }
+function acceptAll() {
+  saveChoices(true, true, true);
+}
 
-// -------------------
-// Close any modal if clicking outside
-// -------------------
-window.onclick = (e) => {
-  if (e.target === privacyModal) privacyModal.style.display = "none";
-  if (e.target === legalModal) legalModal.style.display = "none";
-  if (e.target === contactModal) contactModal.style.display = "none";
+function rejectAll() {
+  saveChoices(false, false, false);
 }
 </script>
