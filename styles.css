@@ -6,85 +6,6 @@ html, body {
 }
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6068321329701529"
-     crossorigin="anonymous"></script>
-
-<!-- Left ad panel -->
-<div class="ad-panel-left">
-
-  <div class="ad-slot-1-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:250px"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4894416560"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-2-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:250px"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="9069465293"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-3-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="5704935359"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-4-left">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="5441211478"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-</div>
-
-<!-- Right ad panel -->
-<div class="ad-panel-right">
-
-  <div class="ad-slot-1-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="8013186883"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-2-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="5026278508"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-3-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="4420623902"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="ad-slot-4-right">
-    <ins class="adsbygoogle"
-         style="display:inline-block;width:430px;height:25%"
-         data-ad-client="ca-pub-6068321329701529"
-         data-ad-slot="7762202843"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-</div>
-
-
-
 .ad-panel-left {
   position: fixed;
   left: 0;
@@ -95,31 +16,6 @@ html, body {
   background-color: #222;
 }
 
-/* Shared styles for all ad boxes */
--ad-panel-left > -div {
-  position: absolute;
-  left: 0;
-  width: 430px;
-  height: 25%;
-  border: 2px solid #333;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;      /* vertically center */
-  justify-content: center;  /* horizontally center */
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Position each one */
--ad-slot-1-left { top: 0; }
--ad-slot-2-left { top: 25%; }
--ad-slot-3-left { top: 50%; }
--ad-slot-4-left { top: 75%; }
-
-
-
-
 .ad-panel-right {
   position: fixed;
   right: 0;
@@ -129,28 +25,6 @@ html, body {
   z-index: 1000;
   background-color: #222;
 }
-
-/* Shared styles for all ad boxes */
--ad-panel-right > -div {
-  position: absolute;
-  right: 0;
-  width: 430px;
-  height: 25%;
-  border: 2px solid #333;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;      /* vertically center */
-  justify-content: center;  /* horizontally center */
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Position each one */
--ad-slot-1-right { top: 0; }
--ad-slot-2-right { top: 25%; }
--ad-slot-3-right { top: 50%; }
--ad-slot-4-right { top: 75%; }
 
 
 
